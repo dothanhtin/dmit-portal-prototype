@@ -1,0 +1,3596 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Công Khai Dữ Liệu Sở Công Thương</title>
+    <style>
+        :root {
+            --color-primary: #1e40af;
+            --color-primary-dark: #1e3a8a;
+            --color-primary-light: #3b82f6;
+            --color-secondary: #059669;
+            --color-accent: #f59e0b;
+            --color-background: #f8fafc;
+            --color-surface: #ffffff;
+            --color-text: #0f172a;
+            --color-text-secondary: #64748b;
+            --color-border: #e2e8f0;
+            --color-error: #dc2626;
+            --color-success: #16a34a;
+            --color-warning: #ea580c;
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-2xl: 48px;
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        .header {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 50%, #0c4a6e 100%);
+            color: white;
+            padding: var(--spacing-md) 0;
+            box-shadow: 0 4px 20px rgba(30, 64, 175, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid #3b82f6;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .nav {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+
+        .nav-item {
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Stats Banner */
+        .stats-banner {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            padding: var(--spacing-xl) var(--spacing-lg);
+            border-bottom: 3px solid var(--color-primary);
+            box-shadow: inset 0 -3px 10px rgba(59, 130, 246, 0.1);
+        }
+
+        .stats-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--color-primary);
+            transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(30, 64, 175, 0.08);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(30, 64, 175, 0.15);
+            border-left-color: var(--color-primary-light);
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .stat-label {
+            color: var(--color-text-secondary);
+            font-size: 14px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--spacing-xl) var(--spacing-lg);
+        }
+
+        /* Section Styles */
+        .section {
+            background: var(--color-surface);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .section-icon {
+            font-size: 28px;
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            gap: var(--spacing-lg);
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        }
+
+        /* Card Components */
+        .card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(30, 64, 175, 0.05);
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 24px rgba(30, 64, 175, 0.12);
+            transform: translateY(-4px);
+            border-color: var(--color-primary);
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--color-text);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .card-meta {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            display: flex;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-sm);
+        }
+
+        .card-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        /* Media Gallery */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .media-item {
+            position: relative;
+            background: #f0f0f0;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .media-item:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .media-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+            opacity: 0.3;
+        }
+
+        .media-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            padding: var(--spacing-md) var(--spacing-sm);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        select.form-control {
+            cursor: pointer;
+            background-color: white;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: var(--spacing-md) var(--spacing-lg);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: var(--color-secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            opacity: 0.9;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        /* Search Bar */
+        .search-container {
+            position: relative;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: var(--spacing-md) var(--spacing-xl) var(--spacing-md) 50px;
+            border: 2px solid var(--color-border);
+            border-radius: 50px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: var(--color-text-secondary);
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: var(--spacing-sm) var(--spacing-lg);
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+
+        .filter-tab:hover, .filter-tab.active {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+
+        /* Table */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: var(--spacing-md);
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .data-table th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: var(--color-text);
+            position: sticky;
+            top: 0;
+        }
+
+        .data-table tr:hover {
+            background: #f8fafc;
+        }
+
+        .download-icon {
+            color: var(--color-primary);
+            cursor: pointer;
+            font-size: 18px;
+            transition: var(--transition);
+        }
+
+        .download-icon:hover {
+            color: var(--color-primary-dark);
+            transform: scale(1.2);
+        }
+
+        /* News/Article Card */
+        .article-card {
+            display: flex;
+            gap: var(--spacing-lg);
+            padding: var(--spacing-lg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-md);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .article-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-primary);
+        }
+
+        .article-image {
+            width: 200px;
+            height: 140px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: var(--radius-md);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+        }
+
+        .article-content {
+            flex: 1;
+        }
+
+        .article-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .article-excerpt {
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.6;
+        }
+
+        .article-footer {
+            display: flex;
+            gap: var(--spacing-lg);
+            font-size: 12px;
+            color: var(--color-text-secondary);
+        }
+
+        /* Notification Badge */
+        .notification-badge {
+            background: var(--color-error);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--color-text);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            margin-top: var(--spacing-2xl);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .footer-section h3 {
+            margin-bottom: var(--spacing-md);
+            font-size: 16px;
+        }
+
+        .footer-link {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: var(--spacing-sm);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: white;
+            padding-left: var(--spacing-sm);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--color-surface);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        .modal-close {
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--color-text-secondary);
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--color-error);
+        }
+
+        /* Alert/Toast */
+        .alert {
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #6ee7b7;
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #93c5fd;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+
+            .nav {
+                overflow-x: auto;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .article-card {
+                flex-direction: column;
+            }
+
+            .article-image {
+                width: 100%;
+            }
+
+            .section {
+                padding: var(--spacing-lg);
+            }
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--color-primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: var(--spacing-xl) auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Hide content initially */
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        /* Share Buttons */
+        .share-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .share-btn:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-md);
+        }
+
+        .share-btn.facebook {
+            background: #1877f2;
+        }
+
+        .share-btn.twitter {
+            background: #000000;
+        }
+
+        .share-btn.zalo {
+            background: #0068ff;
+        }
+
+        .share-btn.linkedin {
+            background: #0a66c2;
+        }
+
+        /* Chatbot */
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.4);
+            transition: var(--transition);
+            z-index: 1500;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 102, 204, 0.5);
+        }
+
+        .chatbot-container {
+            position: fixed;
+            bottom: 100px;
+            right: 24px;
+            width: 380px;
+            height: 550px;
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            display: none;
+            flex-direction: column;
+            z-index: 1500;
+            overflow: hidden;
+        }
+
+        .chatbot-container.active {
+            display: flex;
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+            padding: var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-title {
+            font-weight: 600;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .chatbot-close {
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .chatbot-close:hover {
+            opacity: 1;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: var(--spacing-lg);
+            overflow-y: auto;
+            background: #f8fafc;
+        }
+
+        .chat-message {
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .chat-message.bot {
+            justify-content: flex-start;
+        }
+
+        .chat-message.user {
+            justify-content: flex-end;
+        }
+
+        .chat-bubble {
+            max-width: 75%;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .chat-message.bot .chat-bubble {
+            background: white;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+
+        .chat-message.user .chat-bubble {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .chat-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-sm);
+        }
+
+        .chat-suggestion {
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 50px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .chat-suggestion:hover {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+
+        .chatbot-input {
+            padding: var(--spacing-lg);
+            border-top: 1px solid var(--color-border);
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: var(--spacing-md);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+        }
+
+        .chatbot-input input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+
+        .chatbot-send {
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 18px;
+        }
+
+        .chatbot-send:hover {
+            background: var(--color-primary-dark);
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: var(--spacing-md);
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--color-text-secondary);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .chatbot-container {
+                width: calc(100% - 32px);
+                right: 16px;
+                height: 500px;
+            }
+
+            .chatbot-toggle {
+                right: 16px;
+                bottom: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">🏢</div>
+                <div>
+                    <div>CÔNG KHAI DỮ LIỆU SỞ CÔNG THƯƠNG</div>
+                    <div style="font-size: 12px; font-weight: 400; opacity: 0.9;">Cổng thông tin chính thức, minh bạch và hiện đại của Sở Công Thương</div>
+                </div>
+            </div>
+            <nav class="nav">
+                <div class="nav-item active" onclick="showSection('home')">🏠 Trang chủ</div>
+                <div class="nav-item" onclick="showSection('data')">📊 Dữ liệu</div>
+                <div class="nav-item" onclick="showSection('multimedia')">🎬 Multimedia</div>
+                <div class="nav-item" onclick="showSection('news')">📰 Tin tức</div>
+                <div class="nav-item" onclick="showSection('notifications')">
+                    🔔 Thông báo 
+                    <span class="notification-badge">5</span>
+                </div>
+                <div class="nav-item" onclick="showSection('contact')">✉️ Liên hệ</div>
+                <div class="nav-item" id="cmsNavItem" onclick="showSection('cms')" style="background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.4); display: none;">⚙️ CMS</div>
+                <div class="nav-item" onclick="window.location.href='https://doit-demo.vnptit.vn/v2/auth'" style="background: rgba(255, 255, 255, 0.25); border: 1px solid rgba(255, 255, 255, 0.5); font-weight: 600;">🔐 Đăng nhập</div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Admin Toggle (Hidden in production) -->
+    <div style="position: fixed; top: 80px; right: 20px; z-index: 2000; background: white; padding: 12px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 2px solid var(--color-primary);">
+        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--color-text);">
+            <input type="checkbox" id="adminModeToggle" onchange="toggleAdminMode()" style="cursor: pointer; width: 18px; height: 18px;">
+            <span>🔧 Admin Mode (CMS)</span>
+        </label>
+    </div>
+
+    <!-- Stats Banner -->
+    <div class="stats-banner">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">1,247</div>
+                <div class="stat-label">Bộ dữ liệu công khai</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">856</div>
+                <div class="stat-label">Doanh nghiệp đăng ký</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2,430</div>
+                <div class="stat-label">Tài liệu Multimedia</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">15,678</div>
+                <div class="stat-label">Lượt tải xuống</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- HOME SECTION -->
+        <div id="home-section" class="content-section active">
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" placeholder="Tìm kiếm dữ liệu, tin tức, tài liệu..." id="globalSearch">
+            </div>
+
+            <!-- Quick Access -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="section-icon">⚡</span>
+                        Truy cập nhanh
+                    </h2>
+                </div>
+                <div class="grid grid-4">
+                    <div class="card" onclick="showSection('data')">
+                        <div class="card-header">
+                            <div style="font-size: 32px;">📊</div>
+                        </div>
+                        <div class="card-title">Thống kê dữ liệu</div>
+                        <div class="card-meta">
+                            <span>1,247 bộ dữ liệu</span>
+                        </div>
+                    </div>
+                    <div class="card" onclick="showSection('multimedia')">
+                        <div class="card-header">
+                            <div style="font-size: 32px;">🎬</div>
+                        </div>
+                        <div class="card-title">Thư viện Multimedia</div>
+                        <div class="card-meta">
+                            <span>2,430 tài liệu</span>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('export')">
+                        <div class="card-header">
+                            <div style="font-size: 32px;">📥</div>
+                        </div>
+                        <div class="card-title">Xuất dữ liệu Excel</div>
+                        <div class="card-meta">
+                            <span>Tải về ngay</span>
+                        </div>
+                    </div>
+                    <div class="card" onclick="showSection('news')">
+                        <div class="card-header">
+                            <div style="font-size: 32px;">📰</div>
+                        </div>
+                        <div class="card-title">Tin tức - Sự kiện</div>
+                        <div class="card-meta">
+                            <span>Cập nhật hàng ngày</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Latest Datasets -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="section-icon">📈</span>
+                        Dữ liệu mới cập nhật
+                    </h2>
+                    <button class="btn btn-outline" onclick="showSection('data')">Xem tất cả →</button>
+                </div>
+                <div class="grid grid-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-badge">MỚI</span>
+                        </div>
+                        <div class="card-title">Thống kê xuất nhập khẩu Q3 2025</div>
+                        <div class="card-meta">
+                            <span>📅 28/10/2025</span>
+                            <span>📥 234 tải</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-badge">MỚI</span>
+                        </div>
+                        <div class="card-title">Danh sách doanh nghiệp FDI 2025</div>
+                        <div class="card-meta">
+                            <span>📅 27/10/2025</span>
+                            <span>📥 189 tải</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-badge">CẬP NHẬT</span>
+                        </div>
+                        <div class="card-title">Chỉ số giá tiêu dùng CPI tháng 10</div>
+                        <div class="card-meta">
+                            <span>📅 25/10/2025</span>
+                            <span>📥 567 tải</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DATA SECTION -->
+        <div id="data-section" class="content-section">
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="section-icon">📊</span>
+                        Dữ liệu Công thương theo lĩnh vực
+                    </h2>
+                </div>
+
+                <div class="filter-tabs">
+                    <div class="filter-tab active" onclick="filterDataCategory('all')">Tất cả</div>
+                    <div class="filter-tab" onclick="filterDataCategory('energy')">⚡ Năng lượng</div>
+                    <div class="filter-tab" onclick="filterDataCategory('trade')">🛒 Thương mại</div>
+                    <div class="filter-tab" onclick="filterDataCategory('industry')">🏭 Công nghiệp</div>
+                    <div class="filter-tab" onclick="filterDataCategory('planning')">🗺️ Quy hoạch</div>
+                </div>
+
+                <!-- Energy Category -->
+                <div class="data-category" data-category="energy">
+                    <h3 style="color: var(--color-primary); margin: var(--spacing-xl) 0 var(--spacing-lg) 0; font-size: 20px;">
+                        ⚡ 1. Năng lượng
+                    </h3>
+                    <div class="grid grid-4">
+                        <div class="card" onclick="openMapLayer('energy-facilities')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">🏭</div>
+                            <div class="card-title">Cơ sở sử dụng năng lượng trọng điểm</div>
+                            <div class="card-meta"><span>300+ dữ liệu doanh nghiệp</span></div>
+                        </div>
+                        <div class="card" onclick="openMapLayer('electricity-retail')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">⚡</div>
+                            <div class="card-title">Doanh nghiệp hoạt động điện lực bán lẻ</div>
+                            <div class="card-meta"><span>1+ dữ liệu doanh nghiệp</span></div>
+                        </div>
+                        <div class="card" onclick="openMapLayer('electricity-under-3mw')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">💡</div>
+                            <div class="card-title">Doanh nghiệp hoạt động điện lực dưới 3 MW</div>
+                            <div class="card-meta"><span>426+ dữ liệu doanh nghiệp</span></div>
+                        </div>
+                        <div class="card" onclick="openMapLayer('electricity-distribution')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">🔌</div>
+                            <div class="card-title">Doanh nghiệp hoạt động điện lực phân phối</div>
+                            <div class="card-meta"><span>4+ dữ liệu doanh nghiệp</span></div>
+                        </div>
+                        <div class="card" onclick="openMapLayer('gas-business')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">🔥</div>
+                            <div class="card-title">Doanh nghiệp kinh doanh khí</div>
+                            <div class="card-meta"><span>Xem trên bản đồ</span></div>
+                        </div>
+                        <div class="card" onclick="openMapLayer('gas-storage')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">🏢</div>
+                            <div class="card-title">Kho khí</div>
+                            <div class="card-meta"><span>Xem trên bản đồ</span></div>
+                        </div>
+                        <div class="card" onclick="openMapLayer('greenhouse-inventory')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">🌱</div>
+                            <div class="card-title">Kiểm kê nhà kính</div>
+                            <div class="card-meta"><span>Dữ liệu môi trường</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trade Category -->
+                <div class="data-category" data-category="trade">
+                    <h3 style="color: var(--color-primary); margin: var(--spacing-xl) 0 var(--spacing-lg) 0; font-size: 20px;">
+                        🛒 2. Thương mại
+                    </h3>
+                    <div class="grid grid-4">
+                        <div class="card" onclick="openMapLayer('markets')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">🏪</div>
+                            <div class="card-title">Chợ</div>
+                            <div class="card-meta"><span>Xem trên bản đồ</span></div>
+                        </div>
+                        <div class="card" onclick="openMapLayer('supermarkets')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">🏬</div>
+                            <div class="card-title">Siêu thị</div>
+                            <div class="card-meta"><span>Cơ sở bán lẻ</span></div>
+                        </div>
+                        <div class="card" onclick="openMapLayer('shopping-centers')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">🛍️</div>
+                            <div class="card-title">Trung tâm thương mại</div>
+                            <div class="card-meta"><span>Xem trên bản đồ</span></div>
+                        </div>
+                        <div class="card" onclick="openMapLayer('convenience-stores')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">🏪</div>
+                            <div class="card-title">Chuỗi cửa hàng tiện lợi</div>
+                            <div class="card-meta"><span>Xem trên bản đồ</span></div>
+                        </div>
+                        <div class="card" onclick="openMapLayer('retail-stores')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">🏬</div>
+                            <div class="card-title">Cơ sở bán lẻ</div>
+                            <div class="card-meta"><span>Xem trên bản đồ</span></div>
+                        </div>
+                        <div class="card" onclick="openMapLayer('fdi-retail')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">🌐</div>
+                            <div class="card-title">Cơ sở bán lẻ có vốn đầu tư nước ngoài</div>
+                            <div class="card-meta"><span>Dữ liệu FDI</span></div>
+                        </div>
+                        <div class="card" onclick="openMapLayer('gas-stations')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">⛽</div>
+                            <div class="card-title">Cửa hàng xăng dầu</div>
+                            <div class="card-meta"><span>Cửa hàng tiền lợi, Cửa hàng xăng dầu</span></div>
+                        </div>
+                        <div class="card" onclick="openMapLayer('alcohol-retailers')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">🍷</div>
+                            <div class="card-title">Thương nhân bán lẻ rượu</div>
+                            <div class="card-meta"><span>Xem trên bản đồ</span></div>
+                        </div>
+                        <div class="card" onclick="openMapLayer('tobacco-wholesalers')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">🚬</div>
+                            <div class="card-title">Thương nhân bán buôn thuốc lá</div>
+                            <div class="card-meta"><span>Xem trên bản đồ</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Industry Category -->
+                <div class="data-category" data-category="industry">
+                    <h3 style="color: var(--color-primary); margin: var(--spacing-xl) 0 var(--spacing-lg) 0; font-size: 20px;">
+                        🏭 3. Công nghiệp
+                    </h3>
+                    <div class="grid grid-4">
+                        <div class="card" onclick="openMapLayer('industrial-parks')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">🏗️</div>
+                            <div class="card-title">Khu công nghiệp</div>
+                            <div class="card-meta"><span>Xem trên bản đồ</span></div>
+                        </div>
+                        <div class="card" onclick="openMapLayer('industrial-clusters')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">🏭</div>
+                            <div class="card-title">Cụm công nghiệp</div>
+                            <div class="card-meta"><span>Xem trên bản đồ</span></div>
+                        </div>
+                        <div class="card" onclick="openMapLayer('supporting-industry')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">🔧</div>
+                            <div class="card-title">Doanh nghiệp hỗ trợ công nghiệp</div>
+                            <div class="card-meta"><span>Công ty kinh doanh/sản xuất thực phẩm, Cơ sở sản xuất công nghiệp, Cơ sở...</span></div>
+                        </div>
+                        <div class="card" onclick="openMapLayer('cluster-enterprises')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">🏢</div>
+                            <div class="card-title">Doanh nghiệp thuộc cụm công nghiệp</div>
+                            <div class="card-meta"><span>Xem trên bản đồ</span></div>
+                        </div>
+                        <div class="card" onclick="openMapLayer('explosive-materials')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">💥</div>
+                            <div class="card-title">Doanh nghiệp sử dụng vật liệu nổ</div>
+                            <div class="card-meta"><span>Xem trên bản đồ</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Planning Category -->
+                <div class="data-category" data-category="planning">
+                    <h3 style="color: var(--color-primary); margin: var(--spacing-xl) 0 var(--spacing-lg) 0; font-size: 20px;">
+                        🗺️ 4. Quy hoạch lưới điện
+                    </h3>
+                    <div class="grid grid-4">
+                        <div class="card" onclick="openMapLayer('market-planning')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">🏪</div>
+                            <div class="card-title">Quy hoạch Cột điện, Lưới điện, Trạm biến áp</div>
+                            <div class="card-meta"><span>Quy hoạch lưới điện</span></div>
+                        </div>
+                        <div class="card" onclick="openMapLayer('power-grid-planning')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">⚡</div>
+                            <div class="card-title">Quy hoạch lưới điện</div>
+                            <div class="card-meta"><span>Xem trên bản đồ</span></div>
+                        </div>
+                        <div class="card" onclick="openMapLayer('mall-planning')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">🛍️</div>
+                            <div class="card-title">Quy hoạch trung tâm thương mại</div>
+                            <div class="card-meta"><span>Xem trên bản đồ</span></div>
+                        </div>
+                        <div class="card" onclick="openMapLayer('supermarket-planning')">
+                            <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">🏬</div>
+                            <div class="card-title">Quy hoạch siêu thị</div>
+                            <div class="card-meta"><span>Xem trên bản đồ</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: var(--spacing-2xl); padding: var(--spacing-xl); background: #f0f9ff; border-left: 4px solid var(--color-primary); border-radius: var(--radius-md);">
+                    <div style="display: flex; align-items: center; gap: var(--spacing-md); margin-bottom: var(--spacing-md);">
+                        <span style="font-size: 24px;">🗺️</span>
+                        <strong style="font-size: 16px;">Xem dữ liệu trên bản đồ</strong>
+                    </div>
+                    <p style="margin: 0; color: var(--color-text-secondary);">
+                        Nhấp vào bất kỳ lớp dữ liệu nào để xem các điểm dữ liệu (doanh nghiệp, cơ sở) được hiển thị trên bản đồ tương tác với đầy đủ thông tin chi tiết.
+                    </p>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Tên bộ dữ liệu</th>
+                                <th>Lĩnh vực</th>
+                                <th>Cập nhật</th>
+                                <th>Lượt tải</th>
+                                <th>Định dạng</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dataTableBody">
+                            <tr>
+                                <td><strong>Thống kê xuất nhập khẩu Q3 2025</strong></td>
+                                <td><span class="card-badge" style="background: #16a34a;">Xuất nhập khẩu</span></td>
+                                <td>28/10/2025</td>
+                                <td>234</td>
+                                <td>XLSX, CSV</td>
+                                <td>
+                                    <span class="download-icon" onclick="downloadData('export-q3')" title="Tải xuống">📥</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Danh sách doanh nghiệp FDI 2025</strong></td>
+                                <td><span class="card-badge" style="background: #ea580c;">Đầu tư FDI</span></td>
+                                <td>27/10/2025</td>
+                                <td>189</td>
+                                <td>XLSX, PDF</td>
+                                <td>
+                                    <span class="download-icon" onclick="downloadData('fdi-2025')" title="Tải xuống">📥</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Chỉ số giá tiêu dùng CPI tháng 10</strong></td>
+                                <td><span class="card-badge" style="background: #0066cc;">Thương mại</span></td>
+                                <td>25/10/2025</td>
+                                <td>567</td>
+                                <td>XLSX, JSON</td>
+                                <td>
+                                    <span class="download-icon" onclick="downloadData('cpi-10')" title="Tải xuống">📥</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sản lượng công nghiệp Q3 2025</strong></td>
+                                <td><span class="card-badge" style="background: #7c3aed;">Công nghiệp</span></td>
+                                <td>22/10/2025</td>
+                                <td>423</td>
+                                <td>XLSX, CSV</td>
+                                <td>
+                                    <span class="download-icon" onclick="downloadData('industry-q3')" title="Tải xuống">📥</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tiêu thụ điện năng toàn quốc 2025</strong></td>
+                                <td><span class="card-badge" style="background: #dc2626;">Năng lượng</span></td>
+                                <td>20/10/2025</td>
+                                <td>298</td>
+                                <td>XLSX, PDF</td>
+                                <td>
+                                    <span class="download-icon" onclick="downloadData('energy-2025')" title="Tải xuống">📥</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- MULTIMEDIA SECTION -->
+        <div id="multimedia-section" class="content-section">
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="section-icon">🎬</span>
+                        Thư viện Multimedia
+                    </h2>
+                </div>
+
+                <div class="filter-tabs">
+                    <div class="filter-tab active" onclick="filterMultimedia('all')">Tất cả</div>
+                    <div class="filter-tab" onclick="filterMultimedia('image')">📷 Hình ảnh</div>
+                    <div class="filter-tab" onclick="filterMultimedia('video')">🎥 Video</div>
+                    <div class="filter-tab" onclick="filterMultimedia('infographic')">📊 Infographic</div>
+                    <div class="filter-tab" onclick="filterMultimedia('book')">📚 Sách/Tài liệu</div>
+                    <div class="filter-tab" onclick="filterMultimedia('voice')">🎙️ Podcast</div>
+                </div>
+
+                <div class="media-grid" id="mediaGrid">
+                    <div class="media-item" data-type="video">
+                        <div class="media-icon">🎥</div>
+                        <div class="media-label">Hội nghị Công thương toàn quốc 2025</div>
+                    </div>
+                    <div class="media-item" data-type="infographic">
+                        <div class="media-icon">📊</div>
+                        <div class="media-label">Infographic: Xuất khẩu Việt Nam Q3</div>
+                    </div>
+                    <div class="media-item" data-type="image">
+                        <div class="media-icon">📷</div>
+                        <div class="media-label">Album: Triển lãm công nghiệp 2025</div>
+                    </div>
+                    <div class="media-item" data-type="book">
+                        <div class="media-icon">📚</div>
+                        <div class="media-label">Báo cáo thường niên 2024</div>
+                    </div>
+                    <div class="media-item" data-type="video">
+                        <div class="media-icon">🎥</div>
+                        <div class="media-label">Chuyển đổi số trong công nghiệp</div>
+                    </div>
+                    <div class="media-item" data-type="voice">
+                        <div class="media-icon">🎙️</div>
+                        <div class="media-label">Podcast: Chính sách thương mại mới</div>
+                    </div>
+                    <div class="media-item" data-type="infographic">
+                        <div class="media-icon">📊</div>
+                        <div class="media-label">Năng lượng tái tạo Việt Nam</div>
+                    </div>
+                    <div class="media-item" data-type="image">
+                        <div class="media-icon">📷</div>
+                        <div class="media-label">Lễ ký kết hợp tác quốc tế</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NEWS SECTION -->
+        <div id="news-section" class="content-section">
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="section-icon">📰</span>
+                        Tin tức - Sự kiện
+                    </h2>
+                    <button class="btn btn-primary" onclick="openModal('createNews')">✍️ Đăng bài viết</button>
+                </div>
+
+                <div id="newsContainer">
+                    <div class="article-card">
+                        <div class="article-image">📰</div>
+                        <div class="article-content">
+                            <div class="article-title">Việt Nam đạt kim ngạch xuất khẩu kỷ lục trong Q3/2025</div>
+                            <div class="article-excerpt">
+                                Theo số liệu từ Bộ Công Thương, tổng kim ngạch xuất khẩu của Việt Nam trong quý 3 năm 2025 đạt mức cao nhất từ trước đến nay, tăng 15.8% so với cùng kỳ năm trước. Điều này cho thấy sức bật mạnh mẽ của nền kinh tế...
+                            </div>
+                            <div class="article-footer">
+                                <span>📅 28/10/2025</span>
+                                <span>👁️ 1,234 lượt xem</span>
+                                <span>💬 24 bình luận</span>
+                            </div>
+                            <div class="share-buttons">
+                                <a href="#" class="share-btn facebook" onclick="shareContent('facebook', 'Việt Nam đạt kim ngạch xuất khẩu kỷ lục trong Q3/2025'); return false;" title="Chia sẻ lên Facebook">f</a>
+                                <a href="#" class="share-btn twitter" onclick="shareContent('twitter', 'Việt Nam đạt kim ngạch xuất khẩu kỷ lục trong Q3/2025'); return false;" title="Chia sẻ lên X">𝕏</a>
+                                <a href="#" class="share-btn zalo" onclick="shareContent('zalo', 'Việt Nam đạt kim ngạch xuất khẩu kỷ lục trong Q3/2025'); return false;" title="Chia sẻ lên Zalo">Z</a>
+                                <a href="#" class="share-btn linkedin" onclick="shareContent('linkedin', 'Việt Nam đạt kim ngạch xuất khẩu kỷ lục trong Q3/2025'); return false;" title="Chia sẻ lên LinkedIn">in</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-card">
+                        <div class="article-image">🏭</div>
+                        <div class="article-content">
+                            <div class="article-title">Chuyển đổi số trong ngành công nghiệp: Cơ hội và thách thức</div>
+                            <div class="article-excerpt">
+                                Hội thảo về chuyển đổi số trong ngành công nghiệp đã diễn ra tại Hà Nội với sự tham gia của hơn 500 doanh nghiệp. Các chuyên gia đánh giá đây là xu hướng tất yếu để nâng cao năng suất và cạnh tranh...
+                            </div>
+                            <div class="article-footer">
+                                <span>📅 27/10/2025</span>
+                                <span>👁️ 856 lượt xem</span>
+                                <span>💬 18 bình luận</span>
+                            </div>
+                            <div class="share-buttons">
+                                <a href="#" class="share-btn facebook" onclick="shareContent('facebook', 'Chuyển đổi số trong ngành công nghiệp: Cơ hội và thách thức'); return false;" title="Chia sẻ lên Facebook">f</a>
+                                <a href="#" class="share-btn twitter" onclick="shareContent('twitter', 'Chuyển đổi số trong ngành công nghiệp: Cơ hội và thách thức'); return false;" title="Chia sẻ lên X">𝕏</a>
+                                <a href="#" class="share-btn zalo" onclick="shareContent('zalo', 'Chuyển đổi số trong ngành công nghiệp: Cơ hội và thách thức'); return false;" title="Chia sẻ lên Zalo">Z</a>
+                                <a href="#" class="share-btn linkedin" onclick="shareContent('linkedin', 'Chuyển đổi số trong ngành công nghiệp: Cơ hội và thách thức'); return false;" title="Chia sẻ lên LinkedIn">in</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-card">
+                        <div class="article-image">⚡</div>
+                        <div class="article-content">
+                            <div class="article-title">Năng lượng tái tạo chiếm 25% tổng sản lượng điện năm 2025</div>
+                            <div class="article-excerpt">
+                                Theo báo cáo mới nhất, năng lượng tái tạo đã chiếm 25% tổng sản lượng điện của Việt Nam, vượt mục tiêu đề ra. Điện mặt trời và điện gió đóng vai trò quan trọng trong chuyển dịch năng lượng xanh...
+                            </div>
+                            <div class="article-footer">
+                                <span>📅 25/10/2025</span>
+                                <span>👁️ 2,145 lượt xem</span>
+                                <span>💬 45 bình luận</span>
+                            </div>
+                            <div class="share-buttons">
+                                <a href="#" class="share-btn facebook" onclick="shareContent('facebook', 'Năng lượng tái tạo chiếm 25% tổng sản lượng điện năm 2025'); return false;" title="Chia sẻ lên Facebook">f</a>
+                                <a href="#" class="share-btn twitter" onclick="shareContent('twitter', 'Năng lượng tái tạo chiếm 25% tổng sản lượng điện năm 2025'); return false;" title="Chia sẻ lên X">𝕏</a>
+                                <a href="#" class="share-btn zalo" onclick="shareContent('zalo', 'Năng lượng tái tạo chiếm 25% tổng sản lượng điện năm 2025'); return false;" title="Chia sẻ lên Zalo">Z</a>
+                                <a href="#" class="share-btn linkedin" onclick="shareContent('linkedin', 'Năng lượng tái tạo chiếm 25% tổng sản lượng điện năm 2025'); return false;" title="Chia sẻ lên LinkedIn">in</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NOTIFICATIONS SECTION -->
+        <div id="notifications-section" class="content-section">
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="section-icon">🔔</span>
+                        Thông báo đến doanh nghiệp
+                    </h2>
+                </div>
+
+                <div class="alert alert-info">
+                    <span style="font-size: 20px;">ℹ️</span>
+                    <div>Bạn có 5 thông báo chưa đọc</div>
+                </div>
+
+                <div class="grid grid-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-badge" style="background: #dc2626;">QUAN TRỌNG</span>
+                            <span style="font-size: 12px; color: var(--color-text-secondary);">28/10/2025</span>
+                        </div>
+                        <div class="card-title">Cập nhật dữ liệu doanh nghiệp trước 15/11/2025</div>
+                        <p style="margin-top: var(--spacing-sm); color: var(--color-text-secondary); font-size: 14px;">
+                            Kính gửi quý doanh nghiệp, vui lòng cập nhật đầy đủ thông tin hoạt động kinh doanh năm 2025 trước ngày 15/11/2025 để đảm bảo tuân thủ quy định...
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-badge" style="background: #16a34a;">CHƯƠNG TRÌNH MỚI</span>
+                            <span style="font-size: 12px; color: var(--color-text-secondary);">25/10/2025</span>
+                        </div>
+                        <div class="card-title">Chương trình hỗ trợ doanh nghiệp SME 2025</div>
+                        <p style="margin-top: var(--spacing-sm); color: var(--color-text-secondary); font-size: 14px;">
+                            Bộ Công Thương triển khai chương trình hỗ trợ tài chính cho doanh nghiệp vừa và nhỏ với tổng kinh phí 500 tỷ đồng. Đăng ký ngay...
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-badge" style="background: #ea580c;">ƯU ĐÃI</span>
+                            <span style="font-size: 12px; color: var(--color-text-secondary);">22/10/2025</span>
+                        </div>
+                        <div class="card-title">Ưu đãi thuế cho doanh nghiệp xuất khẩu</div>
+                        <p style="margin-top: var(--spacing-sm); color: var(--color-text-secondary); font-size: 14px;">
+                            Áp dụng mức thuế suất ưu đãi 10% cho doanh nghiệp xuất khẩu đạt kim ngạch trên 10 triệu USD/năm...
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-badge" style="background: #7c3aed;">SỰ KIỆN</span>
+                            <span style="font-size: 12px; color: var(--color-text-secondary);">20/10/2025</span>
+                        </div>
+                        <div class="card-title">Hội chợ Thương mại Quốc tế 2025</div>
+                        <p style="margin-top: var(--spacing-sm); color: var(--color-text-secondary); font-size: 14px;">
+                            Đăng ký tham gia Hội chợ Thương mại Quốc tế lần thứ 15 tại TP.HCM từ 5-10/12/2025...
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT SECTION -->
+        <div id="contact-section" class="content-section">
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="section-icon">✉️</span>
+                        Hòm thư góp ý & Liên hệ
+                    </h2>
+                </div>
+
+                <div class="grid grid-2">
+                    <div>
+                        <form id="contactForm" onsubmit="submitContact(event)">
+                            <div class="form-group">
+                                <label class="form-label">Họ và tên *</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Email *</label>
+                                <input type="email" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Số điện thoại</label>
+                                <input type="tel" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Loại góp ý *</label>
+                                <select class="form-control" required>
+                                    <option value="">-- Chọn loại góp ý --</option>
+                                    <option value="data">Góp ý về dữ liệu</option>
+                                    <option value="feature">Đề xuất tính năng</option>
+                                    <option value="bug">Báo lỗi kỹ thuật</option>
+                                    <option value="support">Yêu cầu hỗ trợ</option>
+                                    <option value="other">Khác</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Nội dung *</label>
+                                <textarea class="form-control" rows="6" required placeholder="Nhập nội dung góp ý hoặc câu hỏi của bạn..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">📤 Gửi góp ý</button>
+                        </form>
+                    </div>
+
+                    <div>
+                        <h3 style="margin-bottom: var(--spacing-lg);">Thông tin liên hệ</h3>
+                        
+                        <div style="margin-bottom: var(--spacing-lg);">
+                            <div style="font-weight: 600; margin-bottom: var(--spacing-sm);">📍 Địa chỉ:</div>
+                            <div style="color: var(--color-text-secondary);">
+                                54 Hai Bà Trưng, Hoàn Kiếm, Hà Nội, Việt Nam
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: var(--spacing-lg);">
+                            <div style="font-weight: 600; margin-bottom: var(--spacing-sm);">📞 Điện thoại:</div>
+                            <div style="color: var(--color-text-secondary);">
+                                (024) 3825 2684
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: var(--spacing-lg);">
+                            <div style="font-weight: 600; margin-bottom: var(--spacing-sm);">📧 Email:</div>
+                            <div style="color: var(--color-text-secondary);">
+                                dataopen@moit.gov.vn
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: var(--spacing-lg);">
+                            <div style="font-weight: 600; margin-bottom: var(--spacing-sm);">⏰ Giờ làm việc:</div>
+                            <div style="color: var(--color-text-secondary);">
+                                Thứ 2 - Thứ 6: 8:00 - 17:00<br>
+                                Thứ 7, Chủ nhật: Nghỉ
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info">
+                            <span style="font-size: 20px;">💡</span>
+                            <div>
+                                <strong>Lưu ý:</strong> Chúng tôi sẽ phản hồi trong vòng 24-48 giờ làm việc.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div id="exportModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📥 Xuất dữ liệu Excel</h2>
+                <span class="modal-close" onclick="closeModal('export')">&times;</span>
+            </div>
+
+            <form id="exportForm" onsubmit="exportData(event)">
+                <div class="form-group">
+                    <label class="form-label">Chọn bộ dữ liệu</label>
+                    <select class="form-control" required>
+                        <option value="">-- Chọn dữ liệu --</option>
+                        <option value="export-import">Xuất nhập khẩu</option>
+                        <option value="fdi">Đầu tư FDI</option>
+                        <option value="industry">Công nghiệp</option>
+                        <option value="energy">Năng lượng</option>
+                        <option value="cpi">Chỉ số giá</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Khoảng thời gian</label>
+                    <select class="form-control" required>
+                        <option value="">-- Chọn thời gian --</option>
+                        <option value="current-month">Tháng hiện tại</option>
+                        <option value="current-quarter">Quý hiện tại</option>
+                        <option value="current-year">Năm 2025</option>
+                        <option value="last-year">Năm 2024</option>
+                        <option value="all">Tất cả</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Định dạng</label>
+                    <select class="form-control" required>
+                        <option value="xlsx">Excel (.xlsx)</option>
+                        <option value="csv">CSV (.csv)</option>
+                        <option value="json">JSON (.json)</option>
+                    </select>
+                </div>
+
+                <div style="display: flex; gap: var(--spacing-md);">
+                    <button type="submit" class="btn btn-primary">📥 Tải xuống</button>
+                    <button type="button" class="btn btn-outline" onclick="closeModal('export')">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Create News Modal -->
+    <div id="createNewsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>✍️ Đăng bài viết mới</h2>
+                <span class="modal-close" onclick="closeModal('createNews')">&times;</span>
+            </div>
+
+            <form id="createNewsForm" onsubmit="submitNews(event)">
+                <div class="form-group">
+                    <label class="form-label">Tiêu đề *</label>
+                    <input type="text" class="form-control" required placeholder="Nhập tiêu đề bài viết">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Danh mục *</label>
+                    <select class="form-control" required>
+                        <option value="">-- Chọn danh mục --</option>
+                        <option value="news">Tin tức</option>
+                        <option value="event">Sự kiện</option>
+                        <option value="policy">Chính sách</option>
+                        <option value="report">Báo cáo</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Nội dung *</label>
+                    <textarea class="form-control" rows="8" required placeholder="Nhập nội dung bài viết..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Tải lên hình ảnh</label>
+                    <input type="file" class="form-control" accept="image/*">
+                </div>
+
+                <div style="display: flex; gap: var(--spacing-md);">
+                    <button type="submit" class="btn btn-primary">📤 Đăng bài</button>
+                    <button type="button" class="btn btn-outline" onclick="closeModal('createNews')">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- CMS SECTION -->
+    <div id="cms-section" class="content-section">
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-icon">⚙️</span>
+                    Hệ thống quản trị nội dung (CMS)
+                </h2>
+            </div>
+
+            <!-- CMS Tabs -->
+            <div class="filter-tabs" style="margin-bottom: var(--spacing-xl);">
+                <div class="filter-tab active" onclick="showCMSTab('posts')">📝 Quản lý bài viết</div>
+                <div class="filter-tab" onclick="showCMSTab('notifications')">🔔 Quản lý thông báo</div>
+                <div class="filter-tab" onclick="showCMSTab('schedule')">📅 Lịch đăng bài</div>
+                <div class="filter-tab" onclick="showCMSTab('enterprises')">🏢 Doanh nghiệp</div>
+            </div>
+
+            <!-- Posts Management Tab -->
+            <div id="cms-posts-tab" class="cms-tab active">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg);">
+                    <h3 style="color: var(--color-primary);">Danh sách bài viết</h3>
+                    <button class="btn btn-primary" onclick="openCMSModal('createPost')">➕ Tạo bài viết mới</button>
+                </div>
+
+                <div class="filter-tabs" style="margin-bottom: var(--spacing-lg);">
+                    <div class="filter-tab active" onclick="filterCMSPosts('all')">Tất cả (12)</div>
+                    <div class="filter-tab" onclick="filterCMSPosts('published')">Đã xuất bản (8)</div>
+                    <div class="filter-tab" onclick="filterCMSPosts('draft')">Nháp (2)</div>
+                    <div class="filter-tab" onclick="filterCMSPosts('pending')">Chờ duyệt (2)</div>
+                    <div class="filter-tab" onclick="filterCMSPosts('scheduled')">Đã lên lịch (0)</div>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" onclick="toggleAllPosts(this)"></th>
+                                <th>Tiêu đề</th>
+                                <th>Danh mục</th>
+                                <th>Tác giả</th>
+                                <th>Trạng thái</th>
+                                <th>Ngày tạo</th>
+                                <th>Ngày xuất bản</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cmsPostsTable">
+                            <tr data-status="published">
+                                <td><input type="checkbox"></td>
+                                <td><strong>Việt Nam đạt kim ngạch xuất khẩu kỷ lục trong Q3/2025</strong></td>
+                                <td><span class="card-badge" style="background: #16a34a;">Tin tức</span></td>
+                                <td>Nguyễn Văn A</td>
+                                <td><span class="status" style="background: rgba(22, 163, 74, 0.15); color: #16a34a; padding: 4px 12px; border-radius: 12px; font-size: 12px; border: 1px solid rgba(22, 163, 74, 0.25);">✓ Đã xuất bản</span></td>
+                                <td>27/10/2025</td>
+                                <td>28/10/2025</td>
+                                <td>
+                                    <button class="btn btn-sm" style="padding: 4px 8px; font-size: 12px; margin-right: 4px;" onclick="editCMSPost(1)">✏️</button>
+                                    <button class="btn btn-sm" style="padding: 4px 8px; font-size: 12px; background: #dc2626;" onclick="deleteCMSPost(1)">🗑️</button>
+                                </td>
+                            </tr>
+                            <tr data-status="pending">
+                                <td><input type="checkbox"></td>
+                                <td><strong>Chuyển đổi số trong ngành công nghiệp: Cơ hội và thách thức</strong></td>
+                                <td><span class="card-badge" style="background: #7c3aed;">Sự kiện</span></td>
+                                <td>Trần Thị B</td>
+                                <td><span class="status" style="background: rgba(234, 88, 12, 0.15); color: #ea580c; padding: 4px 12px; border-radius: 12px; font-size: 12px; border: 1px solid rgba(234, 88, 12, 0.25);">⏳ Chờ duyệt</span></td>
+                                <td>27/10/2025</td>
+                                <td>-</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary" style="padding: 4px 8px; font-size: 12px; margin-right: 4px;" onclick="approvePost(2)">✓ Duyệt</button>
+                                    <button class="btn btn-sm" style="padding: 4px 8px; font-size: 12px;" onclick="editCMSPost(2)">✏️</button>
+                                </td>
+                            </tr>
+                            <tr data-status="draft">
+                                <td><input type="checkbox"></td>
+                                <td><strong>Năng lượng tái tạo chiếm 25% tổng sản lượng điện năm 2025</strong></td>
+                                <td><span class="card-badge" style="background: #0066cc;">Báo cáo</span></td>
+                                <td>Lê Văn C</td>
+                                <td><span class="status" style="background: rgba(107, 114, 128, 0.15); color: #6b7280; padding: 4px 12px; border-radius: 12px; font-size: 12px; border: 1px solid rgba(107, 114, 128, 0.25);">📝 Nháp</span></td>
+                                <td>25/10/2025</td>
+                                <td>-</td>
+                                <td>
+                                    <button class="btn btn-sm" style="padding: 4px 8px; font-size: 12px; margin-right: 4px;" onclick="editCMSPost(3)">✏️</button>
+                                    <button class="btn btn-sm btn-primary" style="padding: 4px 8px; font-size: 12px;" onclick="publishPost(3)">📤 Xuất bản</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Notifications Management Tab -->
+            <div id="cms-notifications-tab" class="cms-tab" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg);">
+                    <h3 style="color: var(--color-primary);">Quản lý thông báo</h3>
+                    <button class="btn btn-primary" onclick="openCMSModal('createNotification')">➕ Tạo thông báo mới</button>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox"></th>
+                                <th>Tiêu đề thông báo</th>
+                                <th>Loại</th>
+                                <th>Đối tượng nhận</th>
+                                <th>Trạng thái</th>
+                                <th>Ngày gửi</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><strong>Cập nhật dữ liệu doanh nghiệp trước 15/11/2025</strong></td>
+                                <td><span class="card-badge" style="background: #dc2626;">QUAN TRỌNG</span></td>
+                                <td>856 doanh nghiệp</td>
+                                <td><span class="status" style="background: rgba(22, 163, 74, 0.15); color: #16a34a; padding: 4px 12px; border-radius: 12px; font-size: 12px;">✓ Đã gửi</span></td>
+                                <td>28/10/2025</td>
+                                <td>
+                                    <button class="btn btn-sm" style="padding: 4px 8px; font-size: 12px; margin-right: 4px;" onclick="viewNotificationStats(1)">📊 Thống kê</button>
+                                    <button class="btn btn-sm" style="padding: 4px 8px; font-size: 12px;" onclick="editNotification(1)">✏️</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><strong>Chương trình hỗ trợ doanh nghiệp SME 2025</strong></td>
+                                <td><span class="card-badge" style="background: #16a34a;">CHƯƠNG TRÌNH MỚI</span></td>
+                                <td>Lọc: DN có <50 nhân viên (423 DN)</td>
+                                <td><span class="status" style="background: rgba(234, 88, 12, 0.15); color: #ea580c; padding: 4px 12px; border-radius: 12px; font-size: 12px;">⏰ Đã lên lịch</span></td>
+                                <td>01/11/2025 08:00</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary" style="padding: 4px 8px; font-size: 12px; margin-right: 4px;" onclick="sendNotificationNow(2)">📤 Gửi ngay</button>
+                                    <button class="btn btn-sm" style="padding: 4px 8px; font-size: 12px;" onclick="editNotification(2)">✏️</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Schedule Tab -->
+            <div id="cms-schedule-tab" class="cms-tab" style="display: none;">
+                <h3 style="color: var(--color-primary); margin-bottom: var(--spacing-lg);">Lịch đăng bài & gửi thông báo</h3>
+                
+                <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--spacing-lg);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg);">
+                        <h4>Tháng 11, 2025</h4>
+                        <div>
+                            <button class="btn btn-outline" style="padding: 6px 12px; margin-right: 8px;">← Tháng trước</button>
+                            <button class="btn btn-outline" style="padding: 6px 12px;">Tháng sau →</button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-4">
+                        <div class="card">
+                            <div style="font-weight: 600; margin-bottom: var(--spacing-sm);">01/11/2025 - Thứ 6</div>
+                            <div style="padding: var(--spacing-sm); background: #e0f2fe; border-left: 3px solid #0284c7; border-radius: 4px; font-size: 13px; margin-bottom: var(--spacing-xs);">
+                                <strong>08:00</strong> - Gửi TB: Chương trình SME
+                            </div>
+                            <div style="padding: var(--spacing-sm); background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 4px; font-size: 13px;">
+                                <strong>14:00</strong> - Đăng bài: Hội nghị Công thương
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div style="font-weight: 600; margin-bottom: var(--spacing-sm);">05/11/2025 - Thứ 3</div>
+                            <div style="padding: var(--spacing-sm); background: #dfe fdf; border-left: 3px solid #10b981; border-radius: 4px; font-size: 13px;">
+                                <strong>10:00</strong> - Đăng bài: Thống kê XNK Q4
+                            </div>
+                        </div>
+                        <div class="card" style="opacity: 0.5;">
+                            <div style="font-weight: 600; margin-bottom: var(--spacing-sm);">10/11/2025 - Chủ nhật</div>
+                            <div style="text-align: center; color: var(--color-text-secondary); font-size: 13px;">Không có lịch</div>
+                        </div>
+                        <div class="card">
+                            <div style="font-weight: 600; margin-bottom: var(--spacing-sm);">15/11/2025 - Thứ 6</div>
+                            <div style="padding: var(--spacing-sm); background: #fee2e2; border-left: 3px solid #dc2626; border-radius: 4px; font-size: 13px;">
+                                <strong>09:00</strong> - Nhắc nhở: Deadline cập nhật DL
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enterprises Tab -->
+            <div id="cms-enterprises-tab" class="cms-tab" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg);">
+                    <h3 style="color: var(--color-primary);">Quản lý danh sách doanh nghiệp</h3>
+                    <button class="btn btn-primary" onclick="openCMSModal('importEnterprises')">📥 Import danh sách</button>
+                </div>
+
+                <div class="filter-tabs" style="margin-bottom: var(--spacing-lg);">
+                    <div class="filter-tab active">Tất cả (856)</div>
+                    <div class="filter-tab">Năng lượng (145)</div>
+                    <div class="filter-tab">Thương mại (302)</div>
+                    <div class="filter-tab">Công nghiệp (287)</div>
+                    <div class="filter-tab">FDI (122)</div>
+                </div>
+
+                <div style="margin-bottom: var(--spacing-lg); display: flex; gap: var(--spacing-md);">
+                    <input type="text" class="form-control" placeholder="🔍 Tìm kiếm doanh nghiệp..." style="flex: 1;">
+                    <select class="form-control" style="width: 200px;">
+                        <option>Lọc theo quy mô</option>
+                        <option>Nhỏ (<50 NV)</option>
+                        <option>Vừa (50-200 NV)</option>
+                        <option>Lớn (>200 NV)</option>
+                    </select>
+                    <select class="form-control" style="width: 200px;">
+                        <option>Lọc theo khu vực</option>
+                        <option>Quận 1</option>
+                        <option>Quận 7</option>
+                        <option>Thủ Đức</option>
+                    </select>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" onclick="toggleAllEnterprises(this)"></th>
+                                <th>Mã DN</th>
+                                <th>Tên doanh nghiệp</th>
+                                <th>Lĩnh vực</th>
+                                <th>Quy mô</th>
+                                <th>Email</th>
+                                <th>Trạng thái</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>DN-0001</td>
+                                <td><strong>Công ty TNHH Năng lượng Xanh Việt</strong></td>
+                                <td>Năng lượng</td>
+                                <td>Vừa (120 NV)</td>
+                                <td>info@greenenergyVN.com</td>
+                                <td><span class="status" style="background: rgba(22, 163, 74, 0.15); color: #16a34a; padding: 4px 12px; border-radius: 12px; font-size: 12px;">✓ Hoạt động</span></td>
+                                <td>
+                                    <button class="btn btn-sm" style="padding: 4px 8px; font-size: 12px;" onclick="viewEnterprise(1)">👁️</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>DN-0002</td>
+                                <td><strong>Siêu thị Co.opMart Nguyễn Kiệm</strong></td>
+                                <td>Thương mại</td>
+                                <td>Lớn (350 NV)</td>
+                                <td>contact@coopmart.vn</td>
+                                <td><span class="status" style="background: rgba(22, 163, 74, 0.15); color: #16a34a; padding: 4px 12px; border-radius: 12px; font-size: 12px;">✓ Hoạt động</span></td>
+                                <td>
+                                    <button class="btn btn-sm" style="padding: 4px 8px; font-size: 12px;" onclick="viewEnterprise(2)">👁️</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>DN-0003</td>
+                                <td><strong>KCN Tân Bình JSC</strong></td>
+                                <td>Công nghiệp</td>
+                                <td>Lớn (450 NV)</td>
+                                <td>info@tanbinhip.com</td>
+                                <td><span class="status" style="background: rgba(22, 163, 74, 0.15); color: #16a34a; padding: 4px 12px; border-radius: 12px; font-size: 12px;">✓ Hoạt động</span></td>
+                                <td>
+                                    <button class="btn btn-sm" style="padding: 4px 8px; font-size: 12px;" onclick="viewEnterprise(3)">👁️</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="margin-top: var(--spacing-lg); padding: var(--spacing-lg); background: #f0f9ff; border-radius: var(--radius-md); border-left: 4px solid var(--color-primary);">
+                    <strong>💡 Gợi ý:</strong> Chọn doanh nghiệp từ danh sách và sử dụng chức năng "Gửi thông báo hàng loạt" để push thông báo đến nhóm doanh nghiệp cụ thể.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CMS Modal - Create Post -->
+    <div id="createPostModal" class="modal">
+        <div class="modal-content" style="max-width: 900px;">
+            <div class="modal-header">
+                <h2>✍️ Tạo bài viết mới</h2>
+                <span class="modal-close" onclick="closeCMSModal('createPost')">&times;</span>
+            </div>
+
+            <form id="createPostForm" onsubmit="submitCMSPost(event)">
+                <div class="form-group">
+                    <label class="form-label">Tiêu đề bài viết *</label>
+                    <input type="text" class="form-control" required placeholder="Nhập tiêu đề bài viết">
+                </div>
+
+                <div class="grid grid-2">
+                    <div class="form-group">
+                        <label class="form-label">Danh mục *</label>
+                        <select class="form-control" required>
+                            <option value="">-- Chọn danh mục --</option>
+                            <option value="news">Tin tức</option>
+                            <option value="event">Sự kiện</option>
+                            <option value="policy">Chính sách</option>
+                            <option value="report">Báo cáo</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Tác giả</label>
+                        <input type="text" class="form-control" value="Admin" readonly>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Nội dung *</label>
+                    <textarea class="form-control" rows="10" required placeholder="Nhập nội dung bài viết..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Hình ảnh đại diện</label>
+                    <input type="file" class="form-control" accept="image/*">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Trạng thái</label>
+                    <select class="form-control" id="postStatus">
+                        <option value="draft">📝 Lưu nháp</option>
+                        <option value="pending">⏳ Gửi duyệt</option>
+                        <option value="published">✓ Xuất bản ngay</option>
+                        <option value="scheduled">📅 Lên lịch xuất bản</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="scheduleDateTime" style="display: none;">
+                    <label class="form-label">Ngày & giờ xuất bản</label>
+                    <div class="grid grid-2">
+                        <input type="date" class="form-control">
+                        <input type="time" class="form-control">
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: var(--spacing-md);">
+                    <button type="submit" class="btn btn-primary">💾 Lưu bài viết</button>
+                    <button type="button" class="btn btn-outline" onclick="closeCMSModal('createPost')">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- CMS Modal - Create Notification -->
+    <div id="createNotificationModal" class="modal">
+        <div class="modal-content" style="max-width: 900px;">
+            <div class="modal-header">
+                <h2>🔔 Tạo thông báo mới</h2>
+                <span class="modal-close" onclick="closeCMSModal('createNotification')">&times;</span>
+            </div>
+
+            <form id="createNotificationForm" onsubmit="submitCMSNotification(event)">
+                <div class="form-group">
+                    <label class="form-label">Tiêu đề thông báo *</label>
+                    <input type="text" class="form-control" required placeholder="Nhập tiêu đề thông báo">
+                </div>
+
+                <div class="grid grid-2">
+                    <div class="form-group">
+                        <label class="form-label">Loại thông báo *</label>
+                        <select class="form-control" required>
+                            <option value="">-- Chọn loại --</option>
+                            <option value="important">QUAN TRỌNG</option>
+                            <option value="program">CHƯƠNG TRÌNH MỚI</option>
+                            <option value="promotion">ƯU ĐÃI</option>
+                            <option value="event">SỰ KIỆN</option>
+                            <option value="reminder">NHẮC NHỞ</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Độ ưu tiên</label>
+                        <select class="form-control">
+                            <option value="low">Thấp</option>
+                            <option value="medium" selected>Trung bình</option>
+                            <option value="high">Cao</option>
+                            <option value="urgent">Khẩn cấp</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Nội dung thông báo *</label>
+                    <textarea class="form-control" rows="6" required placeholder="Nhập nội dung thông báo..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Đối tượng nhận *</label>
+                    <select class="form-control" id="notificationTarget" onchange="updateRecipientCount()">
+                        <option value="all">Tất cả doanh nghiệp (856 DN)</option>
+                        <option value="energy">Lĩnh vực Năng lượng (145 DN)</option>
+                        <option value="trade">Lĩnh vực Thương mại (302 DN)</option>
+                        <option value="industry">Lĩnh vực Công nghiệp (287 DN)</option>
+                        <option value="fdi">Doanh nghiệp FDI (122 DN)</option>
+                        <option value="small">DN quy mô nhỏ <50 NV (423 DN)</option>
+                        <option value="medium">DN quy mô vừa 50-200 NV (298 DN)</option>
+                        <option value="large">DN quy mô lớn >200 NV (135 DN)</option>
+                        <option value="custom">Tùy chỉnh (chọn thủ công)</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="customRecipients" style="display: none;">
+                    <label class="form-label">Chọn doanh nghiệp</label>
+                    <div style="border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--spacing-md); max-height: 200px; overflow-y: auto;">
+                        <label style="display: block; margin-bottom: var(--spacing-sm);"><input type="checkbox"> Công ty TNHH Năng lượng Xanh Việt</label>
+                        <label style="display: block; margin-bottom: var(--spacing-sm);"><input type="checkbox"> Siêu thị Co.opMart Nguyễn Kiệm</label>
+                        <label style="display: block; margin-bottom: var(--spacing-sm);"><input type="checkbox"> KCN Tân Bình JSC</label>
+                        <label style="display: block; margin-bottom: var(--spacing-sm);"><input type="checkbox"> Lotte Mart Quận 7</label>
+                        <label style="display: block; margin-bottom: var(--spacing-sm);"><input type="checkbox"> Nhà máy Điện Phú Mỹ</label>
+                    </div>
+                </div>
+
+                <div class="alert alert-info" id="recipientCount">
+                    <span style="font-size: 20px;">📊</span>
+                    <div>Thông báo sẽ được gửi đến <strong>856 doanh nghiệp</strong></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Thời gian gửi</label>
+                    <select class="form-control" id="notificationSchedule">
+                        <option value="now">📤 Gửi ngay</option>
+                        <option value="scheduled">📅 Lên lịch gửi</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="notificationDateTime" style="display: none;">
+                    <label class="form-label">Ngày & giờ gửi</label>
+                    <div class="grid grid-2">
+                        <input type="date" class="form-control">
+                        <input type="time" class="form-control" value="08:00">
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: var(--spacing-md);">
+                    <button type="submit" class="btn btn-primary">📤 Gửi thông báo</button>
+                    <button type="button" class="btn btn-outline" onclick="closeCMSModal('createNotification')">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>🏢 Về chúng tôi</h3>
+                <a href="#" class="footer-link">Giới thiệu</a>
+                <a href="#" class="footer-link">Sơ đồ tổ chức</a>
+                <a href="#" class="footer-link">Lãnh đạo</a>
+                <a href="#" class="footer-link">Chức năng nhiệm vụ</a>
+            </div>
+            <div class="footer-section">
+                <h3>📊 Dữ liệu</h3>
+                <a href="#" class="footer-link">Thống kê công thương</a>
+                <a href="#" class="footer-link">Xuất nhập khẩu</a>
+                <a href="#" class="footer-link">Đầu tư FDI</a>
+                <a href="#" class="footer-link">Hướng dẫn sử dụng</a>
+            </div>
+            <div class="footer-section">
+                <h3>📖 Tài nguyên</h3>
+                <a href="#" class="footer-link">Văn bản pháp luật</a>
+                <a href="#" class="footer-link">Tài liệu hướng dẫn</a>
+                <a href="#" class="footer-link">API Documentation</a>
+                <a href="#" class="footer-link">FAQs</a>
+            </div>
+            <div class="footer-section">
+                <h3>🔗 Liên kết</h3>
+                <a href="#" class="footer-link">Chính phủ điện tử</a>
+                <a href="#" class="footer-link">Cổng Dịch vụ công</a>
+                <a href="#" class="footer-link">Dữ liệu mở Quốc gia</a>
+                <a href="#" class="footer-link">Bản đồ trang</a>
+            </div>
+        </div>
+        <div style="text-align: center; padding: var(--spacing-lg); border-top: 1px solid rgba(255,255,255,0.1); margin-top: var(--spacing-xl); max-width: 1400px; margin-left: auto; margin-right: auto;">
+            <p style="margin: 0; opacity: 0.7;">© 2025 Bộ Công Thương Việt Nam. Tất cả các quyền được bảo lưu.</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-toggle" onclick="toggleChatbot()" id="chatbotToggle">
+        💬
+    </div>
+
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">
+            <div class="chatbot-title">
+                <span>🤖</span>
+                <span>Trợ lý AI - Tra cứu dữ liệu</span>
+            </div>
+            <div class="chatbot-close" onclick="toggleChatbot()">×</div>
+        </div>
+        <div class="chatbot-messages" id="chatMessages">
+            <div class="chat-message bot">
+                <div class="chat-bubble">
+                    Xin chào! 👋 Tôi là trợ lý AI của Cổng Dữ liệu Công Thương. Tôi có thể giúp bạn:<br><br>
+                    📊 Tra cứu thống kê dữ liệu<br>
+                    🏭 Tìm thông tin doanh nghiệp<br>
+                    📰 Cập nhật tin tức mới nhất<br>
+                    📥 Hướng dẫn tải dữ liệu<br><br>
+                    Bạn cần tìm hiểu về vấn đề gì?
+                </div>
+            </div>
+            <div class="chat-suggestions" id="chatSuggestions">
+                <div class="chat-suggestion" onclick="sendQuickQuestion('Thống kê xuất nhập khẩu Q3/2025')">Thống kê xuất nhập khẩu Q3/2025</div>
+                <div class="chat-suggestion" onclick="sendQuickQuestion('Danh sách KCN tại TP.HCM')">Danh sách KCN tại TP.HCM</div>
+                <div class="chat-suggestion" onclick="sendQuickQuestion('Cách tải dữ liệu Excel')">Cách tải dữ liệu Excel</div>
+                <div class="chat-suggestion" onclick="sendQuickQuestion('Chính sách ưu đãi DN')">Chính sách ưu đãi DN</div>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatInput" placeholder="Nhập câu hỏi của bạn..." onkeypress="handleChatKeyPress(event)">
+            <button class="chatbot-send" onclick="sendChatMessage()">➤</button>
+        </div>
+    </div>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        // Navigation
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active class from all nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Show selected section
+            const targetSection = document.getElementById(sectionName + '-section');
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            // Add active class to clicked nav item
+            event.target.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Data category filtering
+        function filterDataCategory(category) {
+            const tabs = document.querySelectorAll('.filter-tabs .filter-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const categories = document.querySelectorAll('.data-category');
+            categories.forEach(cat => {
+                if (category === 'all' || cat.dataset.category === category) {
+                    cat.style.display = 'block';
+                } else {
+                    cat.style.display = 'none';
+                }
+            });
+        }
+
+        // Open map layer view
+        function openMapLayer(layerType) {
+            // Create and show map view
+            showMapView(layerType);
+        }
+
+        // Show interactive map view
+        function showMapView(layerType) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Create or show map section
+            let mapSection = document.getElementById('map-section');
+            if (!mapSection) {
+                mapSection = createMapSection();
+                document.querySelector('.container').appendChild(mapSection);
+            }
+
+            mapSection.classList.add('active');
+            loadMapData(layerType);
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Create map section HTML
+        function createMapSection() {
+            const section = document.createElement('div');
+            section.id = 'map-section';
+            section.className = 'content-section';
+            section.innerHTML = `
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <span class="section-icon">🗺️</span>
+                            <span id="mapLayerTitle">Bản đồ dữ liệu</span>
+                        </h2>
+                        <button class="btn btn-outline" onclick="showSection('data')">← Quay lại dữ liệu</button>
+                    </div>
+
+                    <div style="display: flex; gap: var(--spacing-lg); margin-bottom: var(--spacing-lg);">
+                        <div class="card" style="flex: 1; cursor: default;">
+                            <div style="font-size: 14px; color: var(--color-text-secondary); margin-bottom: var(--spacing-xs);">Tổng số điểm</div>
+                            <div style="font-size: 28px; font-weight: 700; color: var(--color-primary);" id="mapTotalPoints">0</div>
+                        </div>
+                        <div class="card" style="flex: 1; cursor: default;">
+                            <div style="font-size: 14px; color: var(--color-text-secondary); margin-bottom: var(--spacing-xs);">Lĩnh vực</div>
+                            <div style="font-size: 18px; font-weight: 600;" id="mapCategory">-</div>
+                        </div>
+                        <div class="card" style="flex: 1; cursor: default;">
+                            <div style="font-size: 14px; color: var(--color-text-secondary); margin-bottom: var(--spacing-xs);">Cập nhật</div>
+                            <div style="font-size: 18px; font-weight: 600;">30/10/2025</div>
+                        </div>
+                    </div>
+
+                    <div id="map" style="height: 600px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); position: relative; background: #e5e7eb;">
+                    </div>
+
+                    <div id="mapLegend" style="margin-top: var(--spacing-lg); padding: var(--spacing-lg); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md);">
+                        <h4 style="margin-bottom: var(--spacing-md); color: var(--color-primary);">📍 Chú giải</h4>
+                        <div style="display: flex; gap: var(--spacing-xl); flex-wrap: wrap;">
+                            <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                                <div style="width: 16px; height: 16px; background: #dc2626; border-radius: 50%;"></div>
+                                <span>Đang hoạt động</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                                <div style="width: 16px; height: 16px; background: #16a34a; border-radius: 50%;"></div>
+                                <span>Hoạt động tốt</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                                <div style="width: 16px; height: 16px; background: #ea580c; border-radius: 50%;"></div>
+                                <span>Cần kiểm tra</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                                <div style="width: 16px; height: 16px; background: #6b7280; border-radius: 50%;"></div>
+                                <span>Tạm ngưng</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="dataPointsList" style="margin-top: var(--spacing-lg);">
+                        <h4 style="margin-bottom: var(--spacing-md); color: var(--color-primary);">📋 Danh sách điểm dữ liệu</h4>
+                        <div id="pointsTable"></div>
+                    </div>
+                </div>
+            `;
+            return section;
+        }
+
+        // Load map with Leaflet
+        function loadMapData(layerType) {
+            const mapTitle = document.getElementById('mapLayerTitle');
+            const layerName = getLayerName(layerType);
+            mapTitle.textContent = 'Bản đồ: ' + layerName;
+
+            // Get sample data for this layer
+            const mapData = getSampleMapData(layerType);
+            
+            document.getElementById('mapTotalPoints').textContent = mapData.points.length;
+            document.getElementById('mapCategory').textContent = mapData.category;
+
+            // Initialize Leaflet map
+            const mapContainer = document.getElementById('map');
+            mapContainer.innerHTML = '';
+
+            // Create map centered on Ho Chi Minh City
+            const map = L.map('map').setView([10.8231, 106.6297], 11);
+
+            // Add OpenStreetMap tile layer
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Add markers for each data point
+            mapData.points.forEach(point => {
+                const color = getMarkerColor(point.status);
+                const marker = L.circleMarker([point.lat, point.lng], {
+                    radius: 8,
+                    fillColor: color,
+                    color: '#fff',
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                }).addTo(map);
+
+                // Add popup
+                marker.bindPopup(`
+                    <div style="min-width: 200px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--color-primary);">${point.name}</h4>
+                        <p style="margin: 0 0 4px 0; font-size: 13px;"><strong>Địa chỉ:</strong> ${point.address}</p>
+                        <p style="margin: 0 0 4px 0; font-size: 13px;"><strong>Trạng thái:</strong> <span style="color: ${color}; font-weight: 600;">${point.status}</span></p>
+                        <p style="margin: 0; font-size: 13px;"><strong>Mã số:</strong> ${point.code}</p>
+                    </div>
+                `);
+            });
+
+            // Display points list
+            displayPointsList(mapData.points);
+        }
+
+        function getMarkerColor(status) {
+            const colors = {
+                'Đang hoạt động': '#dc2626',
+                'Hoạt động tốt': '#16a34a',
+                'Cần kiểm tra': '#ea580c',
+                'Tạm ngưng': '#6b7280'
+            };
+            return colors[status] || '#6b7280';
+        }
+
+        function displayPointsList(points) {
+            const container = document.getElementById('pointsTable');
+            container.innerHTML = `
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Tên cơ sở/Doanh nghiệp</th>
+                                <th>Địa chỉ</th>
+                                <th>Trạng thái</th>
+                                <th>Mã số</th>
+                                <th>Chia sẻ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${points.map((point, index) => `
+                                <tr>
+                                    <td>${index + 1}</td>
+                                    <td><strong>${point.name}</strong></td>
+                                    <td>${point.address}</td>
+                                    <td>
+                                        <span style="display: inline-block; padding: 4px 12px; background: ${getMarkerColor(point.status)}; color: white; border-radius: 12px; font-size: 12px; font-weight: 600;">
+                                            ${point.status}
+                                        </span>
+                                    </td>
+                                    <td>${point.code}</td>
+                                    <td>
+                                        <div class="share-buttons" style="margin: 0;">
+                                            <a href="#" class="share-btn facebook" onclick="shareDataPoint('facebook', '${point.name}'); return false;" title="Chia sẻ lên Facebook">f</a>
+                                            <a href="#" class="share-btn twitter" onclick="shareDataPoint('twitter', '${point.name}'); return false;" title="Chia sẻ lên X">𝕏</a>
+                                            <a href="#" class="share-btn zalo" onclick="shareDataPoint('zalo', '${point.name}'); return false;" title="Chia sẻ lên Zalo">Z</a>
+                                            <a href="#" class="share-btn linkedin" onclick="shareDataPoint('linkedin', '${point.name}'); return false;" title="Chia sẻ lên LinkedIn">in</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        // Sample map data generator
+        function getSampleMapData(layerType) {
+            const categories = {
+                'energy-facilities': 'Năng lượng',
+                'electricity-retail': 'Năng lượng',
+                'electricity-under-3mw': 'Năng lượng',
+                'electricity-distribution': 'Năng lượng',
+                'markets': 'Thương mại',
+                'supermarkets': 'Thương mại',
+                'shopping-centers': 'Thương mại',
+                'industrial-parks': 'Công nghiệp',
+                'industrial-clusters': 'Công nghiệp',
+                'market-planning': 'Quy hoạch'
+            };
+
+            const samplePoints = generateSamplePoints(layerType);
+
+            return {
+                category: categories[layerType] || 'Khác',
+                points: samplePoints
+            };
+        }
+
+        function generateSamplePoints(layerType) {
+            // Base coordinates for Ho Chi Minh City districts
+            const baseLocations = [
+                { lat: 10.8231, lng: 106.6297, district: 'Quận 1' },
+                { lat: 10.7769, lng: 106.7009, district: 'Quận 2' },
+                { lat: 10.7860, lng: 106.6651, district: 'Quận 3' },
+                { lat: 10.7626, lng: 106.6752, district: 'Quận 4' },
+                { lat: 10.7545, lng: 106.6663, district: 'Quận 5' },
+                { lat: 10.7466, lng: 106.6356, district: 'Quận 6' },
+                { lat: 10.7330, lng: 106.7197, district: 'Quận 7' },
+                { lat: 10.7389, lng: 106.6783, district: 'Quận 8' },
+                { lat: 10.8429, lng: 106.8100, district: 'Quận 9' },
+                { lat: 10.8007, lng: 106.6507, district: 'Quận 10' },
+                { lat: 10.7977, lng: 106.6343, district: 'Quận 11' },
+                { lat: 10.8566, lng: 106.6259, district: 'Quận 12' },
+                { lat: 10.8014, lng: 106.6958, district: 'Bình Thạnh' },
+                { lat: 10.8721, lng: 106.7662, district: 'Thủ Đức' },
+                { lat: 10.7245, lng: 106.7417, district: 'Nhà Bè' }
+            ];
+
+            const statuses = ['Đang hoạt động', 'Hoạt động tốt', 'Cần kiểm tra', 'Tạm ngưng'];
+            const points = [];
+            const names = getLayerSpecificNames(layerType);
+
+            for (let i = 0; i < 15; i++) {
+                const location = baseLocations[i];
+                const randomOffset = () => (Math.random() - 0.5) * 0.02;
+                
+                points.push({
+                    name: names[i] || `${getLayerName(layerType)} ${i + 1}`,
+                    lat: location.lat + randomOffset(),
+                    lng: location.lng + randomOffset(),
+                    address: `${Math.floor(Math.random() * 500) + 1} Đường ${['Nguyễn Văn Linh', 'Lê Văn Việt', 'Võ Văn Ngân', 'Phạm Văn Đồng', 'Trường Chinh'][Math.floor(Math.random() * 5)]}, ${location.district}, TP.HCM`,
+                    status: statuses[Math.floor(Math.random() * statuses.length)],
+                    code: `${layerType.toUpperCase().substring(0, 3)}-${String(i + 1).padStart(4, '0')}`
+                });
+            }
+
+            return points;
+        }
+
+        function getLayerSpecificNames(layerType) {
+            const names = {
+                'energy-facilities': [
+                    'Nhà máy Nhiệt điện Phú Mỹ',
+                    'Trung tâm Điện lực TP.HCM',
+                    'Nhà máy Nhiệt điện Thủ Đức',
+                    'Cơ sở Năng lượng Bình Tân',
+                    'Nhà máy Điện Nhơn Trạch',
+                    'Trạm Điện 110KV Quận 1',
+                    'Nhà máy Điện Mặt Trời Củ Chi',
+                    'Cơ sở Năng lượng Tân Bình',
+                    'Nhà máy Nhiệt điện Cần Giờ',
+                    'Trung tâm Năng lượng Quận 7',
+                    'Nhà máy Điện Gió Bình Chánh',
+                    'Cơ sở Điện lực Quận 12',
+                    'Trạm Biến áp 220KV Thủ Đức',
+                    'Nhà máy Điện Sinh khối Hóc Môn',
+                    'Cơ sở Năng lượng Nhà Bè'
+                ],
+                'markets': [
+                    'Chợ Bến Thành',
+                    'Chợ Bình Tây',
+                    'Chợ Tân Định',
+                    'Chợ Củ Chi',
+                    'Chợ Thủ Đức',
+                    'Chợ Hóc Môn',
+                    'Chợ Bình Chánh',
+                    'Chợ Tân Bình',
+                    'Chợ Gò Vấp',
+                    'Chợ Phú Nhuận',
+                    'Chợ Quận 7',
+                    'Chợ Nhà Bè',
+                    'Chợ Cần Giờ',
+                    'Chợ Bình Thạnh',
+                    'Chợ An Đông'
+                ],
+                'supermarkets': [
+                    'Siêu thị Co.opMart Nguyễn Kiệm',
+                    'Lotte Mart Quận 7',
+                    'Big C Miền Đông',
+                    'VinMart Thủ Đức',
+                    'MM Mega Market Bình Phú',
+                    'Siêu thị Emart Gò Vấp',
+                    'Aeon Mall Tân Phú',
+                    'Co.opMart Cống Quỳnh',
+                    'Lotte Mart Nam Sài Gòn',
+                    'Big C Hoàng Văn Thụ',
+                    'VinMart+ Bình Thạnh',
+                    'Siêu thị Satra Mart',
+                    'Co.opXtra Vũng Tàu',
+                    'MM Mega Market An Phú',
+                    'Aeon Bình Tân'
+                ],
+                'industrial-parks': [
+                    'KCN Tân Bình',
+                    'KCN Tân Thuận',
+                    'KCN Vĩnh Lộc',
+                    'KCN Lê Minh Xuân',
+                    'KCN Hiệp Phước',
+                    'KCN Cát Lái',
+                    'KCN Phú Mỹ Hưng',
+                    'KCN Long Bình',
+                    'KCN Sóng Thần',
+                    'KCN Tân Tạo',
+                    'KCN Vĩnh Cửu',
+                    'KCN Nhơn Trạch',
+                    'KCN Long Thành',
+                    'KCN Tam Phước',
+                    'KCN Đồng An'
+                ]
+            };
+
+            return names[layerType] || [];
+        }
+
+        // Open map layer view
+        function openMapLayer(layerType) {
+            // Create and show map view
+            showMapView(layerType);
+        }
+
+        // Show interactive map view
+        function showMapView(layerType) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Create or show map section
+            let mapSection = document.getElementById('map-section');
+            if (!mapSection) {
+                mapSection = createMapSection();
+                document.querySelector('.container').appendChild(mapSection);
+            }
+
+            mapSection.classList.add('active');
+            loadMapData(layerType);
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Create map section HTML
+        function createMapSection() {
+            const section = document.createElement('div');
+            section.id = 'map-section';
+            section.className = 'content-section';
+            section.innerHTML = `
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <span class="section-icon">🗺️</span>
+                            <span id="mapLayerTitle">Bản đồ dữ liệu</span>
+                        </h2>
+                        <button class="btn btn-outline" onclick="showSection('data')">← Quay lại dữ liệu</button>
+                    </div>
+
+                    <div style="display: flex; gap: var(--spacing-lg); margin-bottom: var(--spacing-lg);">
+                        <div class="card" style="flex: 1; cursor: default;">
+                            <div style="font-size: 14px; color: var(--color-text-secondary); margin-bottom: var(--spacing-xs);">Tổng số điểm</div>
+                            <div style="font-size: 28px; font-weight: 700; color: var(--color-primary);" id="mapTotalPoints">0</div>
+                        </div>
+                        <div class="card" style="flex: 1; cursor: default;">
+                            <div style="font-size: 14px; color: var(--color-text-secondary); margin-bottom: var(--spacing-xs);">Lĩnh vực</div>
+                            <div style="font-size: 18px; font-weight: 600;" id="mapCategory">-</div>
+                        </div>
+                        <div class="card" style="flex: 1; cursor: default;">
+                            <div style="font-size: 14px; color: var(--color-text-secondary); margin-bottom: var(--spacing-xs);">Cập nhật</div>
+                            <div style="font-size: 18px; font-weight: 600;">30/10/2025</div>
+                        </div>
+                    </div>
+
+                    <div id="map" style="height: 600px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); position: relative; background: #e5e7eb;">
+                    </div>
+
+                    <div id="mapLegend" style="margin-top: var(--spacing-lg); padding: var(--spacing-lg); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md);">
+                        <h4 style="margin-bottom: var(--spacing-md); color: var(--color-primary);">📍 Chú giải</h4>
+                        <div style="display: flex; gap: var(--spacing-xl); flex-wrap: wrap;">
+                            <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                                <div style="width: 16px; height: 16px; background: #dc2626; border-radius: 50%;"></div>
+                                <span>Đang hoạt động</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                                <div style="width: 16px; height: 16px; background: #16a34a; border-radius: 50%;"></div>
+                                <span>Hoạt động tốt</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                                <div style="width: 16px; height: 16px; background: #ea580c; border-radius: 50%;"></div>
+                                <span>Cần kiểm tra</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                                <div style="width: 16px; height: 16px; background: #6b7280; border-radius: 50%;"></div>
+                                <span>Tạm ngưng</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="dataPointsList" style="margin-top: var(--spacing-lg);">
+                        <h4 style="margin-bottom: var(--spacing-md); color: var(--color-primary);">📋 Danh sách điểm dữ liệu</h4>
+                        <div id="pointsTable"></div>
+                    </div>
+                </div>
+            `;
+            return section;
+        }
+
+        // Load map with Leaflet
+        function loadMapData(layerType) {
+            const mapTitle = document.getElementById('mapLayerTitle');
+            const layerName = getLayerName(layerType);
+            mapTitle.textContent = 'Bản đồ: ' + layerName;
+
+            // Get sample data for this layer
+            const mapData = getSampleMapData(layerType);
+            
+            document.getElementById('mapTotalPoints').textContent = mapData.points.length;
+            document.getElementById('mapCategory').textContent = mapData.category;
+
+            // Initialize Leaflet map
+            const mapContainer = document.getElementById('map');
+            mapContainer.innerHTML = '';
+
+            // Create map centered on Ho Chi Minh City
+            const map = L.map('map').setView([10.8231, 106.6297], 11);
+
+            // Add OpenStreetMap tile layer
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Add markers for each data point
+            mapData.points.forEach(point => {
+                const color = getMarkerColor(point.status);
+                const marker = L.circleMarker([point.lat, point.lng], {
+                    radius: 8,
+                    fillColor: color,
+                    color: '#fff',
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                }).addTo(map);
+
+                // Add popup
+                marker.bindPopup(`
+                    <div style="min-width: 200px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--color-primary);">${point.name}</h4>
+                        <p style="margin: 0 0 4px 0; font-size: 13px;"><strong>Địa chỉ:</strong> ${point.address}</p>
+                        <p style="margin: 0 0 4px 0; font-size: 13px;"><strong>Trạng thái:</strong> <span style="color: ${color}; font-weight: 600;">${point.status}</span></p>
+                        <p style="margin: 0; font-size: 13px;"><strong>Mã số:</strong> ${point.code}</p>
+                    </div>
+                `);
+            });
+
+            // Display points list
+            displayPointsList(mapData.points);
+        }
+
+        function getMarkerColor(status) {
+            const colors = {
+                'Đang hoạt động': '#dc2626',
+                'Hoạt động tốt': '#16a34a',
+                'Cần kiểm tra': '#ea580c',
+                'Tạm ngưng': '#6b7280'
+            };
+            return colors[status] || '#6b7280';
+        }
+
+        function displayPointsList(points) {
+            const container = document.getElementById('pointsTable');
+            container.innerHTML = `
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Tên cơ sở/Doanh nghiệp</th>
+                                <th>Địa chỉ</th>
+                                <th>Trạng thái</th>
+                                <th>Mã số</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${points.map((point, index) => `
+                                <tr>
+                                    <td>${index + 1}</td>
+                                    <td><strong>${point.name}</strong></td>
+                                    <td>${point.address}</td>
+                                    <td>
+                                        <span style="display: inline-block; padding: 4px 12px; background: ${getMarkerColor(point.status)}; color: white; border-radius: 12px; font-size: 12px; font-weight: 600;">
+                                            ${point.status}
+                                        </span>
+                                    </td>
+                                    <td>${point.code}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        // Sample map data generator
+        function getSampleMapData(layerType) {
+            const categories = {
+                'energy-facilities': 'Năng lượng',
+                'electricity-retail': 'Năng lượng',
+                'electricity-under-3mw': 'Năng lượng',
+                'electricity-distribution': 'Năng lượng',
+                'markets': 'Thương mại',
+                'supermarkets': 'Thương mại',
+                'shopping-centers': 'Thương mại',
+                'industrial-parks': 'Công nghiệp',
+                'industrial-clusters': 'Công nghiệp',
+                'market-planning': 'Quy hoạch'
+            };
+
+            const samplePoints = generateSamplePoints(layerType);
+
+            return {
+                category: categories[layerType] || 'Khác',
+                points: samplePoints
+            };
+        }
+
+        function generateSamplePoints(layerType) {
+            // Base coordinates for Ho Chi Minh City districts
+            const baseLocations = [
+                { lat: 10.8231, lng: 106.6297, district: 'Quận 1' },
+                { lat: 10.7769, lng: 106.7009, district: 'Quận 2' },
+                { lat: 10.7860, lng: 106.6651, district: 'Quận 3' },
+                { lat: 10.7626, lng: 106.6752, district: 'Quận 4' },
+                { lat: 10.7545, lng: 106.6663, district: 'Quận 5' },
+                { lat: 10.7466, lng: 106.6356, district: 'Quận 6' },
+                { lat: 10.7330, lng: 106.7197, district: 'Quận 7' },
+                { lat: 10.7389, lng: 106.6783, district: 'Quận 8' },
+                { lat: 10.8429, lng: 106.8100, district: 'Quận 9' },
+                { lat: 10.8007, lng: 106.6507, district: 'Quận 10' },
+                { lat: 10.7977, lng: 106.6343, district: 'Quận 11' },
+                { lat: 10.8566, lng: 106.6259, district: 'Quận 12' },
+                { lat: 10.8014, lng: 106.6958, district: 'Bình Thạnh' },
+                { lat: 10.8721, lng: 106.7662, district: 'Thủ Đức' },
+                { lat: 10.7245, lng: 106.7417, district: 'Nhà Bè' }
+            ];
+
+            const statuses = ['Đang hoạt động', 'Hoạt động tốt', 'Cần kiểm tra', 'Tạm ngưng'];
+            const points = [];
+            const names = getLayerSpecificNames(layerType);
+
+            for (let i = 0; i < 15; i++) {
+                const location = baseLocations[i];
+                const randomOffset = () => (Math.random() - 0.5) * 0.02;
+                
+                points.push({
+                    name: names[i] || `${getLayerName(layerType)} ${i + 1}`,
+                    lat: location.lat + randomOffset(),
+                    lng: location.lng + randomOffset(),
+                    address: `${Math.floor(Math.random() * 500) + 1} Đường ${['Nguyễn Văn Linh', 'Lê Văn Việt', 'Võ Văn Ngân', 'Phạm Văn Đồng', 'Trường Chinh'][Math.floor(Math.random() * 5)]}, ${location.district}, TP.HCM`,
+                    status: statuses[Math.floor(Math.random() * statuses.length)],
+                    code: `${layerType.toUpperCase().substring(0, 3)}-${String(i + 1).padStart(4, '0')}`
+                });
+            }
+
+            return points;
+        }
+
+        function getLayerSpecificNames(layerType) {
+            const names = {
+                'energy-facilities': [
+                    'Nhà máy Nhiệt điện Phú Mỹ',
+                    'Trung tâm Điện lực TP.HCM',
+                    'Nhà máy Nhiệt điện Thủ Đức',
+                    'Cơ sở Năng lượng Bình Tân',
+                    'Nhà máy Điện Nhơn Trạch',
+                    'Trạm Điện 110KV Quận 1',
+                    'Nhà máy Điện Mặt Trời Củ Chi',
+                    'Cơ sở Năng lượng Tân Bình',
+                    'Nhà máy Nhiệt điện Cần Giờ',
+                    'Trung tâm Năng lượng Quận 7',
+                    'Nhà máy Điện Gió Bình Chánh',
+                    'Cơ sở Điện lực Quận 12',
+                    'Trạm Biến áp 220KV Thủ Đức',
+                    'Nhà máy Điện Sinh khối Hóc Môn',
+                    'Cơ sở Năng lượng Nhà Bè'
+                ],
+                'markets': [
+                    'Chợ Bến Thành',
+                    'Chợ Bình Tây',
+                    'Chợ Tân Định',
+                    'Chợ Củ Chi',
+                    'Chợ Thủ Đức',
+                    'Chợ Hóc Môn',
+                    'Chợ Bình Chánh',
+                    'Chợ Tân Bình',
+                    'Chợ Gò Vấp',
+                    'Chợ Phú Nhuận',
+                    'Chợ Quận 7',
+                    'Chợ Nhà Bè',
+                    'Chợ Cần Giờ',
+                    'Chợ Bình Thạnh',
+                    'Chợ An Đông'
+                ],
+                'supermarkets': [
+                    'Siêu thị Co.opMart Nguyễn Kiệm',
+                    'Lotte Mart Quận 7',
+                    'Big C Miền Đông',
+                    'VinMart Thủ Đức',
+                    'MM Mega Market Bình Phú',
+                    'Siêu thị Emart Gò Vấp',
+                    'Aeon Mall Tân Phú',
+                    'Co.opMart Cống Quỳnh',
+                    'Lotte Mart Nam Sài Gòn',
+                    'Big C Hoàng Văn Thụ',
+                    'VinMart+ Bình Thạnh',
+                    'Siêu thị Satra Mart',
+                    'Co.opXtra Vũng Tàu',
+                    'MM Mega Market An Phú',
+                    'Aeon Bình Tân'
+                ],
+                'industrial-parks': [
+                    'KCN Tân Bình',
+                    'KCN Tân Thuận',
+                    'KCN Vĩnh Lộc',
+                    'KCN Lê Minh Xuân',
+                    'KCN Hiệp Phước',
+                    'KCN Cát Lái',
+                    'KCN Phú Mỹ Hưng',
+                    'KCN Long Bình',
+                    'KCN Sóng Thần',
+                    'KCN Tân Tạo',
+                    'KCN Vĩnh Cửu',
+                    'KCN Nhơn Trạch',
+                    'KCN Long Thành',
+                    'KCN Tam Phước',
+                    'KCN Đồng An'
+                ]
+            };
+
+            return names[layerType] || [];
+        }
+
+        function getLayerName(layerType) {
+            const names = {
+                'energy-facilities': 'Cơ sở sử dụng năng lượng trọng điểm',
+                'electricity-retail': 'Doanh nghiệp hoạt động điện lực bán lẻ',
+                'electricity-under-3mw': 'Doanh nghiệp hoạt động điện lực dưới 3 MW',
+                'electricity-distribution': 'Doanh nghiệp hoạt động điện lực phân phối',
+                'gas-business': 'Doanh nghiệp kinh doanh khí',
+                'gas-storage': 'Kho khí',
+                'greenhouse-inventory': 'Kiểm kê nhà kính',
+                'markets': 'Chợ',
+                'supermarkets': 'Siêu thị',
+                'shopping-centers': 'Trung tâm thương mại',
+                'convenience-stores': 'Chuỗi cửa hàng tiện lợi',
+                'retail-stores': 'Cơ sở bán lẻ',
+                'fdi-retail': 'Cơ sở bán lẻ có vốn đầu tư nước ngoài',
+                'gas-stations': 'Cửa hàng xăng dầu',
+                'alcohol-retailers': 'Thương nhân bán lẻ rượu',
+                'tobacco-wholesalers': 'Thương nhân bán buôn thuốc lá',
+                'industrial-parks': 'Khu công nghiệp',
+                'industrial-clusters': 'Cụm công nghiệp',
+                'supporting-industry': 'Doanh nghiệp hỗ trợ công nghiệp',
+                'cluster-enterprises': 'Doanh nghiệp thuộc cụm công nghiệp',
+                'explosive-materials': 'Doanh nghiệp sử dụng vật liệu nổ',
+                'market-planning': 'Quy hoạch chợ',
+                'power-grid-planning': 'Quy hoạch lưới điện',
+                'mall-planning': 'Quy hoạch trung tâm thương mại',
+                'supermarket-planning': 'Quy hoạch siêu thị'
+            };
+            return names[layerType] || layerType;
+        }
+
+        // Multimedia filtering
+        function filterMultimedia(type) {
+            const tabs = document.querySelectorAll('.filter-tabs .filter-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const items = document.querySelectorAll('.media-item');
+            items.forEach(item => {
+                if (type === 'all' || item.dataset.type === type) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Modal management
+        function openModal(modalName) {
+            const modal = document.getElementById(modalName + 'Modal');
+            if (modal) {
+                modal.classList.add('active');
+            }
+        }
+
+        function closeModal(modalName) {
+            const modal = document.getElementById(modalName + 'Modal');
+            if (modal) {
+                modal.classList.remove('active');
+            }
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        }
+
+        // Download data
+        function downloadData(datasetId) {
+            // Simulate download
+            const alert = document.createElement('div');
+            alert.className = 'alert alert-success';
+            alert.innerHTML = '<span style="font-size: 20px;">✓</span><div>Đang tải xuống dữ liệu...</div>';
+            
+            const container = document.querySelector('.container');
+            container.insertBefore(alert, container.firstChild);
+            
+            setTimeout(() => {
+                alert.remove();
+            }, 3000);
+
+            console.log('Downloading:', datasetId);
+        }
+
+        // Export form submission
+        function exportData(event) {
+            event.preventDefault();
+            
+            // Simulate export
+            closeModal('export');
+            
+            const alert = document.createElement('div');
+            alert.className = 'alert alert-success';
+            alert.innerHTML = '<span style="font-size: 20px;">✓</span><div>Xuất dữ liệu thành công! Đang tải xuống...</div>';
+            
+            const container = document.querySelector('.container');
+            container.insertBefore(alert, container.firstChild);
+            
+            setTimeout(() => {
+                alert.remove();
+            }, 3000);
+        }
+
+        // Submit news
+        function submitNews(event) {
+            event.preventDefault();
+            
+            closeModal('createNews');
+            
+            const alert = document.createElement('div');
+            alert.className = 'alert alert-success';
+            alert.innerHTML = '<span style="font-size: 20px;">✓</span><div>Đăng bài viết thành công! Bài viết đang chờ phê duyệt.</div>';
+            
+            const container = document.querySelector('.container');
+            container.insertBefore(alert, container.firstChild);
+            
+            event.target.reset();
+            
+            setTimeout(() => {
+                alert.remove();
+            }, 3000);
+        }
+
+        // Submit contact form
+        function submitContact(event) {
+            event.preventDefault();
+            
+            const alert = document.createElement('div');
+            alert.className = 'alert alert-success';
+            alert.innerHTML = '<span style="font-size: 20px;">✓</span><div>Gửi góp ý thành công! Chúng tôi sẽ phản hồi trong 24-48 giờ.</div>';
+            
+            const section = document.getElementById('contact-section');
+            section.insertBefore(alert, section.firstChild);
+            
+            event.target.reset();
+            
+            setTimeout(() => {
+                alert.remove();
+            }, 3000);
+        }
+
+        // Global search
+        document.getElementById('globalSearch')?.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            console.log('Searching for:', searchTerm);
+            // In real implementation, this would search across all content
+        });
+
+        // Share content
+        function shareContent(platform, title) {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(title);
+            
+            let shareUrl = '';
+            
+            switch(platform) {
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+                    break;
+                case 'zalo':
+                    shareUrl = `https://social-plugin.zalo.me/share?url=${url}`;
+                    break;
+                case 'linkedin':
+                    shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+                    break;
+            }
+            
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'width=600,height=400');
+            }
+        }
+
+        // Chatbot functionality
+        function toggleChatbot() {
+            const container = document.getElementById('chatbotContainer');
+            const toggle = document.getElementById('chatbotToggle');
+            
+            if (container.classList.contains('active')) {
+                container.classList.remove('active');
+                toggle.textContent = '💬';
+            } else {
+                container.classList.add('active');
+                toggle.textContent = '✕';
+                // Scroll to bottom of messages
+                const messages = document.getElementById('chatMessages');
+                messages.scrollTop = messages.scrollHeight;
+            }
+        }
+
+        function handleChatKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendChatMessage();
+            }
+        }
+
+        function sendQuickQuestion(question) {
+            const input = document.getElementById('chatInput');
+            input.value = question;
+            sendChatMessage();
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            addChatMessage(message, 'user');
+            input.value = '';
+            
+            // Hide suggestions after first message
+            const suggestions = document.getElementById('chatSuggestions');
+            if (suggestions) {
+                suggestions.style.display = 'none';
+            }
+            
+            // Show typing indicator
+            showTypingIndicator();
+            
+            // Simulate bot response
+            setTimeout(() => {
+                hideTypingIndicator();
+                const response = generateBotResponse(message);
+                addChatMessage(response, 'bot');
+            }, 1500);
+        }
+
+        function addChatMessage(message, type) {
+            const messagesContainer = document.getElementById('chatMessages');
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${type}`;
+            
+            const bubble = document.createElement('div');
+            bubble.className = 'chat-bubble';
+            bubble.innerHTML = message;
+            
+            messageDiv.appendChild(bubble);
+            messagesContainer.appendChild(messageDiv);
+            
+            // Scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const messagesContainer = document.getElementById('chatMessages');
+            
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'chat-message bot';
+            typingDiv.id = 'typingIndicator';
+            
+            const bubble = document.createElement('div');
+            bubble.className = 'chat-bubble';
+            bubble.innerHTML = '<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+            
+            typingDiv.appendChild(bubble);
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            if (indicator) {
+                indicator.remove();
+            }
+        }
+
+        function generateBotResponse(userMessage) {
+            const lowerMessage = userMessage.toLowerCase();
+            
+            // Simulate intelligent responses based on keywords
+            if (lowerMessage.includes('xuất nhập khẩu') || lowerMessage.includes('q3') || lowerMessage.includes('2025')) {
+                return `📊 <strong>Thống kê Xuất nhập khẩu Q3/2025:</strong><br><br>
+                        • Kim ngạch xuất khẩu: <strong>$95.4 tỷ USD</strong> (+15.8% so với cùng kỳ)<br>
+                        • Kim ngạch nhập khẩu: <strong>$87.2 tỷ USD</strong> (+12.3%)<br>
+                        • Xuất siêu: <strong>$8.2 tỷ USD</strong><br><br>
+                        🔗 <a href="#" onclick="showSection('data'); toggleChatbot();">Xem chi tiết dữ liệu</a>`;
+            }
+            
+            if (lowerMessage.includes('kcn') || lowerMessage.includes('khu công nghiệp') || lowerMessage.includes('tp.hcm')) {
+                return `🏭 <strong>Danh sách KCN tại TP.HCM:</strong><br><br>
+                        Hiện có <strong>15 khu công nghiệp</strong> hoạt động tại TP.HCM, bao gồm:<br>
+                        • KCN Tân Bình (Quận Tân Bình)<br>
+                        • KCN Tân Thuận (Quận 7)<br>
+                        • KCN Vĩnh Lộc (Bình Chánh)<br>
+                        • KCN Hiệp Phước (Nhà Bè)<br>
+                        • Và 11 khu công nghiệp khác...<br><br>
+                        🗺️ <a href="#" onclick="openMapLayer('industrial-parks'); toggleChatbot();">Xem trên bản đồ</a>`;
+            }
+            
+            if (lowerMessage.includes('tải') || lowerMessage.includes('download') || lowerMessage.includes('excel')) {
+                return `📥 <strong>Hướng dẫn tải dữ liệu:</strong><br><br>
+                        1. Vào trang <a href="#" onclick="showSection('data'); toggleChatbot();">Dữ liệu</a><br>
+                        2. Chọn bộ dữ liệu cần tải<br>
+                        3. Click icon 📥 hoặc nút "Xuất dữ liệu"<br>
+                        4. Chọn định dạng: Excel (.xlsx), CSV, JSON<br>
+                        5. Chọn khoảng thời gian cần tải<br><br>
+                        💡 Hoặc click <a href="#" onclick="openModal('export'); toggleChatbot();">tại đây</a> để xuất dữ liệu ngay!`;
+            }
+            
+            if (lowerMessage.includes('ưu đãi') || lowerMessage.includes('chính sách') || lowerMessage.includes('doanh nghiệp')) {
+                return `🎁 <strong>Chính sách ưu đãi doanh nghiệp:</strong><br><br>
+                        <strong>1. Chương trình hỗ trợ SME 2025</strong><br>
+                        • Hỗ trợ tài chính 500 tỷ đồng<br>
+                        • Ưu đãi lãi suất vay<br><br>
+                        <strong>2. Ưu đãi thuế xuất khẩu</strong><br>
+                        • Thuế suất 10% cho DN xuất khẩu >$10M/năm<br><br>
+                        <strong>3. Hỗ trợ chuyển đổi số</strong><br>
+                        • Hỗ trợ đến 70% chi phí<br><br>
+                        🔔 <a href="#" onclick="showSection('notifications'); toggleChatbot();">Xem chi tiết thông báo</a>`;
+            }
+            
+            if (lowerMessage.includes('chợ') || lowerMessage.includes('siêu thị') || lowerMessage.includes('thương mại')) {
+                return `🏪 <strong>Thông tin về Thương mại:</strong><br><br>
+                        TP.HCM hiện có:<br>
+                        • <strong>83 chợ truyền thống</strong> (Bến Thành, Bình Tây, An Đông...)<br>
+                        • <strong>127 siêu thị</strong> (Co.opMart, Lotte, Big C, Aeon...)<br>
+                        • <strong>45 trung tâm thương mại</strong><br>
+                        • <strong>2,340+ cửa hàng tiện lợi</strong><br><br>
+                        🗺️ <a href="#" onclick="openMapLayer('markets'); toggleChatbot();">Xem bản đồ các chợ</a> | 
+                        <a href="#" onclick="openMapLayer('supermarkets'); toggleChatbot();">Xem bản đồ siêu thị</a>`;
+            }
+            
+            if (lowerMessage.includes('năng lượng') || lowerMessage.includes('điện') || lowerMessage.includes('điện lực')) {
+                return `⚡ <strong>Thông tin Năng lượng:</strong><br><br>
+                        <strong>Dữ liệu năng lượng TP.HCM:</strong><br>
+                        • <strong>300+ cơ sở</strong> sử dụng năng lượng trọng điểm<br>
+                        • <strong>426 DN</strong> hoạt động điện lực dưới 3MW<br>
+                        • <strong>4 DN</strong> hoạt động điện lực phân phối<br>
+                        • Năng lượng tái tạo chiếm 25% tổng sản lượng<br><br>
+                        📊 <a href="#" onclick="filterDataCategory('energy'); showSection('data'); toggleChatbot();">Xem dữ liệu năng lượng</a>`;
+            }
+            
+            if (lowerMessage.includes('liên hệ') || lowerMessage.includes('hỗ trợ') || lowerMessage.includes('email')) {
+                return `📧 <strong>Thông tin liên hệ:</strong><br><br>
+                        📍 <strong>Địa chỉ:</strong> 54 Hai Bà Trưng, Hoàn Kiếm, Hà Nội<br>
+                        📞 <strong>Điện thoại:</strong> (024) 3825 2684<br>
+                        ✉️ <strong>Email:</strong> dataopen@moit.gov.vn<br>
+                        ⏰ <strong>Giờ làm việc:</strong> T2-T6, 8:00-17:00<br><br>
+                        💬 <a href="#" onclick="showSection('contact'); toggleChatbot();">Gửi góp ý trực tuyến</a>`;
+            }
+            
+            // Default response
+            return `Cảm ơn bạn đã liên hệ! 😊<br><br>
+                    Tôi có thể giúp bạn về các vấn đề sau:<br>
+                    • 📊 Tra cứu thống kê xuất nhập khẩu<br>
+                    • 🏭 Thông tin khu công nghiệp<br>
+                    • 🏪 Dữ liệu chợ, siêu thị<br>
+                    • ⚡ Thông tin năng lượng<br>
+                    • 📥 Hướng dẫn tải dữ liệu<br>
+                    • 🎁 Chính sách ưu đãi DN<br><br>
+                    Vui lòng cho tôi biết bạn cần tìm hiểu về chủ đề nào?`;
+        }
+
+        // Share data point
+        function shareDataPoint(platform, pointName) {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(`Thông tin: ${pointName} - Cổng Dữ liệu Công Thương`);
+            
+            let shareUrl = '';
+            
+            switch(platform) {
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+                    break;
+                case 'zalo':
+                    shareUrl = `https://social-plugin.zalo.me/share?url=${url}`;
+                    break;
+                case 'linkedin':
+                    shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+                    break;
+            }
+            
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'width=600,height=400');
+            }
+        }
+
+        // CMS Functions
+        function showCMSTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.cms-tab').forEach(tab => {
+                tab.style.display = 'none';
+            });
+            
+            // Remove active class from all filter tabs
+            document.querySelectorAll('#cms-section .filter-tabs .filter-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            const targetTab = document.getElementById(`cms-${tabName}-tab`);
+            if (targetTab) {
+                targetTab.style.display = 'block';
+            }
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        function openCMSModal(modalName) {
+            const modal = document.getElementById(modalName + 'Modal');
+            if (modal) {
+                modal.classList.add('active');
+            }
+        }
+
+        function closeCMSModal(modalName) {
+            const modal = document.getElementById(modalName + 'Modal');
+            if (modal) {
+                modal.classList.remove('active');
+            }
+        }
+
+        function filterCMSPosts(status) {
+            const rows = document.querySelectorAll('#cmsPostsTable tr');
+            rows.forEach(row => {
+                if (status === 'all' || row.dataset.status === status) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            
+            // Update active tab
+            document.querySelectorAll('#cms-posts-tab .filter-tabs .filter-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        function toggleAllPosts(checkbox) {
+            const checkboxes = document.querySelectorAll('#cmsPostsTable input[type="checkbox"]');
+            checkboxes.forEach(cb => cb.checked = checkbox.checked);
+        }
+
+        function toggleAllEnterprises(checkbox) {
+            const checkboxes = document.querySelectorAll('#cms-enterprises-tab input[type="checkbox"]');
+            checkboxes.forEach(cb => cb.checked = checkbox.checked);
+        }
+
+        function editCMSPost(postId) {
+            openCMSModal('createPost');
+            console.log('Editing post:', postId);
+        }
+
+        function deleteCMSPost(postId) {
+            if (confirm('Bạn có chắc chắn muốn xóa bài viết này?')) {
+                console.log('Deleting post:', postId);
+                alert('Đã xóa bài viết!');
+            }
+        }
+
+        function approvePost(postId) {
+            if (confirm('Duyệt và xuất bản bài viết này?')) {
+                console.log('Approving post:', postId);
+                alert('Đã duyệt và xuất bản bài viết!');
+            }
+        }
+
+        function publishPost(postId) {
+            if (confirm('Xuất bản bài viết này ngay?')) {
+                console.log('Publishing post:', postId);
+                alert('Đã xuất bản bài viết!');
+            }
+        }
+
+        function editNotification(notifId) {
+            openCMSModal('createNotification');
+            console.log('Editing notification:', notifId);
+        }
+
+        function viewNotificationStats(notifId) {
+            alert('Thống kê thông báo:\n\n✓ Đã gửi: 856\n✓ Đã đọc: 634 (74%)\n✓ Đã click: 423 (49%)');
+        }
+
+        function sendNotificationNow(notifId) {
+            if (confirm('Gửi thông báo này ngay bây giờ?')) {
+                console.log('Sending notification:', notifId);
+                alert('Đã gửi thông báo đến 423 doanh nghiệp!');
+            }
+        }
+
+        function viewEnterprise(enterpriseId) {
+            alert('Xem chi tiết doanh nghiệp #' + enterpriseId);
+        }
+
+        function submitCMSPost(event) {
+            event.preventDefault();
+            closeCMSModal('createPost');
+            
+            const alert = document.createElement('div');
+            alert.className = 'alert alert-success';
+            alert.innerHTML = '<span style="font-size: 20px;">✓</span><div>Đã lưu bài viết thành công!</div>';
+            
+            const section = document.getElementById('cms-section');
+            section.insertBefore(alert, section.firstChild);
+            
+            event.target.reset();
+            
+            setTimeout(() => {
+                alert.remove();
+            }, 3000);
+        }
+
+        function submitCMSNotification(event) {
+            event.preventDefault();
+            
+            const target = document.getElementById('notificationTarget').value;
+            const schedule = document.getElementById('notificationSchedule').value;
+            
+            closeCMSModal('createNotification');
+            
+            const alert = document.createElement('div');
+            alert.className = 'alert alert-success';
+            const message = schedule === 'now' ? 'Đã gửi thông báo thành công!' : 'Đã lên lịch gửi thông báo!';
+            alert.innerHTML = `<span style="font-size: 20px;">✓</span><div>${message}</div>`;
+            
+            const section = document.getElementById('cms-section');
+            section.insertBefore(alert, section.firstChild);
+            
+            event.target.reset();
+            
+            setTimeout(() => {
+                alert.remove();
+            }, 3000);
+        }
+
+        function updateRecipientCount() {
+            const target = document.getElementById('notificationTarget');
+            const customDiv = document.getElementById('customRecipients');
+            const countDiv = document.getElementById('recipientCount');
+            
+            if (target.value === 'custom') {
+                customDiv.style.display = 'block';
+                countDiv.innerHTML = '<span style="font-size: 20px;">📊</span><div>Thông báo sẽ được gửi đến <strong>0 doanh nghiệp</strong> (chưa chọn)</div>';
+            } else {
+                customDiv.style.display = 'none';
+                const text = target.options[target.selectedIndex].text;
+                const match = text.match(/\((\d+)\s+DN\)/);
+                const count = match ? match[1] : '0';
+                countDiv.innerHTML = `<span style="font-size: 20px;">📊</span><div>Thông báo sẽ được gửi đến <strong>${count} doanh nghiệp</strong></div>`;
+            }
+        }
+
+        // Post status change handler
+        document.addEventListener('change', function(e) {
+            if (e.target.id === 'postStatus') {
+                const scheduleDiv = document.getElementById('scheduleDateTime');
+                if (e.target.value === 'scheduled') {
+                    scheduleDiv.style.display = 'block';
+                } else {
+                    scheduleDiv.style.display = 'none';
+                }
+            }
+            
+            if (e.target.id === 'notificationSchedule') {
+                const dateTimeDiv = document.getElementById('notificationDateTime');
+                if (e.target.value === 'scheduled') {
+                    dateTimeDiv.style.display = 'block';
+                } else {
+                    dateTimeDiv.style.display = 'none';
+                }
+            }
+        });
+
+        // Toggle Admin Mode
+        function toggleAdminMode() {
+            const checkbox = document.getElementById('adminModeToggle');
+            const cmsNav = document.getElementById('cmsNavItem');
+            
+            if (checkbox.checked) {
+                cmsNav.style.display = 'block';
+                localStorage.setItem('adminMode', 'true');
+            } else {
+                cmsNav.style.display = 'none';
+                localStorage.setItem('adminMode', 'false');
+                // If currently on CMS section, go back to home
+                if (document.getElementById('cms-section').classList.contains('active')) {
+                    showSection('home');
+                }
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Vietnam Industry Trade Data Portal initialized');
+            
+            // Check if admin mode was previously enabled
+            const adminMode = localStorage.getItem('adminMode');
+            if (adminMode === 'true') {
+                document.getElementById('adminModeToggle').checked = true;
+                document.getElementById('cmsNavItem').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
