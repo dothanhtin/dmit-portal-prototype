@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Demo - Kiểm tra chức năng</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 { color: #1e40af; }
+        h2 { color: #059669; margin-top: 0; }
+        .status { 
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .status.ready { background: #d1fae5; color: #065f46; }
+        .status.warning { background: #fef3c7; color: #92400e; }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #1e40af;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 10px 10px 10px 0;
+            font-weight: 600;
+        }
+        .btn:hover { background: #1e3a8a; }
+        ul { line-height: 1.8; }
+        .checklist { list-style: none; padding-left: 0; }
+        .checklist li:before { content: "✅ "; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test Demo - Kiểm tra chức năng</h1>
+    
+    <div class="test-section">
+        <h2>📋 Trạng thái hệ thống</h2>
+        <p><span class="status ready">✅ READY FOR DEMO</span></p>
+        <p>Tất cả các chức năng chính đã được hoàn thiện và sẵn sàng để demo.</p>
+    </div>
+
+    <div class="test-section">
+        <h2>🚀 Bắt đầu Demo</h2>
+        <a href="index.html" class="btn">🏠 Mở Trang Chính</a>
+        <a href="FIXES_COMPLETED.md" class="btn" target="_blank">📄 Xem Chi Tiết Fixes</a>
+    </div>
+
+    <div class="test-section">
+        <h2>✅ Checklist Demo Nhanh (5 phút)</h2>
+        <ul class="checklist">
+            <li><strong>Navigation</strong>: Click qua các menu (Trang chủ, Dữ liệu, Multimedia, Tin tức, Thông báo, Liên hệ)</li>
+            <li><strong>News Slider</strong>: Xem slider tự động chuyển sau 6 giây, hoặc click nút ◄ ►</li>
+            <li><strong>Interactive Map</strong>: Vào "Dữ liệu" → Click "Cơ sở sử dụng năng lượng trọng điểm"</li>
+            <li><strong>Chatbot</strong>: Click icon 💬 → Hỏi "Thống kê xuất nhập khẩu Q3/2025"</li>
+            <li><strong>CMS</strong>: Bật "Admin Mode" → Click menu "CMS" → Xem quản lý bài viết</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>🎯 Các tính năng chính</h2>
+        <ul>
+            <li><strong>📊 Interactive Map</strong>: Leaflet maps với 15 điểm dữ liệu cho mỗi layer</li>
+            <li><strong>🤖 AI Chatbot</strong>: Intelligent responses dựa trên keywords</li>
+            <li><strong>📰 News Slider</strong>: Auto-play với 8 tin tức (2 slides)</li>
+            <li><strong>⚙️ CMS System</strong>: Quản lý bài viết, thông báo, lịch đăng, doanh nghiệp</li>
+            <li><strong>🔍 Advanced Filters</strong>: Filter theo lĩnh vực, loại media, trạng thái</li>
+            <li><strong>📱 Responsive</strong>: Hoạt động mượt mà trên mọi thiết bị</li>
+            <li><strong>📤 Social Share</strong>: Facebook, Twitter, Zalo, LinkedIn</li>
+            <li><strong>📥 Data Export</strong>: Xuất dữ liệu Excel/CSV/JSON</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>🗺️ Test Interactive Map</h2>
+        <p><strong>Các layer có sẵn để test:</strong></p>
+        <ul>
+            <li><strong>Năng lượng</strong>: Cơ sở năng lượng trọng điểm, Điện lực bán lẻ, Điện lực dưới 3MW</li>
+            <li><strong>Thương mại</strong>: Chợ, Siêu thị, Trung tâm thương mại, Cửa hàng tiện lợi</li>
+            <li><strong>Công nghiệp</strong>: Khu công nghiệp, Cụm công nghiệp</li>
+            <li><strong>Quy hoạch</strong>: Quy hoạch lưới điện, Quy hoạch chợ, Quy hoạch siêu thị</li>
+        </ul>
+        <p><span class="status warning">⚠️ Lưu ý</span>: Cần internet để load Leaflet library</p>
+    </div>
+
+    <div class="test-section">
+        <h2>💬 Test Chatbot</h2>
+        <p><strong>Các câu hỏi mẫu để test:</strong></p>
+        <ul>
+            <li>"Thống kê xuất nhập khẩu Q3/2025"</li>
+            <li>"Danh sách KCN tại TP.HCM"</li>
+            <li>"Cách tải dữ liệu Excel"</li>
+            <li>"Chính sách ưu đãi doanh nghiệp"</li>
+            <li>"Năng lượng tái tạo"</li>
+            <li>"Thông tin về chợ và siêu thị"</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>⚙️ Test CMS (Admin Mode)</h2>
+        <ol>
+            <li>Bật toggle "Admin Mode (CMS)" ở góc trên bên phải</li>
+            <li>Menu "⚙️ CMS" sẽ xuất hiện trong navigation</li>
+            <li>Click vào CMS menu</li>
+            <li>Test các tabs:
+                <ul>
+                    <li>📝 Quản lý bài viết (3 posts mẫu)</li>
+                    <li>🔔 Quản lý thông báo (2 notifications)</li>
+                    <li>📅 Lịch đăng bài (calendar view)</li>
+                    <li>🏢 Doanh nghiệp (3 enterprises)</li>
+                </ul>
+            </li>
+            <li>Click "➕ Tạo bài viết mới" để test modal</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h2>🐛 Troubleshooting</h2>
+        <p><strong>Nếu gặp vấn đề:</strong></p>
+        <ul>
+            <li>Mở Console (F12) để xem errors</li>
+            <li>Refresh page (Ctrl+F5 hoặc Cmd+Shift+R)</li>
+            <li>Clear browser cache</li>
+            <li>Đảm bảo có kết nối internet (cho Leaflet CDN)</li>
+            <li>Thử browser khác (Chrome/Edge recommended)</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>📊 Demo Script (Gợi ý)</h2>
+        <p><strong>Phần 1: Giới thiệu (30s)</strong></p>
+        <p>"Cổng Công khai Dữ liệu Sở Công Thương - nền tảng hiện đại để công khai và quản lý dữ liệu công thương một cách minh bạch."</p>
+        
+        <p><strong>Phần 2: Trang chủ (1 phút)</strong></p>
+        <ul>
+            <li>Chỉ stats banner: "1,247 bộ dữ liệu, 856 doanh nghiệp..."</li>
+            <li>Demo news slider tự động</li>
+            <li>Quick access cards</li>
+        </ul>
+        
+        <p><strong>Phần 3: Dữ liệu & Map (2 phút)</strong></p>
+        <ul>
+            <li>Navigate to Data section</li>
+            <li>Show 4 categories với filters</li>
+            <li>Click vào một layer → Demo interactive map</li>
+            <li>Click markers, xem popup, scroll bảng danh sách</li>
+        </ul>
+        
+        <p><strong>Phần 4: Chatbot (1 phút)</strong></p>
+        <ul>
+            <li>Click chatbot icon 💬</li>
+            <li>Demo với câu hỏi mẫu</li>
+            <li>Show intelligent response với links</li>
+        </ul>
+        
+        <p><strong>Phần 5: CMS (1 phút)</strong></p>
+        <ul>
+            <li>Bật Admin Mode</li>
+            <li>Show CMS dashboard</li>
+            <li>Demo quản lý bài viết và thông báo</li>
+        </ul>
+    </div>
+
+    <div class="test-section" style="background: #eff6ff; border-left: 4px solid #1e40af;">
+        <h2>✨ Kết luận</h2>
+        <p><strong>Hệ thống đã sẵn sàng để demo với:</strong></p>
+        <ul class="checklist">
+            <li>Giao diện hiện đại, chuyên nghiệp</li>
+            <li>Tất cả chức năng chính hoạt động mượt mà</li>
+            <li>Interactive map với Leaflet</li>
+            <li>AI Chatbot thông minh</li>
+            <li>CMS system đầy đủ</li>
+            <li>Responsive trên mọi thiết bị</li>
+        </ul>
+        <p style="margin-top: 20px;">
+            <a href="index.html" class="btn" style="font-size: 18px;">🚀 BẮT ĐẦU DEMO NGAY</a>
+        </p>
+    </div>
+
+    <footer style="text-align: center; margin-top: 40px; padding: 20px; color: #666;">
+        <p>📅 Last Updated: 30/10/2025 | Version: 1.0.0 - Production Ready</p>
+    </footer>
+</body>
+</html>

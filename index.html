@@ -1177,16 +1177,16 @@
                 </div>
             </div>
             <nav class="nav">
-                <div class="nav-item active" onclick="showSection('home')">🏠 Trang chủ</div>
-                <div class="nav-item" onclick="showSection('data')">📊 Dữ liệu</div>
-                <div class="nav-item" onclick="showSection('multimedia')">🎬 Multimedia</div>
-                <div class="nav-item" onclick="showSection('news')">📰 Tin tức</div>
-                <div class="nav-item" onclick="showSection('notifications')">
+                <div class="nav-item active" onclick="showSection('home', this)">🏠 Trang chủ</div>
+                <div class="nav-item" onclick="showSection('data', this)">📊 Dữ liệu</div>
+                <div class="nav-item" onclick="showSection('multimedia', this)">🎬 Multimedia</div>
+                <div class="nav-item" onclick="showSection('news', this)">📰 Tin tức</div>
+                <div class="nav-item" onclick="showSection('notifications', this)">
                     🔔 Thông báo 
                     <span class="notification-badge">5</span>
                 </div>
-                <div class="nav-item" onclick="showSection('contact')">✉️ Liên hệ</div>
-                <div class="nav-item" id="cmsNavItem" onclick="showSection('cms')" style="background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.4); display: none;">⚙️ CMS</div>
+                <div class="nav-item" onclick="showSection('contact', this)">✉️ Liên hệ</div>
+                <div class="nav-item" id="cmsNavItem" onclick="showSection('cms', this)" style="background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.4); display: none;">⚙️ CMS</div>
                 <div class="nav-item" onclick="window.location.href='https://doit-demo.vnptit.vn/v2/auth'" style="background: rgba(255, 255, 255, 0.25); border: 1px solid rgba(255, 255, 255, 0.5); font-weight: 600;">🔐 Đăng nhập</div>
             </nav>
         </div>
@@ -1240,7 +1240,7 @@
                     </h2>
                 </div>
                 <div class="grid grid-4">
-                    <div class="card" onclick="showSection('data')">
+                    <div class="card" onclick="showSection('data', null)">
                         <div class="card-header">
                             <div style="font-size: 32px;">📊</div>
                         </div>
@@ -1249,7 +1249,7 @@
                             <span>1,247 bộ dữ liệu</span>
                         </div>
                     </div>
-                    <div class="card" onclick="showSection('multimedia')">
+                    <div class="card" onclick="showSection('multimedia', null)">
                         <div class="card-header">
                             <div style="font-size: 32px;">🎬</div>
                         </div>
@@ -1267,7 +1267,7 @@
                             <span>Tải về ngay</span>
                         </div>
                     </div>
-                    <div class="card" onclick="showSection('news')">
+                    <div class="card" onclick="showSection('news', null)">
                         <div class="card-header">
                             <div style="font-size: 32px;">📰</div>
                         </div>
@@ -1286,10 +1286,17 @@
                         <span class="section-icon">📰</span>
                         Tin tức - Sự kiện mới nhất
                     </h2>
-                    <button class="btn btn-outline" onclick="showSection('news')">Xem tất cả →</button>
+                    <button class="btn btn-outline" onclick="showSection('news', null)">Xem tất cả →</button>
                 </div>
 
                 <div class="news-slider-container">
+                    <button class="slider-btn slider-btn-prev" onclick="moveNewsSlide(-1)" aria-label="Previous slide">
+                        <span>‹</span>
+                    </button>
+                    <button class="slider-btn slider-btn-next" onclick="moveNewsSlide(1)" aria-label="Next slide">
+                        <span>›</span>
+                    </button>
+                    
                     <div class="news-slider-wrapper">
                         <div class="news-slider" id="newsSlider">
                             <!-- Slide 1 - 4 news items -->
@@ -1309,7 +1316,7 @@
                                     </div>
                                 </div>
 
-                                <div class="news-card" onclick="showSection('news')">
+                                <div class="news-card" onclick="showSection('news', null)">
                                     <div class="news-card-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
                                         <span style="font-size: 48px;">🏭</span>
                                     </div>
@@ -1324,7 +1331,7 @@
                                     </div>
                                 </div>
 
-                                <div class="news-card" onclick="showSection('news')">
+                                <div class="news-card" onclick="showSection('news', null)">
                                     <div class="news-card-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
                                         <span style="font-size: 48px;">⚡</span>
                                     </div>
@@ -1339,7 +1346,7 @@
                                     </div>
                                 </div>
 
-                                <div class="news-card" onclick="showSection('news')">
+                                <div class="news-card" onclick="showSection('news', null)">
                                     <div class="news-card-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
                                         <span style="font-size: 48px;">🎁</span>
                                     </div>
@@ -1357,7 +1364,7 @@
 
                             <!-- Slide 2 - 4 news items -->
                             <div class="news-slide-grid">
-                                <div class="news-card" onclick="showSection('news')">
+                                <div class="news-card" onclick="showSection('news', null)">
                                     <div class="news-card-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
                                         <span style="font-size: 48px;">🌍</span>
                                     </div>
@@ -1372,7 +1379,7 @@
                                     </div>
                                 </div>
 
-                                <div class="news-card" onclick="showSection('news')">
+                                <div class="news-card" onclick="showSection('news', null)">
                                     <div class="news-card-image" style="background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);">
                                         <span style="font-size: 48px;">💼</span>
                                     </div>
@@ -1387,7 +1394,7 @@
                                     </div>
                                 </div>
 
-                                <div class="news-card" onclick="showSection('news')">
+                                <div class="news-card" onclick="showSection('news', null)">
                                     <div class="news-card-image" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
                                         <span style="font-size: 48px;">🏪</span>
                                     </div>
@@ -1402,7 +1409,7 @@
                                     </div>
                                 </div>
 
-                                <div class="news-card" onclick="showSection('news')">
+                                <div class="news-card" onclick="showSection('news', null)">
                                     <div class="news-card-image" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
                                         <span style="font-size: 48px;">🚀</span>
                                     </div>
@@ -1432,7 +1439,7 @@
                         <span class="section-icon">📈</span>
                         Dữ liệu mới cập nhật
                     </h2>
-                    <button class="btn btn-outline" onclick="showSection('data')">Xem tất cả →</button>
+                    <button class="btn btn-outline" onclick="showSection('data', null)">Xem tất cả →</button>
                 </div>
                 <div class="grid grid-3">
                     <div class="card">
@@ -1480,11 +1487,11 @@
                 </div>
 
                 <div class="filter-tabs">
-                    <div class="filter-tab active" onclick="filterDataCategory('all')">Tất cả</div>
-                    <div class="filter-tab" onclick="filterDataCategory('energy')">⚡ Năng lượng</div>
-                    <div class="filter-tab" onclick="filterDataCategory('trade')">🛒 Thương mại</div>
-                    <div class="filter-tab" onclick="filterDataCategory('industry')">🏭 Công nghiệp</div>
-                    <div class="filter-tab" onclick="filterDataCategory('planning')">🗺️ Quy hoạch</div>
+                    <div class="filter-tab active" onclick="filterDataCategory('all', this)">Tất cả</div>
+                    <div class="filter-tab" onclick="filterDataCategory('energy', this)">⚡ Năng lượng</div>
+                    <div class="filter-tab" onclick="filterDataCategory('trade', this)">🛒 Thương mại</div>
+                    <div class="filter-tab" onclick="filterDataCategory('industry', this)">🏭 Công nghiệp</div>
+                    <div class="filter-tab" onclick="filterDataCategory('planning', this)">🗺️ Quy hoạch</div>
                 </div>
 
                 <!-- Energy Category -->
@@ -1738,12 +1745,12 @@
                 </div>
 
                 <div class="filter-tabs">
-                    <div class="filter-tab active" onclick="filterMultimedia('all')">Tất cả</div>
-                    <div class="filter-tab" onclick="filterMultimedia('image')">📷 Hình ảnh</div>
-                    <div class="filter-tab" onclick="filterMultimedia('video')">🎥 Video</div>
-                    <div class="filter-tab" onclick="filterMultimedia('infographic')">📊 Infographic</div>
-                    <div class="filter-tab" onclick="filterMultimedia('book')">📚 Sách/Tài liệu</div>
-                    <div class="filter-tab" onclick="filterMultimedia('voice')">🎙️ Podcast</div>
+                    <div class="filter-tab active" onclick="filterMultimedia('all', this)">Tất cả</div>
+                    <div class="filter-tab" onclick="filterMultimedia('image', this)">📷 Hình ảnh</div>
+                    <div class="filter-tab" onclick="filterMultimedia('video', this)">🎥 Video</div>
+                    <div class="filter-tab" onclick="filterMultimedia('infographic', this)">📊 Infographic</div>
+                    <div class="filter-tab" onclick="filterMultimedia('book', this)">📚 Sách/Tài liệu</div>
+                    <div class="filter-tab" onclick="filterMultimedia('voice', this)">🎙️ Podcast</div>
                 </div>
 
                 <div class="media-grid" id="mediaGrid">
@@ -2122,10 +2129,10 @@
 
             <!-- CMS Tabs -->
             <div class="filter-tabs" style="margin-bottom: var(--spacing-xl);">
-                <div class="filter-tab active" onclick="showCMSTab('posts')">📝 Quản lý bài viết</div>
-                <div class="filter-tab" onclick="showCMSTab('notifications')">🔔 Quản lý thông báo</div>
-                <div class="filter-tab" onclick="showCMSTab('schedule')">📅 Lịch đăng bài</div>
-                <div class="filter-tab" onclick="showCMSTab('enterprises')">🏢 Doanh nghiệp</div>
+                <div class="filter-tab active" onclick="showCMSTab('posts', this)">📝 Quản lý bài viết</div>
+                <div class="filter-tab" onclick="showCMSTab('notifications', this)">🔔 Quản lý thông báo</div>
+                <div class="filter-tab" onclick="showCMSTab('schedule', this)">📅 Lịch đăng bài</div>
+                <div class="filter-tab" onclick="showCMSTab('enterprises', this)">🏢 Doanh nghiệp</div>
             </div>
 
             <!-- Posts Management Tab -->
@@ -2136,11 +2143,11 @@
                 </div>
 
                 <div class="filter-tabs" style="margin-bottom: var(--spacing-lg);">
-                    <div class="filter-tab active" onclick="filterCMSPosts('all')">Tất cả (12)</div>
-                    <div class="filter-tab" onclick="filterCMSPosts('published')">Đã xuất bản (8)</div>
-                    <div class="filter-tab" onclick="filterCMSPosts('draft')">Nháp (2)</div>
-                    <div class="filter-tab" onclick="filterCMSPosts('pending')">Chờ duyệt (2)</div>
-                    <div class="filter-tab" onclick="filterCMSPosts('scheduled')">Đã lên lịch (0)</div>
+                    <div class="filter-tab active" onclick="filterCMSPosts('all', this)">Tất cả (12)</div>
+                    <div class="filter-tab" onclick="filterCMSPosts('published', this)">Đã xuất bản (8)</div>
+                    <div class="filter-tab" onclick="filterCMSPosts('draft', this)">Nháp (2)</div>
+                    <div class="filter-tab" onclick="filterCMSPosts('pending', this)">Chờ duyệt (2)</div>
+                    <div class="filter-tab" onclick="filterCMSPosts('scheduled', this)">Đã lên lịch (0)</div>
                 </div>
 
                 <div class="table-container">
@@ -2768,53 +2775,72 @@
 
         // Load map with Leaflet
         function loadMapData(layerType) {
-            const mapTitle = document.getElementById('mapLayerTitle');
-            const layerName = getLayerName(layerType);
-            mapTitle.textContent = 'Bản đồ: ' + layerName;
+            try {
+                const mapTitle = document.getElementById('mapLayerTitle');
+                const layerName = getLayerName(layerType);
+                mapTitle.textContent = 'Bản đồ: ' + layerName;
 
-            // Get sample data for this layer
-            const mapData = getSampleMapData(layerType);
-            
-            document.getElementById('mapTotalPoints').textContent = mapData.points.length;
-            document.getElementById('mapCategory').textContent = mapData.category;
+                // Get sample data for this layer
+                const mapData = getSampleMapData(layerType);
+                
+                document.getElementById('mapTotalPoints').textContent = mapData.points.length;
+                document.getElementById('mapCategory').textContent = mapData.category;
 
-            // Initialize Leaflet map
-            const mapContainer = document.getElementById('map');
-            mapContainer.innerHTML = '';
+                // Initialize Leaflet map
+                const mapContainer = document.getElementById('map');
+                mapContainer.innerHTML = '';
 
-            // Create map centered on Ho Chi Minh City
-            const map = L.map('map').setView([10.8231, 106.6297], 11);
+                // Check if Leaflet is loaded
+                if (typeof L === 'undefined') {
+                    mapContainer.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f3f4f6; color: #6b7280; font-size: 16px;">⚠️ Đang tải bản đồ...</div>';
+                    console.error('Leaflet library not loaded');
+                    return;
+                }
 
-            // Add OpenStreetMap tile layer
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors'
-            }).addTo(map);
+                // Create map centered on Ho Chi Minh City
+                const map = L.map('map').setView([10.8231, 106.6297], 11);
 
-            // Add markers for each data point
-            mapData.points.forEach(point => {
-                const color = getMarkerColor(point.status);
-                const marker = L.circleMarker([point.lat, point.lng], {
-                    radius: 8,
-                    fillColor: color,
-                    color: '#fff',
-                    weight: 2,
-                    opacity: 1,
-                    fillOpacity: 0.8
+                // Add OpenStreetMap tile layer
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap contributors',
+                    maxZoom: 19
                 }).addTo(map);
 
-                // Add popup
-                marker.bindPopup(`
-                    <div style="min-width: 200px;">
-                        <h4 style="margin: 0 0 8px 0; color: var(--color-primary);">${point.name}</h4>
-                        <p style="margin: 0 0 4px 0; font-size: 13px;"><strong>Địa chỉ:</strong> ${point.address}</p>
-                        <p style="margin: 0 0 4px 0; font-size: 13px;"><strong>Trạng thái:</strong> <span style="color: ${color}; font-weight: 600;">${point.status}</span></p>
-                        <p style="margin: 0; font-size: 13px;"><strong>Mã số:</strong> ${point.code}</p>
-                    </div>
-                `);
-            });
+                // Add markers for each data point
+                mapData.points.forEach(point => {
+                    const color = getMarkerColor(point.status);
+                    const marker = L.circleMarker([point.lat, point.lng], {
+                        radius: 8,
+                        fillColor: color,
+                        color: '#fff',
+                        weight: 2,
+                        opacity: 1,
+                        fillOpacity: 0.8
+                    }).addTo(map);
 
-            // Display points list
-            displayPointsList(mapData.points);
+                    // Add popup
+                    marker.bindPopup(`
+                        <div style="min-width: 200px;">
+                            <h4 style="margin: 0 0 8px 0; color: var(--color-primary);">${point.name}</h4>
+                            <p style="margin: 0 0 4px 0; font-size: 13px;"><strong>Địa chỉ:</strong> ${point.address}</p>
+                            <p style="margin: 0 0 4px 0; font-size: 13px;"><strong>Trạng thái:</strong> <span style="color: ${color}; font-weight: 600;">${point.status}</span></p>
+                            <p style="margin: 0; font-size: 13px;"><strong>Mã số:</strong> ${point.code}</p>
+                        </div>
+                    `);
+                });
+
+                // Display points list
+                displayPointsList(mapData.points);
+                
+                // Invalidate size after a short delay to ensure proper rendering
+                setTimeout(() => {
+                    map.invalidateSize();
+                }, 100);
+            } catch (error) {
+                console.error('Error loading map:', error);
+                const mapContainer = document.getElementById('map');
+                mapContainer.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #fee2e2; color: #dc2626; font-size: 16px; padding: 20px; text-align: center;">⚠️ Không thể tải bản đồ. Vui lòng thử lại sau.</div>';
+            }
         }
 
         function getMarkerColor(status) {
@@ -3366,10 +3392,13 @@
         }
 
         // Multimedia filtering
-        function filterMultimedia(type) {
-            const tabs = document.querySelectorAll('.filter-tabs .filter-tab');
+        function filterMultimedia(type, clickedElement) {
+            const tabs = document.querySelectorAll('#multimedia-section .filter-tabs .filter-tab');
             tabs.forEach(tab => tab.classList.remove('active'));
-            event.target.classList.add('active');
+            
+            if (clickedElement) {
+                clickedElement.classList.add('active');
+            }
 
             const items = document.querySelectorAll('.media-item');
             items.forEach(item => {
@@ -3616,7 +3645,7 @@
                         • Kim ngạch xuất khẩu: <strong>$95.4 tỷ USD</strong> (+15.8% so với cùng kỳ)<br>
                         • Kim ngạch nhập khẩu: <strong>$87.2 tỷ USD</strong> (+12.3%)<br>
                         • Xuất siêu: <strong>$8.2 tỷ USD</strong><br><br>
-                        🔗 <a href="#" onclick="showSection('data'); toggleChatbot();">Xem chi tiết dữ liệu</a>`;
+                        🔗 <a href="#" onclick="showSection('data', null); toggleChatbot();">Xem chi tiết dữ liệu</a>`;
             }
             
             if (lowerMessage.includes('kcn') || lowerMessage.includes('khu công nghiệp') || lowerMessage.includes('tp.hcm')) {
@@ -3627,17 +3656,17 @@
                         • KCN Vĩnh Lộc (Bình Chánh)<br>
                         • KCN Hiệp Phước (Nhà Bè)<br>
                         • Và 11 khu công nghiệp khác...<br><br>
-                        🗺️ <a href="#" onclick="openMapLayer('industrial-parks'); toggleChatbot();">Xem trên bản đồ</a>`;
+                        🗺️ <a href="#" onclick="openMapLayer('industrial-parks'); toggleChatbot(); return false;">Xem trên bản đồ</a>`;
             }
             
             if (lowerMessage.includes('tải') || lowerMessage.includes('download') || lowerMessage.includes('excel')) {
                 return `📥 <strong>Hướng dẫn tải dữ liệu:</strong><br><br>
-                        1. Vào trang <a href="#" onclick="showSection('data'); toggleChatbot();">Dữ liệu</a><br>
+                        1. Vào trang <a href="#" onclick="showSection('data', null); toggleChatbot(); return false;">Dữ liệu</a><br>
                         2. Chọn bộ dữ liệu cần tải<br>
                         3. Click icon 📥 hoặc nút "Xuất dữ liệu"<br>
                         4. Chọn định dạng: Excel (.xlsx), CSV, JSON<br>
                         5. Chọn khoảng thời gian cần tải<br><br>
-                        💡 Hoặc click <a href="#" onclick="openModal('export'); toggleChatbot();">tại đây</a> để xuất dữ liệu ngay!`;
+                        💡 Hoặc click <a href="#" onclick="openModal('export'); toggleChatbot(); return false;">tại đây</a> để xuất dữ liệu ngay!`;
             }
             
             if (lowerMessage.includes('ưu đãi') || lowerMessage.includes('chính sách') || lowerMessage.includes('doanh nghiệp')) {
@@ -3722,7 +3751,7 @@
         }
 
         // CMS Functions
-        function showCMSTab(tabName) {
+        function showCMSTab(tabName, clickedElement) {
             // Hide all tabs
             document.querySelectorAll('.cms-tab').forEach(tab => {
                 tab.style.display = 'none';
@@ -3740,7 +3769,9 @@
             }
             
             // Add active class to clicked tab
-            event.target.classList.add('active');
+            if (clickedElement) {
+                clickedElement.classList.add('active');
+            }
         }
 
         function openCMSModal(modalName) {
@@ -3757,7 +3788,7 @@
             }
         }
 
-        function filterCMSPosts(status) {
+        function filterCMSPosts(status, clickedElement) {
             const rows = document.querySelectorAll('#cmsPostsTable tr');
             rows.forEach(row => {
                 if (status === 'all' || row.dataset.status === status) {
@@ -3771,7 +3802,10 @@
             document.querySelectorAll('#cms-posts-tab .filter-tabs .filter-tab').forEach(tab => {
                 tab.classList.remove('active');
             });
-            event.target.classList.add('active');
+            
+            if (clickedElement) {
+                clickedElement.classList.add('active');
+            }
         }
 
         function toggleAllPosts(checkbox) {
