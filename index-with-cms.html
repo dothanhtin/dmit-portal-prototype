@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Công Khai Dữ Liệu Sở Công Thương - CMS Enabled</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        /* Import all styles from index.html - keeping it simple, we'll link to the same styles */
+        @import url('index.html');
+    </style>
+    <!-- Link to original index.html for styles -->
+    <script>
+        // We'll load the original HTML and inject our scripts
+        window.addEventListener('DOMContentLoaded', async function() {
+            // Fetch original HTML
+            const response = await fetch('index.html');
+            const html = await response.text();
+            
+            // Extract body content
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            
+            // Copy styles
+            const styles = doc.querySelectorAll('style');
+            styles.forEach(style => {
+                document.head.appendChild(style.cloneNode(true));
+            });
+            
+            // Copy body content
+            const bodyContent = doc.body.innerHTML;
+            document.body.innerHTML = bodyContent;
+            
+            // Now inject our scripts
+            const apiScript = document.createElement('script');
+            apiScript.src = 'api-client.js';
+            document.body.appendChild(apiScript);
+            
+            apiScript.onload = function() {
+                const cmsScript = document.createElement('script');
+                cmsScript.src = 'cms-functions.js';
+                document.body.appendChild(cmsScript);
+                
+                cmsScript.onload = function() {
+                    console.log('✅ CMS với API thực đã được tải!');
+                    
+                    // Update form handlers
+                    const createPostForm = document.getElementById('createPostForm');
+                    if (createPostForm) {
+                        createPostForm.onsubmit = submitCMSPost;
+                    }
+                    
+                    const createNotificationForm = document.getElementById('createNotificationForm');
+                    if (createNotificationForm) {
+                        createNotificationForm.onsubmit = submitCMSNotification;
+                    }
+                };
+            };
+        });
+    </script>
+</head>
+<body>
+    <div style="display: flex; align-items: center; justify-content: center; height: 100vh; font-family: Arial, sans-serif;">
+        <div style="text-align: center;">
+            <div style="font-size: 48px; margin-bottom: 20px;">⏳</div>
+            <div style="font-size: 20px; color: #1e40af; font-weight: 600;">Đang tải CMS với API...</div>
+        </div>
+    </div>
+</body>
+</html>

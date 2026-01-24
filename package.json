@@ -1,0 +1,28 @@
+{
+  "name": "dmit-portal-prototype",
+  "version": "1.0.0",
+  "description": "Nền tảng hiện đại để công khai và quản lý dữ liệu công thương một cách minh bạch, với giao diện thân thiện và đầy đủ tính năng.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dothanhtin/dmit-portal-prototype.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dothanhtin/dmit-portal-prototype/issues"
+  },
+  "homepage": "https://github.com/dothanhtin/dmit-portal-prototype#readme",
+  "dependencies": {
+    "body-parser": "^2.2.2",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "uuid": "^13.0.0"
+  }
+}

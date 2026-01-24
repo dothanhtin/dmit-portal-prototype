@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS Demo - Quản lý Nội dung</title>
+    <link rel="stylesheet" href="cms-styles.css">
+</head>
+<body>
+    <div class="header">
+        <h1>⚙️ CMS Demo - Quản lý Nội dung</h1>
+        <p>
+            <span class="status-indicator" id="serverStatus"></span>
+            <span id="serverStatusText">Đang kiểm tra kết nối...</span>
+        </p>
+    </div>
+
+    <div class="container">
+        <!-- Tabs -->
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('posts')">📝 Quản lý Bài viết</div>
+            <div class="tab" onclick="showTab('notifications')">🔔 Quản lý Thông báo</div>
+            <div class="tab" onclick="showTab('enterprises')">🏢 Doanh nghiệp</div>
+        </div>
+
+        <!-- Posts Tab -->
+        <div id="posts-tab" class="tab-content active">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                <h2 style="color: #1e40af;">Danh sách Bài viết</h2>
+                <button class="btn btn-primary" onclick="openCreatePostModal()">➕ Tạo bài viết mới</button>
+            </div>
+
+            <div id="postsLoading" class="loading">
+                <div class="spinner"></div>
+                <p style="margin-top: 16px; color: #64748b;">Đang tải dữ liệu...</p>
+            </div>
+
+            <div id="postsContainer" style="display: none;">
+                <table id="postsTable">
+                    <thead>
+                        <tr>
+                            <th>Tiêu đề</th>
+                            <th>Danh mục</th>
+                            <th>Tác giả</th>
+                            <th>Trạng thái</th>
+                            <th>Ngày tạo</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="postsTableBody"></tbody>
+                </table>
+            </div>
+
+            <div id="postsEmpty" class="empty-state" style="display: none;">
+                <div class="empty-state-icon">📝</div>
+                <h3>Chưa có bài viết nào</h3>
+                <p>Click "Tạo bài viết mới" để bắt đầu</p>
+            </div>
+        </div>
+
+        <!-- Notifications Tab -->
+        <div id="notifications-tab" class="tab-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                <h2 style="color: #1e40af;">Danh sách Thông báo</h2>
+                <button class="btn btn-primary" onclick="openCreateNotificationModal()">➕ Tạo thông báo mới</button>
+            </div>
+
+            <div id="notificationsLoading" class="loading">
+                <div class="spinner"></div>
+                <p style="margin-top: 16px; color: #64748b;">Đang tải dữ liệu...</p>
+            </div>
+
+            <div id="notificationsContainer" style="display: none;">
+                <table id="notificationsTable">
+                    <thead>
+                        <tr>
+                            <th>Tiêu đề</th>
+                            <th>Loại</th>
+                            <th>Đối tượng</th>
+                            <th>Trạng thái</th>
+                            <th>Ngày gửi</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="notificationsTableBody"></tbody>
+                </table>
+            </div>
+
+            <div id="notificationsEmpty" class="empty-state" style="display: none;">
+                <div class="empty-state-icon">🔔</div>
+                <h3>Chưa có thông báo nào</h3>
+                <p>Click "Tạo thông báo mới" để bắt đầu</p>
+            </div>
+        </div>
+
+        <!-- Enterprises Tab -->
+        <div id="enterprises-tab" class="tab-content">
+            <h2 style="color: #1e40af; margin-bottom: 24px;">Danh sách Doanh nghiệp</h2>
+
+            <div id="enterprisesLoading" class="loading">
+                <div class="spinner"></div>
+                <p style="margin-top: 16px; color: #64748b;">Đang tải dữ liệu...</p>
+            </div>
+
+            <div id="enterprisesContainer" style="display: none;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã DN</th>
+                            <th>Tên doanh nghiệp</th>
+                            <th>Lĩnh vực</th>
+                            <th>Quy mô</th>
+                            <th>Email</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody id="enterprisesTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Post Modal -->
+    <div id="createPostModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="postModalTitle">✍️ Tạo bài viết mới</h2>
+                <span class="modal-close" onclick="closePostModal()">&times;</span>
+            </div>
+
+            <form id="createPostForm" onsubmit="handleSubmitPost(event)">
+                <div class="form-group">
+                    <label class="form-label">Tiêu đề *</label>
+                    <input type="text" name="title" class="form-control" required>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label class="form-label">Danh mục *</label>
+                        <select name="category" class="form-control" required>
+                            <option value="">-- Chọn --</option>
+                            <option value="news">Tin tức</option>
+                            <option value="event">Sự kiện</option>
+                            <option value="policy">Chính sách</option>
+                            <option value="report">Báo cáo</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Trạng thái</label>
+                        <select name="status" class="form-control">
+                            <option value="draft">📝 Lưu nháp</option>
+                            <option value="pending">⏳ Gửi duyệt</option>
+                            <option value="published">✓ Xuất bản</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Nội dung *</label>
+                    <textarea name="content" class="form-control" rows="6" required></textarea>
+                </div>
+
+                <div style="display: flex; gap: 12px;">
+                    <button type="submit" class="btn btn-primary">💾 Lưu</button>
+                    <button type="button" class="btn btn-secondary" onclick="closePostModal()">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Create Notification Modal -->
+    <div id="createNotificationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🔔 Tạo thông báo mới</h2>
+                <span class="modal-close" onclick="closeNotificationModal()">&times;</span>
+            </div>
+
+            <form id="createNotificationForm" onsubmit="handleSubmitNotification(event)">
+                <div class="form-group">
+                    <label class="form-label">Tiêu đề *</label>
+                    <input type="text" name="title" class="form-control" required>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label class="form-label">Loại *</label>
+                        <select name="type" class="form-control" required>
+                            <option value="">-- Chọn --</option>
+                            <option value="QUAN TRỌNG">QUAN TRỌNG</option>
+                            <option value="CHƯƠNG TRÌNH MỚI">CHƯƠNG TRÌNH MỚI</option>
+                            <option value="ƯU ĐÃI">ƯU ĐÃI</option>
+                            <option value="SỰ KIỆN">SỰ KIỆN</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Đối tượng</label>
+                        <select name="targetAudience" class="form-control" onchange="updateRecipientCount(this)">
+                            <option value="all">Tất cả (856 DN)</option>
+                            <option value="energy">Năng lượng (145 DN)</option>
+                            <option value="trade">Thương mại (302 DN)</option>
+                            <option value="small">DN nhỏ (423 DN)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Nội dung *</label>
+                    <textarea name="content" class="form-control" rows="6" required></textarea>
+                </div>
+
+                <div class="alert" style="background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd;">
+                    <span>📊</span>
+                    <div>Gửi đến <strong id="recipientCount">856 doanh nghiệp</strong></div>
+                </div>
+
+                <div style="display: flex; gap: 12px;">
+                    <button type="submit" class="btn btn-primary">📤 Gửi ngay</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeNotificationModal()">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="api-client.js"></script>
+    <script src="cms-demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "d3e32369-f042-47d4-93bb-bf3c702e6385",
+    "code": "DN-0001",
+    "name": "Công ty TNHH Năng lượng Xanh Việt",
+    "category": "energy",
+    "size": "medium",
+    "employeeCount": 120,
+    "email": "info@greenenergyVN.com",
+    "phone": "0283456789",
+    "address": "123 Đường ABC, Quận 1",
+    "district": "Quận 1",
+    "status": "active",
+    "createdAt": "2026-01-24T15:19:30.646Z"
+  },
+  {
+    "id": "ebd858e4-4bb2-4f9f-b60f-69bde71f4a6f",
+    "code": "DN-0002",
+    "name": "Siêu thị Co.opMart Nguyễn Kiệm",
+    "category": "trade",
+    "size": "large",
+    "employeeCount": 350,
+    "email": "contact@coopmart.vn",
+    "phone": "0283456790",
+    "address": "456 Nguyễn Kiệm, Phú Nhuận",
+    "district": "Phú Nhuận",
+    "status": "active",
+    "createdAt": "2026-01-24T15:19:30.647Z"
+  },
+  {
+    "id": "932929b7-89d7-41f8-8186-24f1e8afa791",
+    "code": "DN-0003",
+    "name": "KCN Tân Bình JSC",
+    "category": "industry",
+    "size": "large",
+    "employeeCount": 450,
+    "email": "info@tanbinhip.com",
+    "phone": "0283456791",
+    "address": "789 Tân Bình, Quận Tân Bình",
+    "district": "Tân Bình",
+    "status": "active",
+    "createdAt": "2026-01-24T15:19:30.647Z"
+  }
+]
