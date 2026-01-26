@@ -1,14 +1,134 @@
-// CMS Functions - Real CRUD Operations
+// CMS Functions - Local Mock Data Operations
+
+// ==================== MOCK DATA STRUCTURES ====================
+
+// Mock data storage (in-memory)
+let mockPosts = [
+    {
+        id: 'post-1',
+        title: 'Chương trình hỗ trợ doanh nghiệp nhỏ và vừa',
+        category: 'policy',
+        content: 'Nội dung chi tiết về chương trình hỗ trợ...',
+        author: 'Admin',
+        status: 'published',
+        featuredImage: '',
+        createdAt: '2024-01-20T10:00:00.000Z',
+        updatedAt: '2024-01-20T10:00:00.000Z',
+        publishDate: '2024-01-20T10:00:00.000Z'
+    },
+    {
+        id: 'post-2',
+        title: 'Hội thảo chuyển đổi số cho doanh nghiệp',
+        category: 'event',
+        content: 'Thông tin về hội thảo sắp tới...',
+        author: 'Admin',
+        status: 'draft',
+        featuredImage: '',
+        createdAt: '2024-01-22T14:30:00.000Z',
+        updatedAt: '2024-01-22T14:30:00.000Z'
+    },
+    {
+        id: 'post-3',
+        title: 'Báo cáo kinh tế quý IV/2023',
+        category: 'report',
+        content: 'Tóm tắt báo cáo kinh tế...',
+        author: 'Admin',
+        status: 'pending',
+        featuredImage: '',
+        createdAt: '2024-01-23T09:15:00.000Z',
+        updatedAt: '2024-01-23T09:15:00.000Z'
+    }
+];
+
+let mockNotifications = [
+    {
+        id: 'notif-1',
+        title: 'Thông báo quan trọng về thuế',
+        type: 'QUAN TRỌNG',
+        priority: 'high',
+        content: 'Thông báo về thay đổi chính sách thuế...',
+        targetAudience: { type: 'all', value: [] },
+        status: 'sent',
+        recipientCount: 856,
+        sentDate: '2024-01-18T08:00:00.000Z',
+        createdAt: '2024-01-17T16:00:00.000Z',
+        updatedAt: '2024-01-18T08:00:00.000Z'
+    },
+    {
+        id: 'notif-2',
+        title: 'Chương trình ưu đãi mới',
+        type: 'ƯU ĐÃI',
+        priority: 'medium',
+        content: 'Giới thiệu chương trình ưu đãi...',
+        targetAudience: { type: 'small', value: [] },
+        status: 'scheduled',
+        recipientCount: 423,
+        scheduledDate: '2024-01-25T09:00:00.000Z',
+        createdAt: '2024-01-20T11:00:00.000Z',
+        updatedAt: '2024-01-20T11:00:00.000Z'
+    }
+];
+
+let mockEnterprises = [
+    {
+        id: 'ent-1',
+        code: 'DN-0001',
+        name: 'Công ty TNHH Năng lượng Xanh Việt',
+        category: 'energy',
+        size: 'medium',
+        employeeCount: 120,
+        email: 'info@greenenergyVN.com',
+        phone: '0283456789',
+        address: '123 Đường ABC, Quận 1',
+        district: 'Quận 1',
+        status: 'active',
+        createdAt: '2024-01-15T10:00:00.000Z'
+    },
+    {
+        id: 'ent-2',
+        code: 'DN-0002',
+        name: 'Siêu thị Co.opMart Nguyễn Kiệm',
+        category: 'trade',
+        size: 'large',
+        employeeCount: 350,
+        email: 'contact@coopmart.vn',
+        phone: '0283456790',
+        address: '456 Nguyễn Kiệm, Phú Nhuận',
+        district: 'Phú Nhuận',
+        status: 'active',
+        createdAt: '2024-01-16T14:00:00.000Z'
+    },
+    {
+        id: 'ent-3',
+        code: 'DN-0003',
+        name: 'KCN Tân Bình JSC',
+        category: 'industry',
+        size: 'large',
+        employeeCount: 450,
+        email: 'info@tanbinhip.com',
+        phone: '0283456791',
+        address: '789 Tân Bình, Quận Tân Bình',
+        district: 'Tân Bình',
+        status: 'active',
+        createdAt: '2024-01-17T09:00:00.000Z'
+    }
+];
+
+// Helper function to generate UUID-like IDs
+function generateMockId(prefix) {
+    return `${prefix}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+}
 
 // ==================== POSTS MANAGEMENT ====================
 
-// Load posts from API
-async function loadCMSPosts(status = 'all') {
+// Load posts from local mock data
+function loadCMSPosts(status = 'all') {
     try {
-        const response = await api.getPosts(status);
-        if (response.success) {
-            renderPostsTable(response.data);
+        let filtered = mockPosts;
+        if (status && status !== 'all') {
+            filtered = mockPosts.filter(post => post.status === status);
         }
+        renderPostsTable(filtered);
     } catch (error) {
         console.error('Error loading posts:', error);
         showAlert('error', 'Không thể tải danh sách bài viết');
@@ -44,8 +164,8 @@ function renderPostsTable(posts) {
     `).join('');
 }
 
-// Create/Edit post
-async function submitCMSPost(event) {
+// Create/Edit post with local mock data
+function submitCMSPost(event) {
     event.preventDefault();
     
     const form = event.target;
@@ -70,35 +190,45 @@ async function submitCMSPost(event) {
 
     try {
         const postId = form.dataset.postId;
-        let response;
         
         if (postId) {
             // Update existing post
-            response = await api.updatePost(postId, postData);
+            const index = mockPosts.findIndex(p => p.id === postId);
+            if (index !== -1) {
+                mockPosts[index] = {
+                    ...mockPosts[index],
+                    ...postData,
+                    updatedAt: new Date().toISOString()
+                };
+                showAlert('success', 'Đã cập nhật bài viết!');
+            }
         } else {
             // Create new post
-            response = await api.createPost(postData);
+            const newPost = {
+                id: generateMockId('post'),
+                ...postData,
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString()
+            };
+            mockPosts.unshift(newPost);
+            showAlert('success', 'Đã tạo bài viết mới!');
         }
 
-        if (response.success) {
-            closeCMSModal('createPost');
-            showAlert('success', postId ? 'Đã cập nhật bài viết!' : 'Đã tạo bài viết mới!');
-            loadCMSPosts();
-            form.reset();
-            delete form.dataset.postId;
-        }
+        closeCMSModal('createPost');
+        loadCMSPosts();
+        form.reset();
+        delete form.dataset.postId;
     } catch (error) {
         console.error('Error saving post:', error);
         showAlert('error', 'Không thể lưu bài viết: ' + error.message);
     }
 }
 
-// Edit post
-async function editCMSPost(postId) {
+// Edit post with local mock data
+function editCMSPost(postId) {
     try {
-        const response = await api.getPost(postId);
-        if (response.success) {
-            const post = response.data;
+        const post = mockPosts.find(p => p.id === postId);
+        if (post) {
             const form = document.getElementById('createPostForm');
             
             form.dataset.postId = postId;
@@ -108,6 +238,8 @@ async function editCMSPost(postId) {
             form.querySelector('[name="status"]').value = post.status;
             
             openCMSModal('createPost');
+        } else {
+            showAlert('error', 'Không tìm thấy bài viết');
         }
     } catch (error) {
         console.error('Error loading post:', error);
@@ -115,15 +247,18 @@ async function editCMSPost(postId) {
     }
 }
 
-// Delete post
-async function deleteCMSPost(postId) {
+// Delete post with local mock data
+function deleteCMSPost(postId) {
     if (!confirm('Bạn có chắc chắn muốn xóa bài viết này?')) return;
     
     try {
-        const response = await api.deletePost(postId);
-        if (response.success) {
+        const index = mockPosts.findIndex(p => p.id === postId);
+        if (index !== -1) {
+            mockPosts.splice(index, 1);
             showAlert('success', 'Đã xóa bài viết!');
             loadCMSPosts();
+        } else {
+            showAlert('error', 'Không tìm thấy bài viết');
         }
     } catch (error) {
         console.error('Error deleting post:', error);
@@ -131,15 +266,20 @@ async function deleteCMSPost(postId) {
     }
 }
 
-// Approve post
-async function approvePost(postId) {
+// Approve post with local mock data
+function approvePost(postId) {
     if (!confirm('Duyệt và xuất bản bài viết này?')) return;
     
     try {
-        const response = await api.publishPost(postId);
-        if (response.success) {
+        const index = mockPosts.findIndex(p => p.id === postId);
+        if (index !== -1) {
+            mockPosts[index].status = 'published';
+            mockPosts[index].publishDate = new Date().toISOString();
+            mockPosts[index].updatedAt = new Date().toISOString();
             showAlert('success', 'Đã duyệt và xuất bản bài viết!');
             loadCMSPosts();
+        } else {
+            showAlert('error', 'Không tìm thấy bài viết');
         }
     } catch (error) {
         console.error('Error approving post:', error);
@@ -147,15 +287,20 @@ async function approvePost(postId) {
     }
 }
 
-// Publish post
-async function publishPost(postId) {
+// Publish post with local mock data
+function publishPost(postId) {
     if (!confirm('Xuất bản bài viết này ngay?')) return;
     
     try {
-        const response = await api.publishPost(postId);
-        if (response.success) {
+        const index = mockPosts.findIndex(p => p.id === postId);
+        if (index !== -1) {
+            mockPosts[index].status = 'published';
+            mockPosts[index].publishDate = new Date().toISOString();
+            mockPosts[index].updatedAt = new Date().toISOString();
             showAlert('success', 'Đã xuất bản bài viết!');
             loadCMSPosts();
+        } else {
+            showAlert('error', 'Không tìm thấy bài viết');
         }
     } catch (error) {
         console.error('Error publishing post:', error);
@@ -177,13 +322,10 @@ function filterCMSPosts(status, clickedElement) {
 
 // ==================== NOTIFICATIONS MANAGEMENT ====================
 
-// Load notifications
-async function loadCMSNotifications() {
+// Load notifications from local mock data
+function loadCMSNotifications() {
     try {
-        const response = await api.getNotifications();
-        if (response.success) {
-            renderNotificationsTable(response.data);
-        }
+        renderNotificationsTable(mockNotifications);
     } catch (error) {
         console.error('Error loading notifications:', error);
         showAlert('error', 'Không thể tải danh sách thông báo');
@@ -218,8 +360,8 @@ function renderNotificationsTable(notifications) {
     `).join('');
 }
 
-// Submit notification
-async function submitCMSNotification(event) {
+// Submit notification with local mock data
+function submitCMSNotification(event) {
     event.preventDefault();
     
     const form = event.target;
@@ -234,7 +376,7 @@ async function submitCMSNotification(event) {
             type: formData.get('targetAudience'),
             value: []
         },
-        status: formData.get('schedule') === 'now' ? 'draft' : 'scheduled',
+        status: formData.get('schedule') === 'now' ? 'sent' : 'scheduled',
         recipientCount: getRecipientCount(formData.get('targetAudience'))
     };
 
@@ -244,45 +386,58 @@ async function submitCMSNotification(event) {
         if (scheduleDate && scheduleTime) {
             notificationData.scheduledDate = `${scheduleDate}T${scheduleTime}:00`;
         }
+    } else {
+        notificationData.sentDate = new Date().toISOString();
     }
 
     try {
         const notifId = form.dataset.notificationId;
-        let response;
         
         if (notifId) {
-            response = await api.updateNotification(notifId, notificationData);
-        } else {
-            response = await api.createNotification(notificationData);
-            
-            // If "send now", immediately send it
-            if (formData.get('schedule') === 'now') {
-                await api.sendNotification(response.data.id);
+            // Update existing notification
+            const index = mockNotifications.findIndex(n => n.id === notifId);
+            if (index !== -1) {
+                mockNotifications[index] = {
+                    ...mockNotifications[index],
+                    ...notificationData,
+                    updatedAt: new Date().toISOString()
+                };
+                showAlert('success', 'Đã cập nhật thông báo!');
             }
+        } else {
+            // Create new notification
+            const newNotification = {
+                id: generateMockId('notif'),
+                ...notificationData,
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString()
+            };
+            mockNotifications.unshift(newNotification);
+            showAlert('success', formData.get('schedule') === 'now' ? 'Đã gửi thông báo!' : 'Đã lên lịch thông báo!');
         }
 
-        if (response.success) {
-            closeCMSModal('createNotification');
-            showAlert('success', formData.get('schedule') === 'now' ? 'Đã gửi thông báo!' : 'Đã lên lịch thông báo!');
-            loadCMSNotifications();
-            form.reset();
-            delete form.dataset.notificationId;
-        }
+        closeCMSModal('createNotification');
+        loadCMSNotifications();
+        form.reset();
+        delete form.dataset.notificationId;
     } catch (error) {
         console.error('Error saving notification:', error);
         showAlert('error', 'Không thể lưu thông báo: ' + error.message);
     }
 }
 
-// Delete notification
-async function deleteNotification(notifId) {
+// Delete notification with local mock data
+function deleteNotification(notifId) {
     if (!confirm('Bạn có chắc chắn muốn xóa thông báo này?')) return;
     
     try {
-        const response = await api.deleteNotification(notifId);
-        if (response.success) {
+        const index = mockNotifications.findIndex(n => n.id === notifId);
+        if (index !== -1) {
+            mockNotifications.splice(index, 1);
             showAlert('success', 'Đã xóa thông báo!');
             loadCMSNotifications();
+        } else {
+            showAlert('error', 'Không tìm thấy thông báo');
         }
     } catch (error) {
         console.error('Error deleting notification:', error);
@@ -290,15 +445,21 @@ async function deleteNotification(notifId) {
     }
 }
 
-// Send notification now
-async function sendNotificationNow(notifId) {
+// Send notification now with local mock data
+function sendNotificationNow(notifId) {
     if (!confirm('Gửi thông báo này ngay bây giờ?')) return;
     
     try {
-        const response = await api.sendNotification(notifId);
-        if (response.success) {
+        const index = mockNotifications.findIndex(n => n.id === notifId);
+        if (index !== -1) {
+            mockNotifications[index].status = 'sent';
+            mockNotifications[index].sentDate = new Date().toISOString();
+            mockNotifications[index].updatedAt = new Date().toISOString();
+            delete mockNotifications[index].scheduledDate;
             showAlert('success', 'Đã gửi thông báo thành công!');
             loadCMSNotifications();
+        } else {
+            showAlert('error', 'Không tìm thấy thông báo');
         }
     } catch (error) {
         console.error('Error sending notification:', error);
@@ -308,13 +469,33 @@ async function sendNotificationNow(notifId) {
 
 // ==================== ENTERPRISES MANAGEMENT ====================
 
-// Load enterprises
-async function loadCMSEnterprises(filters = {}) {
+// Load enterprises from local mock data
+function loadCMSEnterprises(filters = {}) {
     try {
-        const response = await api.getEnterprises(filters);
-        if (response.success) {
-            renderEnterprisesTable(response.data);
+        let filtered = mockEnterprises;
+        
+        // Apply filters
+        if (filters.category && filters.category !== 'all') {
+            filtered = filtered.filter(e => e.category === filters.category);
         }
+        
+        if (filters.size) {
+            filtered = filtered.filter(e => e.size === filters.size);
+        }
+        
+        if (filters.district) {
+            filtered = filtered.filter(e => e.district === filters.district);
+        }
+        
+        if (filters.search) {
+            const searchLower = filters.search.toLowerCase();
+            filtered = filtered.filter(e => 
+                e.name.toLowerCase().includes(searchLower) ||
+                e.code.toLowerCase().includes(searchLower)
+            );
+        }
+        
+        renderEnterprisesTable(filtered);
     } catch (error) {
         console.error('Error loading enterprises:', error);
         showAlert('error', 'Không thể tải danh sách doanh nghiệp');
