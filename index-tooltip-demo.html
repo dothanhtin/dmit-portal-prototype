@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Tooltip System - Cổng Dữ Liệu Công Thương</title>
+    
+    <!-- Tooltip System CSS -->
+    <link rel="stylesheet" href="tooltip-system.css">
+    
+    <style>
+        :root {
+            --color-primary: #1e40af;
+            --color-primary-dark: #1e3a8a;
+            --color-background: #f8fafc;
+            --color-surface: #ffffff;
+            --color-text: #0f172a;
+            --color-text-secondary: #64748b;
+            --color-border: #e2e8f0;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --radius-lg: 12px;
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 50%, #0c4a6e 100%);
+            color: white;
+            padding: var(--spacing-md) 0;
+            box-shadow: 0 4px 20px rgba(30, 64, 175, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .nav {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+
+        .nav-item {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .stats-banner {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            padding: var(--spacing-xl) var(--spacing-lg);
+            border-bottom: 3px solid var(--color-primary);
+        }
+
+        .stats-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .stat-card {
+            background: white;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--color-primary);
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(30, 64, 175, 0.15);
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            color: var(--color-text-secondary);
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--spacing-xl) var(--spacing-lg);
+        }
+
+        .section {
+            background: var(--color-surface);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 16px 32px 16px 50px;
+            border: 2px solid var(--color-border);
+            border-radius: 50px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 4px rgba(30, 64, 175, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: var(--color-text-secondary);
+        }
+
+        .grid {
+            display: grid;
+            gap: var(--spacing-lg);
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        }
+
+        .card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(30, 64, 175, 0.05);
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 24px rgba(30, 64, 175, 0.12);
+            transform: translateY(-4px);
+            border-color: var(--color-primary);
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--color-text);
+            margin-top: 8px;
+        }
+
+        .card-meta {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            margin-top: 8px;
+        }
+
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.4);
+            transition: var(--transition);
+            z-index: 1500;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .demo-info {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid #f59e0b;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .demo-info h3 {
+            color: #92400e;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .demo-info p {
+            color: #78350f;
+            margin-bottom: 8px;
+        }
+
+        .demo-info ul {
+            margin-left: 20px;
+            color: #78350f;
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Tooltip Toggle Button -->
+    <div class="tooltip-toggle-btn" id="tooltipToggleBtn" onclick="toggleTooltipMode()" title="Bật/Tắt hướng dẫn sử dụng">
+        💡
+    </div>
+
+    <!-- Tooltip Overlay -->
+    <div class="tooltip-overlay" id="tooltipOverlay" onclick="hideCurrentTooltip()"></div>
+
+    <!-- Tooltip Box -->
+    <div class="tooltip-box" id="tooltipBox">
+        <div class="tooltip-arrow" id="tooltipArrow"></div>
+        <div class="tooltip-header">
+            <div class="tooltip-title" id="tooltipTitle">
+                <span id="tooltipIcon">💡</span>
+                <span id="tooltipTitleText">Hướng dẫn</span>
+            </div>
+            <div class="tooltip-close" onclick="hideCurrentTooltip()">&times;</div>
+        </div>
+        <div class="tooltip-content" id="tooltipContent"></div>
+        <div class="tooltip-footer">
+            <div class="tooltip-progress" id="tooltipProgress">1/30</div>
+            <div class="tooltip-actions">
+                <button class="tooltip-btn tooltip-btn-skip" onclick="skipTooltip()">Bỏ qua</button>
+                <button class="tooltip-btn tooltip-btn-next" onclick="nextTooltip()">Tiếp theo →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tooltip Control Panel -->
+    <div class="tooltip-control-panel" id="tooltipControlPanel">
+        <div class="tooltip-panel-header">
+            <span>📚</span>
+            <span>Hướng dẫn sử dụng</span>
+        </div>
+        <div class="tooltip-panel-stats">
+            <div class="tooltip-stat-item">
+                <span class="tooltip-stat-label">Tổng số hướng dẫn:</span>
+                <span class="tooltip-stat-value" id="totalTooltips">30</span>
+            </div>
+            <div class="tooltip-stat-item">
+                <span class="tooltip-stat-label">Đã xem:</span>
+                <span class="tooltip-stat-value" id="viewedTooltips">0</span>
+            </div>
+            <div class="tooltip-stat-item">
+                <span class="tooltip-stat-label">Tiến độ:</span>
+                <span class="tooltip-stat-value" id="progressPercent">0%</span>
+            </div>
+        </div>
+        <div class="tooltip-panel-actions">
+            <button class="tooltip-panel-btn" onclick="startGuidedTour()">
+                <span>🎯</span>
+                <span>Bắt đầu Tour hướng dẫn</span>
+            </button>
+            <button class="tooltip-panel-btn" onclick="resetTooltips()">
+                <span>🔄</span>
+                <span>Đặt lại tiến độ</span>
+            </button>
+            <button class="tooltip-panel-btn" onclick="toggleTooltipMode()">
+                <span>❌</span>
+                <span>Đóng hướng dẫn</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo" data-tooltip="logo">
+                <div class="logo-icon">🏢</div>
+                <div>
+                    <div>CÔNG KHAI DỮ LIỆU SỞ CÔNG THƯƠNG</div>
+                    <div style="font-size: 12px; font-weight: 400; opacity: 0.9;">Demo Hệ thống Tooltip</div>
+                </div>
+            </div>
+            <nav class="nav">
+                <div class="nav-item active" data-tooltip="nav-home">🏠 Trang chủ</div>
+                <div class="nav-item" data-tooltip="nav-data">📊 Dữ liệu</div>
+                <div class="nav-item" data-tooltip="nav-multimedia">🎬 Multimedia</div>
+                <div class="nav-item" data-tooltip="nav-news">📰 Tin tức</div>
+                <div class="nav-item" data-tooltip="nav-notifications">🔔 Thông báo</div>
+                <div class="nav-item" data-tooltip="nav-contact">✉️ Liên hệ</div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Stats Banner -->
+    <div class="stats-banner">
+        <div class="stats-grid">
+            <div class="stat-card" data-tooltip="stat-datasets">
+                <div class="stat-number">1,247</div>
+                <div class="stat-label">Bộ dữ liệu công khai</div>
+            </div>
+            <div class="stat-card" data-tooltip="stat-enterprises">
+                <div class="stat-number">856</div>
+                <div class="stat-label">Doanh nghiệp đăng ký</div>
+            </div>
+            <div class="stat-card" data-tooltip="stat-multimedia">
+                <div class="stat-number">2,430</div>
+                <div class="stat-label">Tài liệu Multimedia</div>
+            </div>
+            <div class="stat-card" data-tooltip="stat-views">
+                <div class="stat-number">15,678</div>
+                <div class="stat-label">Lượt xem trang</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Demo Info -->
+        <div class="demo-info">
+            <h3>🎯 Demo Hệ thống Tooltip Hướng dẫn</h3>
+            <p><strong>Hướng dẫn sử dụng:</strong></p>
+            <ul>
+                <li>Click nút <strong>💡</strong> ở góc phải màn hình để bật/tắt chế độ hướng dẫn</li>
+                <li>Khi bật, panel điều khiển sẽ xuất hiện bên phải</li>
+                <li>Click <strong>"Bắt đầu Tour hướng dẫn"</strong> để xem hướng dẫn từng bước</li>
+                <li>Hoặc hover vào các phần tử để xem tooltip riêng lẻ</li>
+            </ul>
+            <p style="margin-top: 12px;"><strong>💡 Tip:</strong> Hệ thống tự động lưu tiến độ của bạn!</p>
+        </div>
+
+        <!-- HOME SECTION -->
+        <div id="home-section" class="content-section active">
+            <div class="search-container" data-tooltip="search-bar">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" placeholder="Tìm kiếm dữ liệu, tin tức, tài liệu..." id="globalSearch">
+            </div>
+
+            <!-- Quick Access -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span>⚡</span>
+                    Truy cập nhanh
+                </h2>
+                <div class="grid grid-4">
+                    <div class="card" data-tooltip="quick-data">
+                        <div style="font-size: 32px;">📊</div>
+                        <div class="card-title">Thống kê dữ liệu</div>
+                        <div class="card-meta">1,247 bộ dữ liệu</div>
+                    </div>
+                    <div class="card" data-tooltip="quick-multimedia">
+                        <div style="font-size: 32px;">🎬</div>
+                        <div class="card-title">Thư viện Multimedia</div>
+                        <div class="card-meta">2,430 tài liệu</div>
+                    </div>
+                    <div class="card" data-tooltip="quick-export">
+                        <div style="font-size: 32px;">📥</div>
+                        <div class="card-title">Xuất dữ liệu Excel</div>
+                        <div class="card-meta">Tải về ngay</div>
+                    </div>
+                    <div class="card" data-tooltip="quick-news">
+                        <div style="font-size: 32px;">📰</div>
+                        <div class="card-title">Tin tức - Sự kiện</div>
+                        <div class="card-meta">Cập nhật hàng ngày</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Demo -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span>✨</span>
+                    Tính năng Tooltip System
+                </h2>
+                <div class="grid grid-4">
+                    <div class="card">
+                        <div style="font-size: 32px;">🎯</div>
+                        <div class="card-title">Guided Tour</div>
+                        <div class="card-meta">Hướng dẫn từng bước tự động</div>
+                    </div>
+                    <div class="card">
+                        <div style="font-size: 32px;">💡</div>
+                        <div class="card-title">Smart Tooltips</div>
+                        <div class="card-meta">Tooltip thông minh cho mọi chức năng</div>
+                    </div>
+                    <div class="card">
+                        <div style="font-size: 32px;">📊</div>
+                        <div class="card-title">Progress Tracking</div>
+                        <div class="card-meta">Theo dõi tiến độ học</div>
+                    </div>
+                    <div class="card">
+                        <div style="font-size: 32px;">💾</div>
+                        <div class="card-title">Auto Save</div>
+                        <div class="card-meta">Tự động lưu trạng thái</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot Toggle -->
+    <div class="chatbot-toggle" id="chatbotToggle" title="Trợ lý AI">
+        💬
+    </div>
+
+    <!-- Tooltip System JS -->
+    <script src="tooltip-system.js"></script>
+</body>
+</html>

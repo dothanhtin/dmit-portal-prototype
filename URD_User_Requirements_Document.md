@@ -1141,49 +1141,136 @@ Cổng Công Khai Dữ Liệu Sở Công Thương là nền tảng web hiện đ
 
 ## 6. USE CASES
 
-### UC-001: Tra cứu dữ liệu công thương
+### 📊 Nhóm 1: Tra cứu và Xem Dữ liệu (Data Viewing)
+
+#### UC-001: Xem thống kê tổng quan trên trang chủ
 
 **Actor:** Public User
 
 **Preconditions:**
-- User truy cập website
-- Dữ liệu đã được load
+- User truy cập website thành công
 
 **Main Flow:**
-1. User navigate to "Dữ liệu" section
-2. System hiển thị 4 lĩnh vực với filter tabs
-3. User chọn lĩnh vực (VD: Năng lượng)
-4. System filter và hiển thị 7 data layers của Năng lượng
-5. User click vào layer "Cơ sở sử dụng năng lượng trọng điểm"
-6. System mở bản đồ với 15 điểm dữ liệu
-7. User click vào marker trên bản đồ
-8. System hiển thị popup với thông tin chi tiết
-9. User scroll xuống xem bảng danh sách
-10. User click icon share để chia sẻ
+1. User truy cập trang chủ
+2. System hiển thị 4 card thống kê chính
+3. User xem số liệu: Bộ dữ liệu, Doanh nghiệp, Multimedia, Lượt xem
+4. System hiển thị animation khi load
 
 **Postconditions:**
-- User đã xem được thông tin dữ liệu
-- Share dialog mở (nếu click share)
+- User có cái nhìn tổng quan về hệ thống
 
 **Alternative Flows:**
-- 3a. User chọn "Tất cả" → Hiển thị tất cả 25 layers
-- 5a. User click "Quay lại dữ liệu" → Quay về Data section
+- 2a. Dữ liệu chưa load → Hiển thị skeleton loading
 
 ---
 
-### UC-002: Tải xuống dữ liệu
+#### UC-002: Tìm kiếm dữ liệu toàn cục
 
 **Actor:** Public User
 
 **Preconditions:**
-- User đã tìm thấy dữ liệu cần tải
+- User đang ở bất kỳ trang nào
+
+**Main Flow:**
+1. User click vào search box ở header
+2. User gõ từ khóa (VD: "năng lượng")
+3. System hiển thị autocomplete với 5 gợi ý
+4. User chọn gợi ý hoặc nhấn Enter
+5. System navigate đến trang kết quả tìm kiếm
+6. System highlight từ khóa trong kết quả
+
+**Postconditions:**
+- User tìm thấy thông tin cần thiết
+
+**Alternative Flows:**
+- 3a. Không có kết quả → Hiển thị "Không tìm thấy"
+- 4a. User click vào gợi ý → Navigate trực tiếp
+
+---
+
+#### UC-003: Lọc dữ liệu theo lĩnh vực
+
+**Actor:** Public User
+
+**Preconditions:**
+- User đang ở section Dữ liệu
+
+**Main Flow:**
+1. User navigate to "Dữ liệu" section
+2. System hiển thị 5 filter tabs: Tất cả, Năng lượng, Thương mại, Công nghiệp, Quy hoạch
+3. User click tab "Năng lượng"
+4. System filter và hiển thị 7 data layers của Năng lượng
+5. System highlight active tab
+
+**Postconditions:**
+- Chỉ hiển thị dữ liệu của lĩnh vực được chọn
+
+**Alternative Flows:**
+- 3a. User click "Tất cả" → Hiển thị tất cả 25 layers
+
+---
+
+#### UC-004: Xem dữ liệu trên bản đồ tương tác
+
+**Actor:** Public User
+
+**Preconditions:**
+- User đã chọn một data layer
+
+**Main Flow:**
+1. User click vào layer "Cơ sở sử dụng năng lượng trọng điểm"
+2. System mở bản đồ Leaflet centered TP.HCM
+3. System hiển thị 15 markers với màu sắc theo trạng thái
+4. User zoom/pan bản đồ
+5. User click vào marker
+6. System hiển thị popup với thông tin chi tiết
+7. User đóng popup hoặc click marker khác
+
+**Postconditions:**
+- User xem được vị trí địa lý của dữ liệu
+
+**Alternative Flows:**
+- 4a. User click "Quay lại dữ liệu" → Đóng bản đồ
+
+---
+
+#### UC-005: Xem chi tiết điểm dữ liệu trong bảng
+
+**Actor:** Public User
+
+**Preconditions:**
+- Bản đồ đang hiển thị
+
+**Main Flow:**
+1. User scroll xuống dưới bản đồ
+2. System hiển thị bảng danh sách 15 điểm dữ liệu
+3. User xem thông tin: Tên, Địa chỉ, Trạng thái, Mã số
+4. User click icon share (Facebook/Twitter/Zalo/LinkedIn)
+5. System mở share dialog
+
+**Postconditions:**
+- User xem được thông tin chi tiết dạng bảng
+
+**Alternative Flows:**
+- 4a. User không share → Chỉ xem thông tin
+
+---
+
+### 📥 Nhóm 2: Tải xuống và Xuất dữ liệu (Data Export)
+
+#### UC-006: Xuất dữ liệu Excel/CSV/JSON
+
+**Actor:** Public User
+
+**Preconditions:**
+- User cần tải dữ liệu về máy
 
 **Main Flow:**
 1. User click "Xuất dữ liệu Excel" từ Home hoặc Data
 2. System mở Export Modal
 3. User chọn bộ dữ liệu (VD: Xuất nhập khẩu)
 4. User chọn khoảng thời gian (VD: Quý hiện tại)
-5. User chọn định dạng (VD: Excel .xlsx)
+5. User chọn định dạng (Excel/CSV/JSON)
 6. User click "Tải xuống"
 7. System validate form
 8. System trigger download file
@@ -1192,7 +1279,7 @@ Cổng Công Khai Dữ Liệu Sở Công Thương là nền tảng web hiện đ
 
 **Postconditions:**
 - File được download về máy user
-- Success alert hiển thị
+- Lượt tải được ghi nhận
 
 **Alternative Flows:**
 - 7a. Validation fails → Hiển thị error message
@@ -1200,7 +1287,105 @@ Cổng Công Khai Dữ Liệu Sở Công Thương là nền tảng web hiện đ
 
 ---
 
-### UC-003: Sử dụng AI Chatbot
+#### UC-007: Xem danh sách datasets có thể tải
+
+**Actor:** Public User
+
+**Preconditions:**
+- User đang ở section Dữ liệu
+
+**Main Flow:**
+1. User scroll đến phần "Dữ liệu có thể tải xuống"
+2. System hiển thị bảng 5 datasets mẫu
+3. User xem: Tên, Lĩnh vực, Ngày cập nhật, Lượt tải, Định dạng
+4. User click icon download (📥)
+5. System trigger download trực tiếp
+
+**Postconditions:**
+- User biết datasets nào có thể tải
+
+**Alternative Flows:**
+- 4a. User click vào tên dataset → Xem chi tiết (future)
+
+---
+
+### 📰 Nhóm 3: Tin tức và Thông báo (News & Notifications)
+
+#### UC-008: Xem tin tức mới nhất
+
+**Actor:** Public User
+
+**Preconditions:**
+- User đang ở trang chủ hoặc section Tin tức
+
+**Main Flow:**
+1. User xem News Slider trên trang chủ
+2. System auto-play 2 slides (8 tin tức)
+3. User click prev/next để chuyển slide
+4. User click vào tin tức quan tâm
+5. System navigate đến trang chi tiết (future)
+
+**Postconditions:**
+- User cập nhật tin tức mới nhất
+
+**Alternative Flows:**
+- 3a. User hover vào slider → Auto-play pause
+- 4a. User click share → Mở share dialog
+
+---
+
+#### UC-009: Đọc thông báo quan trọng
+
+**Actor:** Public User / Doanh nghiệp
+
+**Preconditions:**
+- User navigate đến section Thông báo
+
+**Main Flow:**
+1. User click menu "Thông báo" (có badge số 5)
+2. System hiển thị alert "Bạn có 5 thông báo chưa đọc"
+3. System hiển thị 4 thông báo với badge màu sắc
+4. User đọc nội dung thông báo
+5. User click vào thông báo để xem chi tiết (future)
+
+**Postconditions:**
+- User nhận được thông tin quan trọng
+
+**Alternative Flows:**
+- 4a. User đánh dấu đã đọc → Badge số giảm
+
+---
+
+#### UC-010: Tạo bài viết mới (Public User)
+
+**Actor:** Public User
+
+**Preconditions:**
+- User muốn đóng góp nội dung
+
+**Main Flow:**
+1. User click "Đăng bài viết" ở section Tin tức
+2. System mở modal Create News
+3. User nhập: Tiêu đề, Danh mục, Nội dung
+4. User upload hình ảnh (optional)
+5. User click "Đăng bài"
+6. System validate form
+7. System lưu bài viết (pending approval)
+8. System hiển thị success alert
+9. System đóng modal
+
+**Postconditions:**
+- Bài viết được gửi để admin duyệt
+
+**Alternative Flows:**
+- 6a. Validation fails → Hiển thị error
+- 5a. User click "Hủy" → Đóng modal
+
+---
+
+### 🤖 Nhóm 4: AI Chatbot (Chatbot Interaction)
+
+#### UC-011: Mở và sử dụng AI Chatbot
 
 **Actor:** Public User
 
@@ -1208,92 +1393,444 @@ Cổng Công Khai Dữ Liệu Sở Công Thương là nền tảng web hiện đ
 - User đang ở bất kỳ trang nào
 
 **Main Flow:**
-1. User click chatbot toggle button (💬)
+1. User click chatbot toggle button (💬) ở góc phải dưới
 2. System mở chatbot container
-3. System hiển thị welcome message và 4 quick suggestions
-4. User click suggestion "Thống kê xuất nhập khẩu Q3/2025"
-5. System gửi câu hỏi
-6. System hiển thị typing indicator
-7. System phân tích keywords
-8. System generate intelligent response với thống kê XNK
-9. System hiển thị response với link "Xem chi tiết dữ liệu"
-10. User click link
-11. System navigate to Data section và đóng chatbot
+3. System hiển thị welcome message
+4. System hiển thị 4 quick suggestions
+5. User đọc các gợi ý
 
 **Postconditions:**
-- User nhận được thông tin cần tìm
-- Chatbot đóng (nếu click link)
+- Chatbot sẵn sàng tương tác
 
 **Alternative Flows:**
-- 4a. User gõ câu hỏi tự do → System phân tích và response
-- 4b. User gõ câu hỏi không match keywords → Default response
+- 1a. User click lại button → Đóng chatbot
 
 ---
 
-### UC-004: Quản lý bài viết (CMS)
+#### UC-012: Hỏi chatbot bằng quick suggestions
+
+**Actor:** Public User
+
+**Preconditions:**
+- Chatbot đang mở
+
+**Main Flow:**
+1. User click suggestion "Thống kê xuất nhập khẩu Q3/2025"
+2. System gửi câu hỏi
+3. System hiển thị typing indicator (1.5s)
+4. System phân tích keywords "xuất nhập khẩu", "Q3", "2025"
+5. System generate response với thống kê XNK
+6. System hiển thị response với link "Xem chi tiết dữ liệu"
+7. User đọc response
+
+**Postconditions:**
+- User nhận được thông tin cần tìm
+
+**Alternative Flows:**
+- 6a. User click link → Navigate to Data section và đóng chatbot
+
+---
+
+#### UC-013: Hỏi chatbot bằng câu hỏi tự do
+
+**Actor:** Public User
+
+**Preconditions:**
+- Chatbot đang mở
+
+**Main Flow:**
+1. User gõ câu hỏi "Có bao nhiêu KCN tại TP.HCM?"
+2. User nhấn Enter hoặc click send button
+3. System hiển thị user message bên phải
+4. System hiển thị typing indicator
+5. System phân tích keywords "KCN", "TP.HCM"
+6. System generate response với danh sách 15 KCN
+7. System hiển thị response với link "Xem trên bản đồ"
+
+**Postconditions:**
+- User nhận được câu trả lời thông minh
+
+**Alternative Flows:**
+- 5a. Không match keywords → Default response với gợi ý chủ đề
+
+---
+
+#### UC-014: Navigate từ chatbot đến section khác
+
+**Actor:** Public User
+
+**Preconditions:**
+- Chatbot đã response với link
+
+**Main Flow:**
+1. User click link "Xem chi tiết dữ liệu" trong chatbot response
+2. System navigate đến Data section
+3. System đóng chatbot
+4. System scroll đến phần dữ liệu liên quan
+
+**Postconditions:**
+- User xem được dữ liệu chi tiết
+- Chatbot đóng
+
+---
+
+### 📧 Nhóm 5: Liên hệ và Góp ý (Contact & Feedback)
+
+#### UC-015: Gửi góp ý/liên hệ
+
+**Actor:** Public User
+
+**Preconditions:**
+- User muốn gửi góp ý hoặc báo lỗi
+
+**Main Flow:**
+1. User navigate đến section Liên hệ
+2. User nhập: Họ tên, Email, Số điện thoại (optional)
+3. User chọn loại góp ý (Góp ý dữ liệu, Đề xuất tính năng, Báo lỗi, etc.)
+4. User nhập nội dung (min 10 chars)
+5. User click "Gửi góp ý"
+6. System validate form (email format, required fields)
+7. System gửi góp ý
+8. System hiển thị success alert "Phản hồi trong 24-48h"
+9. System reset form
+
+**Postconditions:**
+- Góp ý được gửi đến admin
+- User nhận được xác nhận
+
+**Alternative Flows:**
+- 6a. Validation fails → Hiển thị error message
+- 5a. User click "Hủy" → Reset form
+
+---
+
+#### UC-016: Xem thông tin liên hệ
+
+**Actor:** Public User
+
+**Preconditions:**
+- User cần thông tin liên hệ
+
+**Main Flow:**
+1. User navigate đến section Liên hệ
+2. System hiển thị thông tin: Địa chỉ, Điện thoại, Email, Giờ làm việc
+3. User xem thông tin
+4. User copy thông tin cần thiết (optional)
+
+**Postconditions:**
+- User biết cách liên hệ trực tiếp
+
+---
+
+### 🎨 Nhóm 6: Multimedia (Media Library)
+
+#### UC-017: Xem thư viện multimedia
+
+**Actor:** Public User
+
+**Preconditions:**
+- User navigate đến section Multimedia
+
+**Main Flow:**
+1. User click menu "Multimedia"
+2. System hiển thị 6 filter tabs: Tất cả, Hình ảnh, Video, Infographic, Sách/Tài liệu, Podcast
+3. User click tab "Video"
+4. System filter và hiển thị chỉ video items
+5. User xem grid 8 media items
+6. User click vào video item
+7. System mở video player
+8. User xem video
+
+**Postconditions:**
+- User xem được multimedia content
+
+**Alternative Flows:**
+- 7a. User click close → Đóng player
+- 3a. User click "Tất cả" → Hiển thị tất cả loại media
+
+---
+
+### ⚙️ Nhóm 7: CMS - Quản lý Bài viết (Content Management)
+
+#### UC-018: Bật/tắt Admin Mode
+
+**Actor:** Content Editor / Content Approver / Data Manager / System Admin
+
+**Preconditions:**
+- User có quyền truy cập CMS
+
+**Main Flow:**
+1. User click checkbox "Admin Mode (CMS)" ở góc phải trên
+2. System bật Admin Mode
+3. System hiển thị menu "⚙️ CMS" trong navigation
+4. System lưu state vào localStorage
+5. User click vào menu CMS
+6. System navigate đến CMS section
+
+**Postconditions:**
+- Admin Mode được bật
+- Menu CMS hiển thị
+
+**Alternative Flows:**
+- 2a. User tắt Admin Mode → Ẩn menu CMS, navigate về Home nếu đang ở CMS
+
+---
+
+#### UC-019: Tạo bài viết mới (CMS)
 
 **Actor:** Content Editor
 
 **Preconditions:**
-- User đã bật Admin Mode
+- Admin Mode đã bật
 - User có quyền Content Editor
 
 **Main Flow:**
-1. User navigate to CMS section
-2. System hiển thị tab "Quản lý bài viết"
-3. User click "Tạo bài viết mới"
-4. System mở Create Post Modal
-5. User nhập tiêu đề, chọn danh mục, nhập nội dung
-6. User upload hình ảnh
-7. User chọn trạng thái "Gửi duyệt"
-8. User click "Lưu bài viết"
-9. System validate form
-10. System lưu bài viết với status "pending"
-11. System hiển thị success alert
-12. System đóng modal
-13. System refresh table với bài viết mới
+1. User navigate to CMS → Tab "Quản lý bài viết"
+2. User click "Tạo bài viết mới"
+3. System mở Create Post Modal
+4. User nhập: Tiêu đề, Danh mục, Nội dung
+5. User upload hình ảnh đại diện (optional)
+6. User chọn trạng thái "Gửi duyệt"
+7. User click "Lưu bài viết"
+8. System validate form
+9. System lưu bài viết với status "pending"
+10. System hiển thị success alert
+11. System đóng modal
+12. System refresh table với bài viết mới (badge "⏳ Chờ duyệt")
 
 **Postconditions:**
 - Bài viết được lưu với status "pending"
 - Bài viết hiển thị trong table
 
 **Alternative Flows:**
-- 9a. Validation fails → Hiển thị error
-- 7a. User chọn "Lưu nháp" → Lưu với status "draft"
+- 8a. Validation fails → Hiển thị error
+- 6a. User chọn "Lưu nháp" → Lưu với status "draft"
+- 6b. User chọn "Lên lịch xuất bản" → Hiển thị datetime picker
 
 ---
 
-### UC-005: Gửi thông báo hàng loạt (CMS)
+#### UC-020: Duyệt và xuất bản bài viết
 
 **Actor:** Content Approver
 
 **Preconditions:**
-- User đã bật Admin Mode
+- Admin Mode đã bật
+- Có bài viết pending
+
+**Main Flow:**
+1. User navigate to CMS → Tab "Quản lý bài viết"
+2. User click filter "Chờ duyệt (2)"
+3. System hiển thị 2 bài viết pending
+4. User xem nội dung bài viết
+5. User click button "✓ Duyệt"
+6. System hiển thị confirm dialog
+7. User confirm
+8. System update status thành "published"
+9. System set publishDate = now
+10. System hiển thị success alert
+11. System refresh table
+
+**Postconditions:**
+- Bài viết được xuất bản
+- Badge thay đổi thành "✓ Đã xuất bản"
+
+**Alternative Flows:**
+- 7a. User cancel → Không duyệt
+- 5a. User click "✏️ Edit" → Mở edit modal
+- 5b. User click "🗑️ Delete" → Xóa bài viết
+
+---
+
+#### UC-021: Lên lịch đăng bài
+
+**Actor:** Content Editor
+
+**Preconditions:**
+- Admin Mode đã bật
+
+**Main Flow:**
+1. User navigate to CMS → Tab "Lịch đăng bài"
+2. System hiển thị calendar view tháng hiện tại
+3. User xem các events đã lên lịch
+4. User click "← Tháng trước" hoặc "Tháng sau →"
+5. System navigate đến tháng tương ứng
+6. User xem events của tháng đó
+
+**Postconditions:**
+- User biết lịch đăng bài sắp tới
+
+**Alternative Flows:**
+- 3a. User click vào event → Xem chi tiết (future)
+
+---
+
+### 🔔 Nhóm 8: CMS - Quản lý Thông báo (Notification Management)
+
+#### UC-022: Tạo và gửi thông báo hàng loạt
+
+**Actor:** Content Approver
+
+**Preconditions:**
+- Admin Mode đã bật
 - User có quyền Content Approver
 
 **Main Flow:**
 1. User navigate to CMS → Tab "Quản lý thông báo"
 2. User click "Tạo thông báo mới"
 3. System mở Create Notification Modal
-4. User nhập tiêu đề, chọn loại "QUAN TRỌNG"
+4. User nhập: Tiêu đề, Loại (QUAN TRỌNG), Độ ưu tiên (Cao)
 5. User nhập nội dung thông báo
-6. User chọn đối tượng nhận "DN quy mô nhỏ <50 NV (423 DN)"
+6. User chọn đối tượng nhận "DN quy mô nhỏ <50 NV"
 7. System update recipient count: "423 doanh nghiệp"
 8. User chọn "Gửi ngay"
 9. User click "Gửi thông báo"
 10. System validate form
-11. System gửi thông báo đến 423 doanh nghiệp
+11. System gửi thông báo đến 423 DN
 12. System hiển thị success alert
 13. System đóng modal
-14. System refresh table với thông báo mới
+14. System refresh table với thông báo mới (status "✓ Đã gửi")
 
 **Postconditions:**
 - Thông báo được gửi đến 423 DN
-- Thông báo hiển thị trong table với status "Đã gửi"
+- Thông báo hiển thị trong table
 
 **Alternative Flows:**
-- 8a. User chọn "Lên lịch gửi" → Chọn ngày giờ → Lưu với status "Đã lên lịch"
+- 8a. User chọn "Lên lịch gửi" → Chọn ngày giờ → Lưu với status "⏰ Đã lên lịch"
 - 6a. User chọn "Tùy chỉnh" → Chọn thủ công từng DN
+
+---
+
+#### UC-023: Gửi ngay thông báo đã lên lịch
+
+**Actor:** Content Approver
+
+**Preconditions:**
+- Có thông báo với status "Đã lên lịch"
+
+**Main Flow:**
+1. User navigate to CMS → Tab "Quản lý thông báo"
+2. User xem thông báo có status "⏰ Đã lên lịch"
+3. User click button "📤 Gửi ngay"
+4. System hiển thị confirm dialog
+5. User confirm
+6. System gửi thông báo ngay lập tức
+7. System update status thành "Đã gửi"
+8. System set sentDate = now
+9. System hiển thị success alert
+10. System refresh table
+
+**Postconditions:**
+- Thông báo được gửi ngay
+- Status thay đổi thành "✓ Đã gửi"
+
+**Alternative Flows:**
+- 5a. User cancel → Không gửi
+- 3a. User click "📊 Thống kê" (cho thông báo đã gửi) → Xem stats (future)
+
+---
+
+### 🏢 Nhóm 9: CMS - Quản lý Doanh nghiệp (Enterprise Management)
+
+#### UC-024: Quản lý danh sách doanh nghiệp
+
+**Actor:** Data Manager
+
+**Preconditions:**
+- Admin Mode đã bật
+- User có quyền Data Manager
+
+**Main Flow:**
+1. User navigate to CMS → Tab "Doanh nghiệp"
+2. System hiển thị filter tabs: Tất cả (856), Năng lượng (145), Thương mại (302), etc.
+3. User click tab "Năng lượng"
+4. System filter và hiển thị 145 DN ngành năng lượng
+5. User nhập từ khóa vào search box
+6. System filter real-time theo từ khóa
+7. User chọn dropdown "Lọc theo quy mô: Vừa (50-200 NV)"
+8. System filter thêm theo quy mô
+9. User xem kết quả trong table
+10. User click "👁️ View" để xem chi tiết DN
+
+**Postconditions:**
+- User tìm được DN cần quản lý
+
+**Alternative Flows:**
+- 5a. User không search → Xem tất cả
+- 7a. User chọn "Lọc theo khu vực" → Filter thêm theo khu vực
+- 10a. User click checkbox "Select all" → Chọn tất cả để gửi thông báo hàng loạt
+
+---
+
+#### UC-025: Import danh sách doanh nghiệp
+
+**Actor:** Data Manager
+
+**Preconditions:**
+- Admin Mode đã bật
+- User có file Excel/CSV danh sách DN
+
+**Main Flow:**
+1. User navigate to CMS → Tab "Doanh nghiệp"
+2. User click "📥 Import danh sách"
+3. System mở import modal
+4. User chọn file Excel/CSV
+5. User click "Upload"
+6. System validate file format
+7. System parse dữ liệu
+8. System hiển thị preview (10 rows đầu)
+9. User xác nhận import
+10. System import dữ liệu vào database
+
+---
+
+---
+
+## 📋 Tóm tắt Use Cases
+
+Hệ thống có **25 Use Cases** được chia thành **9 nhóm chức năng chính**:
+
+### 📊 **Nhóm 1: Tra cứu và Xem Dữ liệu** (5 UC)
+- UC-001: Xem thống kê tổng quan
+- UC-002: Tìm kiếm dữ liệu toàn cục
+- UC-003: Lọc dữ liệu theo lĩnh vực
+- UC-004: Xem dữ liệu trên bản đồ
+- UC-005: Xem chi tiết điểm dữ liệu trong bảng
+
+### 📥 **Nhóm 2: Tải xuống và Xuất dữ liệu** (2 UC)
+- UC-006: Xuất dữ liệu Excel/CSV/JSON
+- UC-007: Xem danh sách datasets có thể tải
+
+### 📰 **Nhóm 3: Tin tức và Thông báo** (3 UC)
+- UC-008: Xem tin tức mới nhất
+- UC-009: Đọc thông báo quan trọng
+- UC-010: Tạo bài viết mới (Public User)
+
+### 🤖 **Nhóm 4: AI Chatbot** (4 UC)
+- UC-011: Mở và sử dụng AI Chatbot
+- UC-012: Hỏi chatbot bằng quick suggestions
+- UC-013: Hỏi chatbot bằng câu hỏi tự do
+- UC-014: Navigate từ chatbot đến section khác
+
+### 📧 **Nhóm 5: Liên hệ và Góp ý** (2 UC)
+- UC-015: Gửi góp ý/liên hệ
+- UC-016: Xem thông tin liên hệ
+
+### 🎨 **Nhóm 6: Multimedia** (1 UC)
+- UC-017: Xem thư viện multimedia
+
+### ⚙️ **Nhóm 7: CMS - Quản lý Bài viết** (4 UC)
+- UC-018: Bật/tắt Admin Mode
+- UC-019: Tạo bài viết mới (CMS)
+- UC-020: Duyệt và xuất bản bài viết
+- UC-021: Lên lịch đăng bài
+
+### 🔔 **Nhóm 8: CMS - Quản lý Thông báo** (2 UC)
+- UC-022: Tạo và gửi thông báo hàng loạt
+- UC-023: Gửi ngay thông báo đã lên lịch
+
+### 🏢 **Nhóm 9: CMS - Quản lý Doanh nghiệp** (2 UC)
+- UC-024: Quản lý danh sách doanh nghiệp
+- UC-025: Import danh sách doanh nghiệp
 
 ---
 
