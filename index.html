@@ -1246,41 +1246,11 @@
             border-color: transparent white transparent transparent;
         }
 
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            color: white;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.4);
-            transition: var(--transition);
-            z-index: 1500;
-        }
-=======
-        /* Chatbot */
+        /* Chatbot Toggle */
         .chatbot-toggle {
             position: fixed;
-            bottom: 24px;
+            bottom: 20px;
             right: 24px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            color: white;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.4);
-            transition: var(--transition);
-            z-index: 1500;
-        }
-=======
             width: 60px;
             height: 60px;
             background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
@@ -1503,15 +1473,15 @@
                 </div>
             </div>
             <nav class="nav">
-                <div class="nav-item active" onclick="showSection('home', this)">🏠 Trang chủ</div>
-                <div class="nav-item" onclick="showSection('data', this)">📊 Dữ liệu</div>
-                <div class="nav-item" onclick="showSection('multimedia', this)">🎬 Multimedia</div>
-                <div class="nav-item" onclick="showSection('news', this)">📰 Tin tức</div>
-                <div class="nav-item" onclick="showSection('notifications', this)">
-                    🔔 Thông báo 
+                <div class="nav-item active" onclick="showSection('home', this)" data-tooltip="nav-home">🏠 Trang chủ</div>
+                <div class="nav-item" onclick="showSection('data', this)" data-tooltip="nav-data">📊 Dữ liệu</div>
+                <div class="nav-item" onclick="showSection('multimedia', this)" data-tooltip="nav-multimedia">🎬 Multimedia</div>
+                <div class="nav-item" onclick="showSection('news', this)" data-tooltip="nav-news">📰 Tin tức</div>
+                <div class="nav-item" onclick="showSection('notifications', this)" data-tooltip="nav-notifications">
+                    🔔 Thông báo
                     <span class="notification-badge">5</span>
                 </div>
-                <div class="nav-item" onclick="showSection('contact', this)">✉️ Liên hệ</div>
+                <div class="nav-item" onclick="showSection('contact', this)" data-tooltip="nav-contact">✉️ Liên hệ</div>
                 <div class="nav-item" id="cmsNavItem" onclick="showSection('cms', this)" style="background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.4); display: none;">⚙️ CMS</div>
                 <div class="nav-item" onclick="window.location.href='https://doit-demo.vnptit.vn/v2/auth'" style="background: rgba(255, 255, 255, 0.25); border: 1px solid rgba(255, 255, 255, 0.5); font-weight: 600;">🔐 Đăng nhập</div>
             </nav>
@@ -1524,6 +1494,70 @@
             <input type="checkbox" id="adminModeToggle" onchange="toggleAdminMode()" style="cursor: pointer; width: 18px; height: 18px;">
             <span>🔧 Admin Mode (CMS)</span>
         </label>
+    </div>
+
+    <!-- Tooltip Toggle Button -->
+    <div class="tooltip-toggle-btn" id="tooltipToggleBtn" onclick="toggleTooltipMode()" title="Bật/Tắt hướng dẫn sử dụng">
+        💡
+    </div>
+
+    <!-- Tooltip Overlay -->
+    <div class="tooltip-overlay" id="tooltipOverlay" onclick="hideCurrentTooltip()"></div>
+
+    <!-- Tooltip Box -->
+    <div class="tooltip-box" id="tooltipBox">
+        <div class="tooltip-arrow" id="tooltipArrow"></div>
+        <div class="tooltip-header">
+            <div class="tooltip-title" id="tooltipTitle">
+                <span id="tooltipIcon">💡</span>
+                <span id="tooltipTitleText">Hướng dẫn</span>
+            </div>
+            <div class="tooltip-close" onclick="hideCurrentTooltip()">&times;</div>
+        </div>
+        <div class="tooltip-content" id="tooltipContent"></div>
+        <div class="tooltip-footer">
+            <div class="tooltip-progress" id="tooltipProgress">1/22</div>
+            <div class="tooltip-actions">
+                <button class="tooltip-btn tooltip-btn-skip" onclick="skipTooltip()">Bỏ qua</button>
+                <button class="tooltip-btn tooltip-btn-next" onclick="nextTooltip()">Tiếp theo →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tooltip Control Panel -->
+    <div class="tooltip-control-panel" id="tooltipControlPanel">
+        <div class="tooltip-panel-header">
+            <span>📚</span>
+            <span>Hướng dẫn sử dụng</span>
+        </div>
+        <div class="tooltip-panel-stats">
+            <div class="tooltip-stat-item">
+                <span class="tooltip-stat-label">Tổng số hướng dẫn:</span>
+                <span class="tooltip-stat-value" id="totalTooltips">22</span>
+            </div>
+            <div class="tooltip-stat-item">
+                <span class="tooltip-stat-label">Đã xem:</span>
+                <span class="tooltip-stat-value" id="viewedTooltips">0</span>
+            </div>
+            <div class="tooltip-stat-item">
+                <span class="tooltip-stat-label">Tiến độ:</span>
+                <span class="tooltip-stat-value" id="progressPercent">0%</span>
+            </div>
+        </div>
+        <div class="tooltip-panel-actions">
+            <button class="tooltip-panel-btn" onclick="startGuidedTour()">
+                <span>🎯</span>
+                <span>Bắt đầu Tour hướng dẫn</span>
+            </button>
+            <button class="tooltip-panel-btn" onclick="resetTooltips()">
+                <span>🔄</span>
+                <span>Đặt lại tiến độ</span>
+            </button>
+            <button class="tooltip-panel-btn" onclick="toggleTooltipMode()">
+                <span>❌</span>
+                <span>Đóng hướng dẫn</span>
+            </button>
+        </div>
     </div>
 
     <!-- Stats Banner -->
@@ -1554,7 +1588,7 @@
         <div id="home-section" class="content-section active">
             <div class="search-container">
                 <span class="search-icon">🔍</span>
-                <input type="text" class="search-input" placeholder="Tìm kiếm dữ liệu, tin tức, tài liệu..." id="globalSearch">
+                <input type="text" class="search-input" placeholder="Tìm kiếm dữ liệu, tin tức, tài liệu..." id="globalSearch" data-tooltip="search-global">
             </div>
 
             <!-- Quick Access -->
@@ -1566,7 +1600,7 @@
                     </h2>
                 </div>
                 <div class="grid grid-4">
-                    <div class="card" onclick="showSection('data', null)">
+                    <div class="card" onclick="showSection('data', null)" data-tooltip="quick-data">
                         <div class="card-header">
                             <div style="font-size: 32px;">📊</div>
                         </div>
@@ -1575,7 +1609,7 @@
                             <span>1,247 bộ dữ liệu</span>
                         </div>
                     </div>
-                    <div class="card" onclick="showSection('multimedia', null)">
+                    <div class="card" onclick="showSection('multimedia', null)" data-tooltip="quick-multimedia">
                         <div class="card-header">
                             <div style="font-size: 32px;">🎬</div>
                         </div>
@@ -1584,7 +1618,7 @@
                             <span>2,430 tài liệu</span>
                         </div>
                     </div>
-                    <div class="card" onclick="openModal('export')">
+                    <div class="card" onclick="openModal('export')" data-tooltip="quick-export">
                         <div class="card-header">
                             <div style="font-size: 32px;">📥</div>
                         </div>
@@ -1593,7 +1627,7 @@
                             <span>Tải về ngay</span>
                         </div>
                     </div>
-                    <div class="card" onclick="showSection('news', null)">
+                    <div class="card" onclick="showSection('news', null)" data-tooltip="quick-news">
                         <div class="card-header">
                             <div style="font-size: 32px;">📰</div>
                         </div>
@@ -2961,10 +2995,16 @@
         </div>
     </div>
 
+    <!-- Tooltip System CSS -->
+    <link rel="stylesheet" href="tooltip-system.css">
+
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Tooltip System JS -->
+    <script src="tooltip-system.js"></script>
 
     <script>
         // Navigation
