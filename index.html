@@ -1491,13 +1491,13 @@
     <!-- Admin Toggle (Hidden in production) -->
     <div style="position: fixed; top: 80px; right: 20px; z-index: 2000; background: white; padding: 12px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 2px solid var(--color-primary);">
         <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--color-text);">
-            <input type="checkbox" id="adminModeToggle" onchange="toggleAdminMode()" style="cursor: pointer; width: 18px; height: 18px;">
+            <input type="checkbox" id="adminModeToggle" onchange="toggleAdminMode()" style="cursor: pointer; width: 18px; height: 18px;" data-tooltip="admin-toggle">
             <span>🔧 Admin Mode (CMS)</span>
         </label>
     </div>
 
     <!-- Tooltip Toggle Button -->
-    <div class="tooltip-toggle-btn" id="tooltipToggleBtn" onclick="toggleTooltipMode()" title="Bật/Tắt hướng dẫn sử dụng">
+    <div class="tooltip-toggle-btn" id="tooltipToggleBtn" onclick="toggleTooltipMode()" title="Bật/Tắt hướng dẫn sử dụng" data-tooltip="tooltip-toggle">
         💡
     </div>
 
@@ -1653,7 +1653,7 @@
                     <button class="slider-btn slider-btn-prev" onclick="moveNewsSlide(-1)" aria-label="Previous slide">
                         <span>‹</span>
                     </button>
-                    <button class="slider-btn slider-btn-next" onclick="moveNewsSlide(1)" aria-label="Next slide">
+                    <button class="slider-btn slider-btn-next" onclick="moveNewsSlide(1)" aria-label="Next slide" data-tooltip="slider-next">
                         <span>›</span>
                     </button>
                     
@@ -1847,11 +1847,11 @@
                 </div>
 
                 <div class="filter-tabs">
-                    <div class="filter-tab active" onclick="filterDataCategory('all', this)">Tất cả</div>
-                    <div class="filter-tab" onclick="filterDataCategory('energy', this)">⚡ Năng lượng</div>
-                    <div class="filter-tab" onclick="filterDataCategory('trade', this)">🛒 Thương mại</div>
-                    <div class="filter-tab" onclick="filterDataCategory('industry', this)">🏭 Công nghiệp</div>
-                    <div class="filter-tab" onclick="filterDataCategory('planning', this)">🗺️ Quy hoạch</div>
+                    <div class="filter-tab active" onclick="filterDataCategory('all', this)" data-tooltip="filter-all">Tất cả</div>
+                    <div class="filter-tab" onclick="filterDataCategory('energy', this)" data-tooltip="filter-energy">⚡ Năng lượng</div>
+                    <div class="filter-tab" onclick="filterDataCategory('trade', this)" data-tooltip="filter-trade">🛒 Thương mại</div>
+                    <div class="filter-tab" onclick="filterDataCategory('industry', this)" data-tooltip="filter-industry">🏭 Công nghiệp</div>
+                    <div class="filter-tab" onclick="filterDataCategory('planning', this)" data-tooltip="filter-planning">🗺️ Quy hoạch</div>
                 </div>
 
                 <!-- Energy Category -->
@@ -1860,12 +1860,12 @@
                         ⚡ 1. Năng lượng
                     </h3>
                     <div class="grid grid-4">
-                        <div class="card" onclick="openMapLayer('energy-facilities')">
+                        <div class="card" onclick="openMapLayer('energy-facilities')" data-tooltip="data-energy-facilities">
                             <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">🏭</div>
                             <div class="card-title">Cơ sở sử dụng năng lượng trọng điểm</div>
                             <div class="card-meta"><span>300+ dữ liệu doanh nghiệp</span></div>
                         </div>
-                        <div class="card" onclick="openMapLayer('electricity-retail')">
+                        <div class="card" onclick="openMapLayer('electricity-retail')" data-tooltip="data-electricity-retail">
                             <div style="font-size: 24px; margin-bottom: var(--spacing-sm);">⚡</div>
                             <div class="card-title">Doanh nghiệp hoạt động điện lực bán lẻ</div>
                             <div class="card-meta"><span>1+ dữ liệu doanh nghiệp</span></div>
@@ -2065,7 +2065,7 @@
                                 <td>567</td>
                                 <td>XLSX, JSON</td>
                                 <td>
-                                    <span class="download-icon" onclick="downloadData('cpi-10')" title="Tải xuống">📥</span>
+                                    <span class="download-icon" onclick="downloadData('cpi-10')" title="Tải xuống" data-tooltip="download-cpi-10">📥</span>
                                 </td>
                             </tr>
                             <tr>
@@ -2105,12 +2105,12 @@
                 </div>
 
                 <div class="filter-tabs">
-                    <div class="filter-tab active" onclick="filterMultimedia('all', this)">Tất cả</div>
-                    <div class="filter-tab" onclick="filterMultimedia('image', this)">📷 Hình ảnh</div>
-                    <div class="filter-tab" onclick="filterMultimedia('video', this)">🎥 Video</div>
-                    <div class="filter-tab" onclick="filterMultimedia('infographic', this)">📊 Infographic</div>
-                    <div class="filter-tab" onclick="filterMultimedia('book', this)">📚 Sách/Tài liệu</div>
-                    <div class="filter-tab" onclick="filterMultimedia('voice', this)">🎙️ Podcast</div>
+                    <div class="filter-tab active" onclick="filterMultimedia('all', this)" data-tooltip="multimedia-all">Tất cả</div>
+                    <div class="filter-tab" onclick="filterMultimedia('image', this)" data-tooltip="multimedia-image">📷 Hình ảnh</div>
+                    <div class="filter-tab" onclick="filterMultimedia('video', this)" data-tooltip="multimedia-video">🎥 Video</div>
+                    <div class="filter-tab" onclick="filterMultimedia('infographic', this)" data-tooltip="multimedia-infographic">📊 Infographic</div>
+                    <div class="filter-tab" onclick="filterMultimedia('book', this)" data-tooltip="multimedia-book">📚 Sách/Tài liệu</div>
+                    <div class="filter-tab" onclick="filterMultimedia('voice', this)" data-tooltip="multimedia-voice">🎙️ Podcast</div>
                 </div>
 
                 <div class="media-grid" id="mediaGrid">
